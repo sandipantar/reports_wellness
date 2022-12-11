@@ -23,6 +23,8 @@
     <?php 
         $user_id = $this->uri->segment(2);
         $userDet=$this->User_model->show_user($user_id);
+        $userPage=$this->User_model->show_page($user_id);
+        $userEnvelope=$this->User_model->show_envelope($user_id);
         // $bills=$this->Bill_model->old_bills($bill_id); 
         // $p_details = $this->Patient_model->show_patients($bills['patient_id']);
         // $t_detail =  $this->Test_model->show_bill_tests($bills['bill_id']);
@@ -44,13 +46,18 @@
             <div class="row">
         <div class="col-xl-12">
             <div class="breadcrumb-holder">
+              <form  method="post" action="user/add_envelope"  enctype="multipart/form-data">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item mx-auto"><b>
                         Upload Your file 
-                        <input type="file"/>
+                        <input type="file" name="file_name"/>
+                        <input type="hidden" name="user_id" value="<?php echo $user_id ; ?>">
+                                    
+                        <button type="submit" class="btn btn-success btn-sm ">Add</button>
                         to update your Pages and envelopes 
                     </b></li>
                 </ol>
+              </form>
                 <div class="clearfix"></div>
             </div>
         </div>
@@ -69,8 +76,13 @@
                     
                       <div class="row">
                         <div class="col-sm">
-                          <h6>Total Pages</h6> 
-                        <h5><span class="badge badge-primary">500</span></h5>
+                          <h6>Total Pages</h6>
+                            <?php $a = 0;
+                          if($userPage != NULL){ foreach($userPage as $user) { ?> 
+                         <?php $a +=$user['pages']; ?>
+                       
+                          <?php }}?>  
+                        <h5>  <span class="badge badge-primary"><?php echo $a; ?></span> </h5>
                         </div>
                         <div class="col-sm">
                           <h6>Used Pages</h6> 
@@ -89,7 +101,12 @@
                     <div class="row">
                         <div class="col-sm">
                           <h6>Total Envelopes</h6> 
-                        <h5><span class="badge badge-primary">500</span></h5>
+                          <?php $a = 0;
+                          if($userEnvelope != NULL){ foreach($userEnvelope as $user) { ?> 
+                         <?php $a +=$user['envelopes']; ?>
+                       
+                          <?php }}?>  
+                        <h5>  <span class="badge badge-primary"><?php echo $a; ?></span> </h5>
                         </div>
                         <div class="col-sm">
                           <h6>Used Envelopes</h6> 

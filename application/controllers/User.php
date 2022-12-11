@@ -17,7 +17,15 @@ class User extends CI_Controller {
                 $referer = $_SERVER['HTTP_REFERER'];
                 header("Location: $referer");
                 
-	}
+	        }
+
+                public function assign_envs( ){
+        
+                        $this->User_model->assign_envs();
+                        $referer = $_SERVER['HTTP_REFERER'];
+                        header("Location: $referer");
+                        
+                        }
 
     
 	public function edit_user() {
@@ -70,7 +78,63 @@ class User extends CI_Controller {
                 $this->User_model->del_user();	
                 $referer = $_SERVER['HTTP_REFERER'];
                 header("Location: $referer");
-        }	
+        }
+        
+              
+	public function add_envelope(){
+                $file_name = $this->input->post('file_name');
+
+		
+		if (!is_dir('./wellness_file/'.$file_name)) {
+			mkdir('./wellness_file/'.$file_name, 0777, TRUE);                    
+		}
+
+		
+		$config['upload_path']      = './wellness_file/'.$file_name;
+		$config['allowed_types']    = 'pdf';
+		//$config['max_size']         = 15000;
+
+		$this->load->library('upload', $config);		
+		$file_name = NULL;
+		if( $this->upload->do_upload('file_name')) {                    
+			$data = $this->upload->data();
+			$file_name =  $data['file_name'];
+		} 
+                $data = array(
+                        'user_id'=>$this->input->post('user_id'),
+                        'file_name'=>$file_name,
+                        'envelope_used'=>"1"
+                        
+                                        
+                    );
+
+                $this->User_model->add_envelope($data);	
+                function count_pages($pdfname) {
+
+                        $pdftext = file_get_contents($pdfname);
+                        $num = preg_match_all("/\/Page\W/", $pdftext, $dummy);
+                      
+                        return $num;
+                      }
+                      
+                      $pdfname = './wellness_file/'.$file_name;
+                      $pages = count_pages($pdfname);
+                      
+                      echo $pages;
+                        
+                      
+              
+                // return $num;
+                $dat = array(
+                        'user_id'=>$this->input->post('user_id'),
+                        'page_used'=>$pages
+                                        
+                    );
+                    $this->User_model->add_page_used($dat);	
+
+                $referer = $_SERVER['HTTP_REFERER'];
+                header("Location: $referer");
+        }
 
 
 }

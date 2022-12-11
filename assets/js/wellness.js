@@ -598,20 +598,18 @@ function edit_user(id) {
   });
 }
 //assign_page
-function assign_page() {
+function assign_page(id) {
   var data = "";
 
   data +=
     '<form class="form-horizontal form-label-left" method="post" action="user/assign_page">';
   data += '<div class="row" style="padding:10px 20px";>';
   data += '<div class="row form-group">';
-
+  data += '<input type="hidden" name="user_id" value="' + id + '">';
   data += "<label>Assign pages </label>";
   data += '<input type="text" name="pages" class="form-control" required="required">';
   data += "</div>";
 
-  data += "<label>User Email</label>";
-  data += '<input type="text" name="user_email" class="form-control" required="required">';
   data += "</div>";
 
   data += '<div class="row form-group col-md-12 col-sm-12 col-xs-12">';
@@ -633,7 +631,7 @@ function assign_page() {
 
 //assign_envs
 
-function assign_envs() {
+function assign_envs(id) {
   var data = "";
 
   data +=
@@ -641,12 +639,11 @@ function assign_envs() {
   data += '<div class="row" style="padding:10px 20px";>';
   data += '<div class="row form-group">';
 
+  data += '<input type="hidden" name="user_id" value="' + id + '">';
   data += "<label>Assign Envelopes </label>";
-  data += '<input type="text" name="pages" class="form-control" required="required">';
+  data += '<input type="text" name="envelopes" class="form-control" required="required">';
   data += "</div>";
 
-  data += "<label>User Email</label>";
-  data += '<input type="text" name="user_email" class="form-control" required="required">';
   data += "</div>";
 
   data += '<div class="row form-group col-md-12 col-sm-12 col-xs-12">';

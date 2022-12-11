@@ -53,8 +53,8 @@
                                 <td><?php echo $usr['user_password']; ?></td>
                                 <td><?php echo $usr['user_type']; ?></td>
                                 <td>
-                                    <button class="btn btn-sm btn-success" onclick="assign_page();"><i class="fa fa-file-text"></i></button>
-                                    <button class="btn btn-sm btn-warning" onclick="assign_envs();"><i class="fa fa-envelope"></i></button>
+                                    <button class="btn btn-sm btn-success" onclick="assign_page(<?php echo $usr['user_id']; ?>);"><i class="fa fa-file-text"></i></button>
+                                    <button class="btn btn-sm btn-warning" onclick="assign_envs(<?php echo $usr['user_id']; ?>);"><i class="fa fa-envelope"></i></button>
                                     <button class="btn btn-sm btn-primary" onclick="edit_user(<?php echo $usr['user_id']; ?>);"><i class="fa fa-edit"></i></button>
                                     <button class="btn btn-sm btn-danger" onclick="del_user(<?php echo $usr['user_id']; ?>);"><i class="fa fa-trash"></i></button>
                                 </td>

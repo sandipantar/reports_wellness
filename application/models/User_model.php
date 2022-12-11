@@ -33,19 +33,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             $this->db->insert('user',$data);
             return $this->db->insert_id();
         }
-        //  //add pages
-        // public function assign_page() {
-            
-        //     //user data array
-        //     $data = array(
-        //         'pages'      => $this->input->post('pages')
-        //     );
-
-            
-        //     //insert
-        //     $this->db->insert('user_assets',$data);
-        //     return $this->db->insert_id();
-        // }
+     
 
         //update user
         public function edit_user() {
@@ -70,7 +58,31 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
     }
         
-        //update user
+    public function show_page($id='') {
+        if($id != NULL) {
+            $this->db->where('user_id',$id);
+            $this->db->order_by('pages','ASC');
+            $q = $this->db->get('page');
+            return $q->result_array();
+        } else {
+            $this->db->order_by('pages','ASC');
+            $q = $this->db->get('page');
+            return $q->result_array();
+        }
+    } 
+
+    public function show_envelope($id='') {
+        if($id != NULL) {
+            $this->db->where('user_id',$id);
+            $this->db->order_by('envelopes','ASC');
+            $q = $this->db->get('envelope');
+            return $q->result_array();
+        } else {
+            $this->db->order_by('envelopes','ASC');
+            $q = $this->db->get('envelope');
+            return $q->result_array();
+        }
+    } 
 
          //update user
          public function del_user() {
@@ -80,5 +92,44 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             $this->db->where('user_id',$id);
             return $this->db->delete('user');
         }
+       
+            //add pages
+            public function assign_page() {
+                $id = $this->input->post('user_id');
+                //user data array
+                $data = array(
+                    'user_id'=>$id,
+                    'pages'      => $this->input->post('pages')
+                );
+    
+            $this->db->insert('page',$data);
+            return $this->db->insert_id();
+            }
+    
+            public function assign_envs() {
+                $id = $this->input->post('user_id');
+                //user data array
+                $data = array(
+                    'user_id'=>$id,
+                    'envelopes'      => $this->input->post('envelopes')
+                );
+    
+                
+                //insert
+                $this->db->insert('envelope',$data);
+            return $this->db->insert_id();
+            }
+            
+            public function add_envelope($data) {
+            
+                $this->db->insert('envelope',$data);
+            return $this->db->insert_id();
+            }
+            
+             public function add_page_used($data) {
+            
+                $this->db->insert('page',$data);
+            return $this->db->insert_id();
+            }
 
     }

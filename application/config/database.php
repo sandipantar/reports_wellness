@@ -11,7 +11,7 @@ if($_SERVER['HTTP_HOST'] == 'localhost') {
 		// 'password' => 'C7KsJB3vU2gMQwsa',
 		'username' => 'root',
 		'password' => '',
-		'database' => 'trivfddu_wellness',
+		'database' => 'well_report',
 		'dbdriver' => 'mysqli',
 		'dbprefix' => '',
 		'pconnect' => FALSE,
