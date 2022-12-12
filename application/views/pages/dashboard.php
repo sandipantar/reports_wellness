@@ -4,7 +4,7 @@
 
 <?php if($this->session->userdata('type') == 'User') { ?>  
  
-<div class="container"><div class="container"> user</div></div>
+<div class="container"> user</div>
 
  <?php }?> 
 <?php if($this->session->userdata('type') == 'Admin') { ?>   
