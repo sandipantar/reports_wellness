@@ -1,11 +1,20 @@
+# <IfModule mod_rewrite.c>
+#     RewriteEngine On
+#     RewriteCond %{HTTPS} !=on
+#     RewriteRule ^(.*)$ https://reports.wellnessslg.com/$1 [L,R=301,NE]
+#     Header always set Content-Security-Policy "upgrade-insecure-requests;"
+#     RewriteBase /
+#     RewriteRule ^index\.php$ - [L]
+#     RewriteCond %{REQUEST_FILENAME} !-f
+#     RewriteCond %{REQUEST_FILENAME} !-d
+#     RewriteRule . /index.php [L]
+# </IfModule>
+
 <IfModule mod_rewrite.c>
-    RewriteEngine On
-    RewriteCond %{HTTPS} !=on
-    RewriteRule ^(.*)$ https://reports.wellnessslg.com/$1 [L,R=301,NE]
-    Header always set Content-Security-Policy "upgrade-insecure-requests;"
-    RewriteBase /
-    RewriteRule ^index\.php$ - [L]
-    RewriteCond %{REQUEST_FILENAME} !-f
-    RewriteCond %{REQUEST_FILENAME} !-d
-    RewriteRule . /index.php [L]
+RewriteEngine On
+RewriteBase /projectfolder/
+RewriteRule ^index\.php$ - [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /reports_wellness/index.php [L]
 </IfModule>
