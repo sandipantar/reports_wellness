@@ -4,7 +4,7 @@
 
 <?php if($this->session->userdata('type') == 'User') { ?>  
  
-<div class="container"><div class="container"> <h1>ggg</h1>hhh</div></div>
+<div class="container"><div class="container"> user</div></div>
 
  <?php }?> 
 <?php if($this->session->userdata('type') == 'Admin') { ?>   
@@ -42,11 +42,5 @@
   </div>
  </div>
 <!-- END container-fluid -->
-
-
-
- 
-        
-   
   <?php } ?> 
 <?php } ?>

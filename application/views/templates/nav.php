@@ -55,34 +55,34 @@
                         <a <?php if($this->uri->segment(1) == 'dashboard') echo 'class="active"'; ?> href="<?php echo base_url(); ?>dashboard"><i class="fa fa-fw fa-dashboard"></i><span> Dashboard </span>
                         </a>
                     </li>
-
+                    <?php if($this->session->userdata('type') == 'Admin') { ?> 
                     <li class="submenu">
                        <a <?php if($this->uri->segment(1) == 'doctors') echo 'class="active"'; ?> href="<?php echo base_url(); ?>doctors"><i class="fa fa-fw fa-user-md"></i><span> Doctors </span> </a>
                     </li>
 
-                    <!--<li class="submenu">-->
-                    <!--    <a <?php if($this->uri->segment(1) == 'tests') echo 'class="active"'; ?> href="<?php echo base_url(); ?>tests"><i class="fa fa-fw fa-stethoscope"></i><span> Tests </span> </a>-->
-                    <!--</li>-->
-                    <!--<?php if($this->session->userdata('type') == 'Admin') { ?>                    -->
-                    <!--<li class="submenu">-->
-                    <!--    <a <?php if($this->uri->segment(1) == 'labs') echo 'class="active"'; ?> href="<?php echo base_url(); ?>labs"><i class="fa fa-fw fa-medkit"></i><span> Referral Center Name </span> </a>-->
-                    <!--</li>-->
+                    <li class="submenu">
+                        <a <?php if($this->uri->segment(1) == 'tests') echo 'class="active"'; ?> href="<?php echo base_url(); ?>tests"><i class="fa fa-fw fa-stethoscope"></i><span> Tests </span> </a>
+                    </li>
+                                       
+                    <li class="submenu">
+                        <a <?php if($this->uri->segment(1) == 'labs') echo 'class="active"'; ?> href="<?php echo base_url(); ?>labs"><i class="fa fa-fw fa-medkit"></i><span> Referral Center Name </span> </a>
+                    </li>
 
                     <li class="submenu">
                         <a <?php if($this->uri->segment(1) == 'old_bill') echo 'class="active"'; ?> href="<?php echo base_url(); ?>old_bill"><i class="fa fa-fw fa-file-pdf-o"></i><span> Old bills </span> </a>
                     </li>
 
-                    <!--<li class="submenu">-->
-                    <!--    <a <?php if($this->uri->segment(1) == 'old_patient') echo 'class="active"'; ?> href="<?php echo base_url(); ?>old_patient"><i class="fa fa-fw fa-user-o"></i><span> Old patients </span> </a>-->
-                    <!--</li>-->
+                    <li class="submenu">
+                        <a <?php if($this->uri->segment(1) == 'old_patient') echo 'class="active"'; ?> href="<?php echo base_url(); ?>old_patient"><i class="fa fa-fw fa-user-o"></i><span> Old patients </span> </a>
+                    </li>
 
-                    <!--<li class="submenu">-->
-                    <!--    <a <?php if($this->uri->segment(1) == 'collector') echo 'class="active"'; ?> href="<?php echo base_url(); ?>collector"><i class="fa fa-fw fa-user-o"></i><span> Collector </span> </a>-->
-                    <!--</li>-->
+                    <li class="submenu">
+                        <a <?php if($this->uri->segment(1) == 'collector') echo 'class="active"'; ?> href="<?php echo base_url(); ?>collector"><i class="fa fa-fw fa-user-o"></i><span> Collector </span> </a>
+                    </li>
 
-                    <!--<li class="submenu">-->
-                    <!--    <a <?php if($this->uri->segment(1) == 'agent') echo 'class="active"'; ?> href="<?php echo base_url(); ?>agent"><i class="fa fa-fw fa-user-o"></i><span> Agent </span> </a>-->
-                    <!--</li>-->
+                    <li class="submenu">
+                        <a <?php if($this->uri->segment(1) == 'agent') echo 'class="active"'; ?> href="<?php echo base_url(); ?>agent"><i class="fa fa-fw fa-user-o"></i><span> Agent </span> </a>
+                    </li>
                     
                     <li class="submenu">
                         <a <?php if($this->uri->segment(1) == 'user') echo 'class="active"'; ?> href="<?php echo base_url(); ?>user"><i class="fa fa-fw fa-user-o"></i><span> User </span> </a>
