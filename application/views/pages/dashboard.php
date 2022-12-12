@@ -1,38 +1,14 @@
 <?php if(!$this->session->userdata('logged_in')) {
     redirect('home');
 } else { ?>
-<div class="container">
 
-     <?php 
-        // $doctors = $this->Doctor_model->show_doctor();
-        // $tests = $this->Test_model->show_tests();
-        // $last_test = $this->Bill_model->last_bill();
-        // $labs=$this->Lab_model->show_lab();
-        // if($last_test == NULL) {
-        //     $reg = 000001;            
-        //     $reg = sprintf('%06d', $reg);
-        // } else {
-        //     $reg = $last_test['registration'] + 1;
-        //     $reg = sprintf('%06d', $reg);
-        // }
-        // $this->load->view('all_modals'); 
-     ?>
+<?php if($this->session->userdata('type') == 'User') { ?>  
+ 
+<div class="container"><div class="container"> <h1>ggg</h1>hhh</div></div>
 
-    <!--<div class="row">-->
-    <!--    <div class="col-xl-12">-->
-    <!--        <div class="breadcrumb-holder">-->
-    <!--            <h1 class="main-title float-left">Generate Bill</h1>-->
-    <!--            <ol class="breadcrumb float-right">-->
-    <!--                <li class="breadcrumb-item"><b><?php echo date("d M, Y"); ?></b></li>-->
-    <!--            </ol>-->
-    <!--            <div class="clearfix"></div>-->
-    <!--        </div>-->
-    <!--    </div>-->
-    <!--</div>-->
-    <!-- end row -->
-
-
-    
+ <?php }?> 
+<?php if($this->session->userdata('type') == 'Admin') { ?>   
+<div class="container">                
 <div class="container">
     <a href="<?php echo base_url();?>user">
   <div class="row justify-content-md-center">
@@ -66,4 +42,11 @@
   </div>
  </div>
 <!-- END container-fluid -->
+
+
+
+ 
+        
+   
+  <?php } ?> 
 <?php } ?>

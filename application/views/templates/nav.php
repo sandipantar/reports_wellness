@@ -56,9 +56,9 @@
                         </a>
                     </li>
 
-                    <!--<li class="submenu">-->
-                    <!--    <a <?php if($this->uri->segment(1) == 'doctors') echo 'class="active"'; ?> href="<?php echo base_url(); ?>doctors"><i class="fa fa-fw fa-user-md"></i><span> Doctors </span> </a>-->
-                    <!--</li>-->
+                    <li class="submenu">
+                       <a <?php if($this->uri->segment(1) == 'doctors') echo 'class="active"'; ?> href="<?php echo base_url(); ?>doctors"><i class="fa fa-fw fa-user-md"></i><span> Doctors </span> </a>
+                    </li>
 
                     <!--<li class="submenu">-->
                     <!--    <a <?php if($this->uri->segment(1) == 'tests') echo 'class="active"'; ?> href="<?php echo base_url(); ?>tests"><i class="fa fa-fw fa-stethoscope"></i><span> Tests </span> </a>-->

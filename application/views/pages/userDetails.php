@@ -77,20 +77,33 @@
                       <div class="row">
                         <div class="col-sm">
                           <h6>Total Pages</h6>
-                            <?php $a = 0;
+                            <?php $totalP = 0;
                           if($userPage != NULL){ foreach($userPage as $user) { ?> 
-                         <?php $a +=$user['pages']; ?>
+                         <?php $totalP +=$user['pages']; ?>
                        
                           <?php }}?>  
-                        <h5>  <span class="badge badge-primary"><?php echo $a; ?></span> </h5>
+                        <h5>  <span class="badge badge-primary"><?php echo $totalP; ?></span> </h5>
                         </div>
+
+                        <div class="col-sm">
+                          <h6>Used Pages</h6>
+                            <?php $usedP = 0;
+                          if($userPage != NULL){ foreach($userPage as $user) { ?> 
+                         <?php $usedP +=$user['page_used']; ?>
+                       
+                          <?php }}?>  
+                        <h5>  <span class="badge badge-warning"><?php echo $usedP; ?></span> </h5>
+                        </div>
+
+<!-- 
                         <div class="col-sm">
                           <h6>Used Pages</h6> 
                         <h5><span class="badge badge-warning">200</span></h5>
-                        </div>
+                        </div> -->
+
                         <div class="col-sm">
                           <h6>Pages in Stock</h6> 
-                        <h5><span class="badge badge-success">300</span></h5>
+                        <h5><span class="badge badge-success"><?php echo $totalP - $usedP ?></span></h5>
                         </div>
                       </div>
                    
@@ -101,20 +114,32 @@
                     <div class="row">
                         <div class="col-sm">
                           <h6>Total Envelopes</h6> 
-                          <?php $a = 0;
+                          <?php $totalE = 0;
                           if($userEnvelope != NULL){ foreach($userEnvelope as $user) { ?> 
-                         <?php $a +=$user['envelopes']; ?>
+                         <?php $totalE +=$user['envelopes']; ?>
                        
                           <?php }}?>  
-                        <h5>  <span class="badge badge-primary"><?php echo $a; ?></span> </h5>
+                        <h5>  <span class="badge badge-primary"><?php echo $totalE; ?></span> </h5>
                         </div>
+
                         <div class="col-sm">
                           <h6>Used Envelopes</h6> 
-                        <h5><span class="badge badge-warning">100</span></h5>
+                          <?php $usedE = 0;
+                          if($userEnvelope != NULL){ foreach($userEnvelope as $user) { ?> 
+                         <?php $usedE +=$user['envelope_used']; ?>
+                       
+                          <?php }}?>  
+                        <h5>  <span class="badge badge-warning"><?php echo $usedE; ?></span> </h5>
                         </div>
+
+
+                        <!-- <div class="col-sm">
+                          <h6>Used Envelopes</h6> 
+                        <h5><span class="badge badge-warning">100</span></h5>
+                        </div> -->
                         <div class="col-sm">
                           <h6>Envelopes in Stock</h6> 
-                        <h5><span class="badge badge-success">400</span></h5>
+                        <h5><span class="badge badge-success"><?php echo $totalE - $usedE ?></span></h5>
                         </div>
                       </div>
                 </li>
