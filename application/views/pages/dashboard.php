@@ -107,7 +107,8 @@
                 <p class="card-text">Login history of <?php echo $userDet['user_name'];?> </p>
               </div>
               <ul class="list-group list-group-flush">
-            <?php  if($userEnvelope != NULL){ foreach($userEnvelope as $user) { ?> 
+            <?php  if($userEnvelope != NULL ){ foreach($userEnvelope as $user) { ?> 
+              <?php if($user['file_name'] != NULL){ ?>
                 <li class="list-group-item">
                 <span class="cause-title-wrap">
                 <h4 class="cause-title text-center"><?php echo $user['file_name']; ?></h4>
@@ -117,7 +118,7 @@
 
                  
                 </li>
-                <?php }}?>
+                <?php }}}?>
                 
               </ul>
             </div>
