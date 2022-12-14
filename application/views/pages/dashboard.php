@@ -126,6 +126,9 @@
 
  <?php }?> 
 <?php if($this->session->userdata('type') == 'Admin') { ?>   
+  <?php $userTotal=$this->User_model->show_user();
+  $pageTotal=$this->User_model->show_page();
+  $envelopeTotal=$this->User_model->show_envelope(); ?>
 <div class="container">                
 <div class="container">
     
@@ -138,7 +141,12 @@
                   <div class="card-body">
                       <div class="row justify-content-md-center">
                         <div class="col-md-6 col-lg-6 col-sm-6"><h5>Total Users</h5></div>
-                        <div class="col-md-6 col-lg-6 col-sm-6"><h5><span class="badge badge-warning">700</span></h5></div>
+                        <?php $uTotal = 0;
+                          if($userTotal != NULL){ foreach($userTotal as $user) { ?> 
+                         <?php $uTotal +=1; ?>
+                       
+                          <?php }}?>  
+                        <div class="col-md-6 col-lg-6 col-sm-6"><h5><span class="badge badge-warning"><?php echo $uTotal ?></span></h5></div>
                       </div>
                   </div>
                 </a>
@@ -150,7 +158,7 @@
                         <div class="col-sm">
                           <h6>Total Pages</h6>
                             <?php $totalP = 0;
-                          if($userPage != NULL){ foreach($userPage as $user) { ?> 
+                          if($pageTotal != NULL){ foreach($pageTotal as $user) { ?> 
                          <?php $totalP +=$user['pages']; ?>
                        
                           <?php }}?>  
@@ -160,7 +168,7 @@
                         <div class="col-sm">
                           <h6>Used Pages</h6>
                             <?php $usedP = 0;
-                          if($userPage != NULL){ foreach($userPage as $user) { ?> 
+                          if($pageTotal != NULL){ foreach($pageTotal as $user) { ?> 
                          <?php $usedP +=$user['page_used']; ?>
                        
                           <?php }}?>  
@@ -183,7 +191,7 @@
                         <div class="col-sm">
                           <h6>Total Envelopes</h6> 
                           <?php $totalE = 0;
-                          if($userEnvelope != NULL){ foreach($userEnvelope as $user) { ?> 
+                          if($envelopeTotal != NULL){ foreach($envelopeTotal as $user) { ?> 
                          <?php $totalE +=$user['envelopes']; ?>
                        
                           <?php }}?>  
@@ -193,7 +201,7 @@
                         <div class="col-sm">
                           <h6>Used Envelopes</h6> 
                           <?php $usedE = 0;
-                          if($userEnvelope != NULL){ foreach($userEnvelope as $user) { ?> 
+                          if($envelopeTotal != NULL){ foreach($envelopeTotal as $user) { ?> 
                          <?php $usedE +=$user['envelope_used']; ?>
                        
                           <?php }}?>  

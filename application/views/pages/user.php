@@ -50,8 +50,24 @@
                                     </a>
                                 </td>
                                 <td><?php echo $usr['user_email']; ?></td>
-                                <td><?php echo $usr['user_password']; ?></td>
-                                <td><?php echo $usr['user_type']; ?></td>
+                                <?php $p = $usr['user_id']; 
+                               $userPage=$this->User_model->show_page($p);
+                               $userEnvelope=$this->User_model->show_envelope($p);
+                                ?>
+                                 <?php $totalP = 0;
+                          if($userPage != NULL){ foreach($userPage as $user) { ?> 
+                         <?php $totalP +=$user['pages']; ?>
+                          <?php }}?> 
+
+                                <td><?php echo $totalP; ?></td>
+
+                                <?php $totalE = 0;
+                          if($userEnvelope != NULL){ foreach($userEnvelope as $user) { ?> 
+                         <?php $totalE +=$user['envelopes']; ?>
+                       
+                          <?php }}?>  
+
+                                <td><?php echo $totalE; ?></td>
                                 <td>
                                     <button class="btn btn-sm btn-success" onclick="assign_page(<?php echo $usr['user_id']; ?>);"><i class="fa fa-file-text"></i></button>
                                     <button class="btn btn-sm btn-warning" onclick="assign_envs(<?php echo $usr['user_id']; ?>);"><i class="fa fa-envelope"></i></button>

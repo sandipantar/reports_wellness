@@ -46,7 +46,9 @@ class Pages extends CI_Controller {
 					'logged_in'     => true
 				);
 				
-				$this->session->set_userdata($user_dataaa);		    
+				$this->session->set_userdata($user_dataaa);	
+				$user_id=$this->session->userdata('user_id') ;
+				$this->Page_model->lastlogin($user_id);	    
 			    redirect('dashboard');
 			} 
 			
