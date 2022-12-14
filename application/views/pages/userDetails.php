@@ -64,11 +64,41 @@
     </div>
     
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-5">
             <div class="card">
               <div class="card-body">
-                <h4 class="card-title">User Assets</h4>
-                <p class="card-text">Assets Details of <?php echo $userDet['user_name'];?> </p>
+                  <div class="row">
+                      <div class="col-10">
+                          <h4 class="card-title">User Assets</h4>
+                          <p class="card-text">Assets Details of <?php echo $userDet['user_name'];?> </p>
+                      </div>
+                      <div class="col-2">
+                      <!-- Button trigger modal -->
+                          <button type="button" class=" float-end btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                               History
+                          </button>
+                      </div>
+                  </div>
+                <!-- Modal -->
+                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Login History of <?php echo $userDet['user_name'];?></h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                        ...
+                      </div>
+                      <!--<div class="modal-footer">-->
+                      <!--  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>-->
+                      <!--  <button type="button" class="btn btn-primary">Save changes</button>-->
+                      <!--</div>-->
+                    </div>
+                  </div>
+                </div>
               </div>
               
                 <ul class="list-group list-group-flush">
@@ -151,21 +181,28 @@
               </div>
             </div>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-7">
             <div class="card">
               <div class="card-body">
-                <h4 class="card-title">User Login History</h4>
-                <p class="card-text">Login history of <?php echo $userDet['user_name'];?> </p>
+                <h4 class="card-title">Assigned Files</h4>
+                <p class="card-text">All files of <?php echo $userDet['user_name'];?> </p>
               </div>
               <ul class="list-group list-group-flush">
+            <?php  if($userEnvelope != NULL ){ foreach($userEnvelope as $user) { ?> 
+              <?php if($user['file_name'] != NULL){ ?>
                 <li class="list-group-item">
-                    <h6 class="float-left">#1</h6> 
-                    <h6 class="float-right">2022-11-28 03:11:18</h5>
+                <h6 class="cause-title float-start">
+                    <a  href="<?=base_url()?>wellness_file/<?php echo $user['file_name']; ?>" >
+                    <?php echo $user['file_name']; ?> <i class="fa fa-download"></i>
+                    </a>
+                </h6>
+                <p class=""><?php echo $user['time']; ?></p>
                 </li>
+                <?php }}}?>
                 
               </ul>
             </div>
-        </div>
+  </div>
     </div>
                                             
 
