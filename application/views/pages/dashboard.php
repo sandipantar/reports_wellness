@@ -26,7 +26,7 @@
         <div class="col-md-6">
             <div class="card">
               <div class="card-body">
-                <h4 class="card-title">User Assets</h4>
+                <h4 class="card-title">User Assets </h4>
                 <p class="card-text">Assets Details of <?php echo $userDet['user_name'];?> </p>
               </div>
               
