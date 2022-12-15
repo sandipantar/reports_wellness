@@ -92,6 +92,42 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             $this->db->where('user_id',$id);
             return $this->db->delete('user');
         }
+
+        public function del_envelope() {
+            
+           
+        
+        $id = $this->input->post('envelope_id');
+        $user_id = $this->input->post('user_id');
+        $this->db->where('envelope_id',$id);
+        $a = $this->db->get('envelope');
+         $q=$a->row_array();
+         $this->db->where('envelope_id',$id);
+         $this->db->delete('envelope');
+
+         function count_pages($pdfname) {
+
+            $pdftext = file_get_contents($pdfname);
+            $num = preg_match_all("/\/Page\W/", $pdftext, $dummy);
+          
+            return $num;
+          }
+        $a = $q['file_name'];
+          $pdfname = './wellness_file/'.$a;
+          $pages = count_pages($pdfname);
+          
+          echo $pages;
+         $data = array(
+            'user_id'=>$this->input->post('user_id'),
+            
+            'page_used'=> -$pages
+            
+                            
+        );
+        $this->db->insert('page',$data);
+        return $this->db->insert_id();
+    
+        }
        
             //add pages
             public function assign_page() {

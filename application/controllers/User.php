@@ -79,6 +79,12 @@ class User extends CI_Controller {
                 $referer = $_SERVER['HTTP_REFERER'];
                 header("Location: $referer");
         }
+
+        public function del_envelope(){
+                $this->User_model->del_envelope();	
+                $referer = $_SERVER['HTTP_REFERER'];
+                header("Location: $referer");
+        }
         
               
 	public function add_envelope(){

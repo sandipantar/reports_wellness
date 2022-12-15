@@ -202,6 +202,8 @@
                     <a  href="<?=base_url()?>wellness_file/<?php echo $user['file_name']; ?>" >
                     <?php echo $user['file_name']; ?> <i class="fa fa-download"></i>
                     </a>
+                    <button  onclick="del_envelope(<?php echo $user['envelope_id']; ?>,<?php echo $user['user_id']; ?>);"><i class="fa fa-trash"></i></button>
+
                 </h6>
                 <p class=""><?php echo $user['time']; ?></p>
                 </li>

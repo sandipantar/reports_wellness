@@ -689,3 +689,31 @@ function del_user(id) {
   });
 }
 
+//delete doctor
+function del_envelope(id,user_id) {
+  var data = "";
+
+  data +=
+    '<form class="form-horizontal form-label-left" method="post" action="user/del_envelope">';
+  data += '<div class="row" style="padding:10px 20px";>';
+  data += '<div class="row form-group">';
+  data += "<label>Are you sure, you want to delete the File?</label>";
+  data += '<input type="hidden" name="envelope_id" value="' + id + '">';
+  data += '<input type="hidden" name="user_id" value="' + user_id + '">';
+  // data += '<input type="text" name="time" value="' + idd + '">';
+  data += "</div>";
+  data += '<div class="row form-group col-md-12 col-sm-12 col-xs-12">';
+  data +=
+    '<button type="button" data-dismiss="modal" class="btn btn-danger btn-sm col-md-6 col-sm-6 col-xs-12">Cancel</button>';
+  data +=
+    '<button type="submit" class="btn btn-success btn-sm col-md-6 col-sm-6 col-xs-12">Delete</button>';
+  data += "</div>";
+  data += "</div>";
+  data += "</form>";
+
+  jQuery(document).ready(function ($) {
+    $(".Bsmall-modal-title").text("Delete File");
+    $("#smallModal_body").html(data);
+    $("#smallModal").modal("show");
+  });
+}
