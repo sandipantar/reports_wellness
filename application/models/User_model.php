@@ -116,6 +116,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
           $pdfname = './wellness_file/'.$a;
           $pages = count_pages($pdfname);
           
+        //   $path = $_SERVER['DOCUMENT_ROOT'].'items/item2.txt';
         //   echo $pages;
          $data = array(
             'user_id'=>$this->input->post('user_id'),
@@ -124,6 +125,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             
                             
         );
+        unlink($pdfname);
         $this->db->insert('page',$data);
         return $this->db->insert_id();
     
