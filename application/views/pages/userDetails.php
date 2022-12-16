@@ -197,16 +197,23 @@
               <ul class="list-group list-group-flush">
             <?php  if($userEnvelope != NULL ){ foreach($userEnvelope as $user) { ?> 
               <?php if($user['file_name'] != NULL){ ?>
+              
                 <li class="list-group-item">
-                <h6 class="cause-title float-start">
-                    <a  href="<?=base_url()?>wellness_file/<?php echo $user['file_name']; ?>" >
+                <!--<div class="row">-->
+                  <div class=" float-left">
+                    <h6 class="cause-title float-start">
+                    <a target="_blank" href="<?=base_url()?>wellness_file/<?php echo $user['file_name']; ?>" >
                     <?php echo $user['file_name']; ?> <i class="fa fa-download"></i>
                     </a>
-                    <button  onclick="del_envelope(<?php echo $user['envelope_id']; ?>,<?php echo $user['user_id']; ?>);"><i class="fa fa-trash"></i></button>
-
-                </h6>
-                <p class=""><?php echo $user['time']; ?></p>
+                    </h6>
+                    <p class=""><?php echo $user['time']; ?></p>
+                  </div>
+                  <div class=" float-right">
+                      <button  onclick="del_envelope(<?php echo $user['envelope_id']; ?>,<?php echo $user['user_id']; ?>);"><i class="fa fa-trash"></i></button>
+                  </div>
+                
                 </li>
+                <!--</div>-->
                 <?php }}}?>
                 
               </ul>

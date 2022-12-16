@@ -116,7 +116,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
           $pdfname = './wellness_file/'.$a;
           $pages = count_pages($pdfname);
           
-          echo $pages;
+        //   echo $pages;
          $data = array(
             'user_id'=>$this->input->post('user_id'),
             

@@ -126,7 +126,7 @@ class User extends CI_Controller {
                       $pdfname = './wellness_file/'.$file_name;
                       $pages = count_pages($pdfname);
                       
-                      echo $pages;
+                    //   echo $pages;
                         
                       
               
