@@ -25,7 +25,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 'user_name'      => $this->input->post('user_name'),
                 'user_email'      => $this->input->post('user_email'),
                 'user_password'   => md5($this->input->post('user_password')),
-                'user_type'      => $this->input->post('user_type')
+                'user_type'      => $this->input->post('user_type'),
+                'note'      => $this->input->post('note')
             );
 
             

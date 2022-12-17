@@ -40,8 +40,13 @@ class User extends CI_Controller {
                 $data .= '<input type="text" name="user_name" class="form-control" value="'.$users['user_name'].'">';
                 $data .= '<label>User Email</label>';
                 $data .= '<input type="text" name="user_email" class="form-control" value="'.$users['user_email'].'">';
+
                 $data .= '<label>User Password</label>';
                 $data .= '<input type="text" name="user_password" class="form-control">';
+
+                $data .= '<label>Note</label>';
+                $data .= '<input type="text" name="note" class="form-control" value="'.$users['note'].'">';
+
                 $data .= '<label> Type Of User</label>';
 
 
@@ -53,6 +58,9 @@ class User extends CI_Controller {
                 $data .= '<option value="User"';
                 if($users['user_type'] == 'User') { $data .= 'selected'; }
                 $data .= '>User</option>';
+                $data .= '<option value="Manager"';
+                if($users['user_type'] == 'Manager') { $data .= 'selected'; }
+                $data .= '>Manager</option>';
         
                 $data .= '</select></td>';
         
@@ -108,6 +116,7 @@ class User extends CI_Controller {
 		} 
                 $data = array(
                         'user_id'=>$this->input->post('user_id'),
+                        'manager'=>$this->input->post('manager'),
                         'file_name'=>$file_name,
                         'envelope_used'=>"1"
                         

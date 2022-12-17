@@ -89,6 +89,12 @@
                     </li>
                     <?php } ?>
 
+                    <?php if($this->session->userdata('type') == 'Manager') { ?>
+
+                        <li class="submenu">
+                            <a <?php if($this->uri->segment(1) == 'userM') echo 'class="active"'; ?> href="<?php echo base_url(); ?>userM"><i class="fa fa-fw fa-user-o"></i><span> User for Manager </span> </a>
+                        </li>
+                        <?php } ?>
                     
                 </ul>
 

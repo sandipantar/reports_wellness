@@ -82,6 +82,7 @@
 			
 		$(document).ready(function() {
 			$('#show_doctors').DataTable();
+			$('#show_users').DataTable();
 			$('#old_bill').DataTable();
 			$('#tests').DataTable();
 			$('#old_patient').DataTable();

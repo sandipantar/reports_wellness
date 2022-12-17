@@ -22,12 +22,10 @@
 
     <?php 
         $user_id = $this->uri->segment(2);
+         $manager =$this->session->userdata('user_name') ;
         $userDet=$this->User_model->show_user($user_id);
         $userPage=$this->User_model->show_page($user_id);
         $userEnvelope=$this->User_model->show_envelope($user_id);
-        // $bills=$this->Bill_model->old_bills($bill_id); 
-        // $p_details = $this->Patient_model->show_patients($bills['patient_id']);
-        // $t_detail =  $this->Test_model->show_bill_tests($bills['bill_id']);
         
     ?>	
     
@@ -52,7 +50,9 @@
                         Upload Your file 
                         <input type="file" name="file_name"/>
                         <input type="hidden" name="user_id" value="<?php echo $user_id ; ?>">
-                                    
+                        <?php if($this->session->userdata('type') == 'Manager') { ?>
+                        <input type="hidden" name="manager" value="<?php echo $manager ; ?>">  
+                        <?php } ?>        
                         <button type="submit" class="btn btn-success btn-sm ">Add</button>
                         to update your Pages and envelopes 
                     </b></li>
@@ -99,10 +99,7 @@
                        
                           <?php }}?>  
                       </div>
-                      <!-- <div class="modal-footer">
-                       <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                       <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
-                      <!-- </div>  --> 
+                     
                     </div>
                   </div>
                 </div>
@@ -131,12 +128,6 @@
                           <?php }}?>  
                         <h5>  <span class="badge badge-warning"><?php echo $usedP; ?></span> </h5>
                         </div>
-
-<!-- 
-                        <div class="col-sm">
-                          <h6>Used Pages</h6> 
-                        <h5><span class="badge badge-warning">200</span></h5>
-                        </div> -->
 
                         <div class="col-sm">
                           <h6>Pages in Stock</h6> 
@@ -169,11 +160,6 @@
                         <h5>  <span class="badge badge-warning"><?php echo $usedE; ?></span> </h5>
                         </div>
 
-
-                        <!-- <div class="col-sm">
-                          <h6>Used Envelopes</h6> 
-                        <h5><span class="badge badge-warning">100</span></h5>
-                        </div> -->
                         <div class="col-sm">
                           <h6>Envelopes in Stock</h6> 
                         <h5><span class="badge badge-success"><?php echo $totalE - $usedE ?></span></h5>
@@ -183,7 +169,11 @@
                 
               </ul>
               <div class="card-body">
+              <?php if($this->session->userdata('type') == 'Manager') { ?>
+                <a href="<?php echo base_url();?>userM" class="card-link">All User</a>
+                <?php }else{?>
                 <a href="<?php echo base_url();?>user" class="card-link">All User</a>
+                <?php }?>
                 <a href="<?php echo base_url();?>dashboard" class="card-link">Dashboard</a>
               </div>
             </div>
@@ -194,29 +184,55 @@
                 <h4 class="card-title">Assigned Files</h4>
                 <p class="card-text">All files of <?php echo $userDet['user_name'];?> </p>
               </div>
-              <ul class="list-group list-group-flush">
-            <?php  if($userEnvelope != NULL ){ foreach($userEnvelope as $user) { ?> 
+              <!-- <ul class="list-group list-group-flush"> -->
+
+              <table id="show_users" class="table table-bordered table-hover display">
+                    <thead>
+                        <tr>
+                            <th>File</th>
+                            <th>By</th>
+                            <th>Date</th>
+                            <th>Action</th>
+
+                        </tr>
+                    </thead>
+            
+                <tbody>
+                        <?php  if($userEnvelope != NULL ){ foreach($userEnvelope as $user) { ?> 
               <?php if($user['file_name'] != NULL){ ?>
-              
-                <li class="list-group-item">
-                <!--<div class="row">-->
-                  <div class=" float-left">
-                    <h6 class="cause-title float-start">
+                            <tr>
+                                <td>
+                                <h6 class="cause-title float-start">
                     <a target="_blank" href="<?=base_url()?>wellness_file/<?php echo $user['file_name']; ?>" >
                     <?php echo $user['file_name']; ?> <i class="fa fa-download"></i>
-                    </a>
-                    </h6>
-                    <p class=""><?php echo $user['time']; ?></p>
-                  </div>
-                  <div class=" float-right">
-                      <button  onclick="del_envelope(<?php echo $user['envelope_id']; ?>,<?php echo $user['user_id']; ?>);"><i class="fa fa-trash"></i></button>
-                  </div>
+                    </a></h6>
+                                </td>
+
+                                <td>
+                                <?php echo $user['manager']; ?>
+                                </td>
+                               
+                                 
+
+                                <td>
+                                <?php echo $user['time']; ?>
+                                </td>
+
+                              
+
+                                <td>
+                                <button  onclick="del_envelope(<?php echo $user['envelope_id']; ?>,<?php echo $user['user_id']; ?>);"><i class="fa fa-trash"></i></button>
+                               </td>
+                            </tr>
+                        <?php }} }?>
+                    </tbody>
+                </table>
+              
+               
+              
+
                 
-                </li>
-                <!--</div>-->
-                <?php }}}?>
-                
-              </ul>
+              <!-- </ul> -->
             </div>
   </div>
     </div>

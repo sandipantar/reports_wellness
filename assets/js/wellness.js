@@ -547,24 +547,36 @@ function add_user() {
   data += '<input type="text" name="user_name" class="form-control" required="required">';
   data += "</div>";
 
+data += '<div class="row form-group">';
   data += "<label>User Email</label>";
   data += '<input type="text" name="user_email" class="form-control" required="required">';
   data += "</div>";
 
+  data += '<div class="row form-group">';
   data += "<label>User Password</label>";
   data += '<input type="text" name="user_password" class="form-control" required="required">';
   data += "</div>";
 
+  data += '<div class="row form-group">';
+  data += "<label>Note</label>";
+  data += '<input type="text" name="note" class="form-control" required="required">';
+data += "</div>";
+
+  data += '<div class="row form-group">';
   data += "<label>Type Of User</label>";
  
+
 
   data += '<select  name="user_type" class="form-control" required="required">';
   data += '<option disabled selected value="NULL">User Type </option>';
  
   data += '<option value="Admin"> Admin</option>';
   data += '<option value="User">User</option>';
+  data += '<option value="Manager">Manager</option>';
 
-  data += '</select></td>';
+  data += '</select>';
+  data += "</div>";
+  
   data += "</div>";
 
   data += '<div class="row form-group col-md-12 col-sm-12 col-xs-12">';
