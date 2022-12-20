@@ -45,7 +45,7 @@
                             <tr>
                                 <td>
                                     <a href="<?php echo base_url(); ?>userDetails/<?php echo $usr['user_id']; ?>" class="btn btn-sm btn-primary">
-                                        <?php echo $usr['user_name']; ?>
+                                    <img alt="Logo" src="<?php echo base_url()."assets/images/lab/".$usr['user_name'] ?>"  class="img-fluid" width="70px;">
                                         <i class="fa fa-eye"></i>
                                     </a>
                                 </td>

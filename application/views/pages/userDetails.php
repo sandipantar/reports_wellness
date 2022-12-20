@@ -25,14 +25,16 @@
          $manager =$this->session->userdata('user_name') ;
         $userDet=$this->User_model->show_user($user_id);
         $userPage=$this->User_model->show_page($user_id);
-        $userEnvelope=$this->User_model->show_envelope($user_id);
+        $userEnvelope=$this->User_model->show_envelope($user_id); 
+    $img = base_url()."assets/images/lab/".$userDet['user_name'];
+    
         
     ?>	
     
         <div class="row">
         <div class="col-xl-12">
             <div class="breadcrumb-holder">
-                <h1 class="main-title float-left"><?php echo $userDet['user_name'];?></h1>
+                <img alt="Logo" src="<?php echo $img;?>"  class="img-fluid" width="100px;">
                 <ol class="breadcrumb float-right">
                     <li class="breadcrumb-item"><b><?php echo $userDet['user_email']; ?></b></li>
                 </ol>
