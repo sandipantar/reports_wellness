@@ -24,7 +24,7 @@
                     <div class="dropdown-menu dropdown-menu-right profile-dropdown ">
                         <!-- item-->
                         <div class="dropdown-item noti-title">
-                            <h5 class="text-overflow"><small>Hello, <?php echo $this->session->userdata('user_name'); ?></small> </h5>
+                            <h5 class="text-overflow"><small>Hello, <?php echo $this->session->userdata('user_email'); ?></small> </h5>
                         </div>
 
                         <!-- item-->

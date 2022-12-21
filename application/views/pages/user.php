@@ -31,8 +31,9 @@
                 <table id="show_doctors" class="table table-bordered table-hover display">
                     <thead>
                         <tr>
-                            <th>Name</th>
+                            
                             <th>User Email</th>
+                            <th>Type</th>
                             <th>Total Pages</th>
                             <th>Total Envelopes</th>
                             <th>Action</th>
@@ -43,21 +44,34 @@
                     <tbody>
                         <?php if($users != NULL) { foreach($users as $usr) { ?>
                             <tr>
+                                
                                 <td>
                                     <a href="<?php echo base_url(); ?>userDetails/<?php echo $usr['user_id']; ?>" class="btn btn-sm btn-primary">
-                                    <img alt="Logo" src="<?php echo base_url()."assets/images/lab/".$usr['user_name'] ?>"  class="img-fluid" width="70px;">
-                                        <i class="fa fa-eye"></i>
+                                    <?php echo $usr['user_email']; ?>
+                                    <i class="fa fa-eye"></i>
                                     </a>
                                 </td>
-                                <td><?php echo $usr['user_email']; ?></td>
+                                <td>
+                                    <?php if($usr['user_type'] == "Admin"){ ?>
+                                        <span class="badge badge-success"><?php echo $usr['user_type']; ?></span>
+                                    <?php } ?>
+
+                                    <?php if($usr['user_type'] == "Manager"){ ?>
+                                        <span class="badge badge-secondary"><?php echo $usr['user_type']; ?></span>
+                                    <?php } ?>
+
+                                    <?php if($usr['user_type'] == "User"){ ?>                               
+                                        <span class="badge badge-info"><?php echo $usr['user_type']; ?></span>
+                                    <?php } ?>
+                                </td>
                                 <?php $p = $usr['user_id']; 
                                $userPage=$this->User_model->show_page($p);
                                $userEnvelope=$this->User_model->show_envelope($p);
                                 ?>
                                  <?php $totalP = 0;
-                          if($userPage != NULL){ foreach($userPage as $user) { ?> 
-                         <?php $totalP +=$user['pages']; ?>
-                          <?php }}?> 
+                                    if($userPage != NULL){ foreach($userPage as $user) { ?> 
+                                    <?php $totalP +=$user['pages']; ?>
+                                    <?php }}?> 
 
                                 <td><?php echo $totalP; ?></td>
 

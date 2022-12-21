@@ -7,12 +7,13 @@
   $userDet=$this->User_model->show_user($user_id);
   $userPage=$this->User_model->show_page($user_id);
   $userEnvelope=$this->User_model->show_envelope($user_id);
+  $img = base_url()."assets/images/lab/".$userDet['user_name'];
   ?>
 <div class="container"> 
    <div class="row">
         <div class="col-xl-12">
             <div class="breadcrumb-holder">
-                <h1 class="main-title float-left"><?php echo $userDet['user_name'];?></h1>
+            <img alt="Logo" src="<?php echo $img;?>"  class="img-fluid" width="100px;">
                 <ol class="breadcrumb float-right">
                     <li class="breadcrumb-item"><b><?php echo $userDet['user_email']; ?></b></li>
                 </ol>
@@ -27,7 +28,7 @@
             <div class="card">
               <div class="card-body">
                 <h4 class="card-title">User Assets </h4>
-                <p class="card-text">Assets Details of <?php echo $userDet['user_name'];?> </p>
+               
               </div>
               
                 <ul class="list-group list-group-flush">
@@ -104,22 +105,33 @@
             <div class="card">
               <div class="card-body">
                 <h4 class="card-title">Assigned Files</h4>
-                <p class="card-text">All files of <?php echo $userDet['user_name'];?> </p>
               </div>
-              <ul class="list-group list-group-flush">
-            <?php  if($userEnvelope != NULL ){ foreach($userEnvelope as $user) { ?> 
+              <table id="show_users" class="table table-bordered table-hover display">
+                    <thead>
+                        <tr>
+                            <th>File</th>
+                            <th>Date</th>
+                        </tr>
+                    </thead>
+            
+                <tbody>
+                        <?php  if($userEnvelope != NULL ){ foreach($userEnvelope as $user) { ?> 
               <?php if($user['file_name'] != NULL){ ?>
-                <li class="list-group-item">
-                <h6 class="cause-title float-start">
-                    <a  href="<?=base_url()?>wellness_file/<?php echo $user['file_name']; ?>" >
-                    <?php echo $user['file_name']; ?> <i class="fa fa-download"></i>
-                    </a>
-                </h6>
-                <p class=""><?php echo $user['time']; ?></p>
-                </li>
-                <?php }}}?>
-                
-              </ul>
+                            <tr>
+                                <td>
+                                <h6 class="cause-title float-start">
+                                <a target="_blank" href="<?=base_url()?>wellness_file/<?php echo $user['file_name']; ?>" >
+                                 <?php echo $user['file_name']; ?> <i class="fa fa-download"></i>
+                                </a></h6>
+                                </td>
+                                <td>
+                                <?php echo $user['time']; ?>
+                                </td>
+                            </tr>
+                        <?php }} }?>
+                    </tbody>
+                </table>
+             
             </div>
   </div>
     

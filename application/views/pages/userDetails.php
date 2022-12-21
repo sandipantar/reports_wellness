@@ -22,7 +22,7 @@
 
     <?php 
         $user_id = $this->uri->segment(2);
-         $manager =$this->session->userdata('user_name') ;
+         $manager =$this->session->userdata('user_email') ;
         $userDet=$this->User_model->show_user($user_id);
         $userPage=$this->User_model->show_page($user_id);
         $userEnvelope=$this->User_model->show_envelope($user_id); 
@@ -54,6 +54,9 @@
                         <input type="hidden" name="user_id" value="<?php echo $user_id ; ?>">
                         <?php if($this->session->userdata('type') == 'Manager') { ?>
                         <input type="hidden" name="manager" value="<?php echo $manager ; ?>">  
+                        <?php } ?> 
+                        <?php if($this->session->userdata('type') == 'Admin') { ?>
+                        <input type="hidden" name="manager" value="<?php echo $manager ; ?>">  
                         <?php } ?>        
                         <button type="submit" class="btn btn-success btn-sm ">Add</button>
                         to update your Pages and envelopes 
@@ -72,7 +75,6 @@
                   <div class="row">
                       <div class="col-10">
                           <h4 class="card-title">User Assets</h4>
-                          <p class="card-text">Assets Details of <?php echo $userDet['user_name'];?> </p>
                       </div>
                       <div class="col-2">
                       <!-- Button trigger modal -->
@@ -86,7 +88,7 @@
                   <div class="modal-dialog" role="document">
                     <div class="modal-content">
                       <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Login History of <?php echo $userDet['user_name'];?></h5>
+                        <h5 class="modal-title" id="exampleModalLabel">Login History </h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                           <span aria-hidden="true"></span>
                         </button>
@@ -184,7 +186,7 @@
             <div class="card">
               <div class="card-body">
                 <h4 class="card-title">Assigned Files</h4>
-                <p class="card-text">All files of <?php echo $userDet['user_name'];?> </p>
+               
               </div>
               <!-- <ul class="list-group list-group-flush"> -->
 
