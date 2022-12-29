@@ -546,9 +546,12 @@ function add_user() {
   // data += "<label>Name</label>";
   // data += '<input type="text" name="user_name" class="form-control" required="required">';
 
-  data += ' <label>Referral Center</label>';
+  data += ' <label>Select User Image *</label>';
   data += ' <select name="user_name" class="form-control">';
-  data += '  <option disabled selected value="NULL">Select Referral Center</option>';
+  data += '  <option disabled selected value="NULL">Select an Image</option>';
+  data += '<option value="admin.jpg">Admin</option>';
+  data += '<option value="manager.png">Manager</option>';
+  data += '<option value="ldpl.jpeg">LDPL</option>';
   data += '<option value="serum.png">Serum</option>';
   data += '<option value="veins.png">Veins</option>';
   data += '<option value="nucleus.png">Nucleus Diagnostic</option>';
@@ -556,7 +559,7 @@ function add_user() {
  data += "</div>";
 
 data += '<div class="row form-group">';
-  data += "<label>User Email</label>";
+  data += "<label>User Id</label>";
   data += '<input type="text" name="user_email" class="form-control" required="required">';
   data += "</div>";
 

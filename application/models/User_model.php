@@ -1,5 +1,6 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
+date_default_timezone_set("Asia/kolkata");
 
     class User_model extends CI_Model {
 
@@ -48,6 +49,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             $data = array( 'user_name' => $this->input->post('user_name') ,
                             'user_email' => $this->input->post('user_email'),
                             'user_password' =>  $a,
+                            'note' => $this->input->post('note'),
                             'user_type' => $this->input->post('user_type')
         );
             
@@ -75,11 +77,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     public function show_envelope($id='') {
         if($id != NULL) {
             $this->db->where('user_id',$id);
-            $this->db->order_by('envelopes','ASC');
+            $this->db->order_by('envelope_id','DESC');
             $q = $this->db->get('envelope');
             return $q->result_array();
         } else {
-            $this->db->order_by('envelopes','ASC');
+            $this->db->order_by('envelope_id','DESC');
             $q = $this->db->get('envelope');
             return $q->result_array();
         }
@@ -95,10 +97,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         }
 
         public function del_envelope() {
-            
-           
-        
+    
         $id = $this->input->post('envelope_id');
+        $deleteby =$this->session->userdata('user_email') ;
         $user_id = $this->input->post('user_id');
         $this->db->where('envelope_id',$id);
         $a = $this->db->get('envelope');
@@ -116,15 +117,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         $a = $q['file_name'];
           $pdfname = './wellness_file/'.$a;
           $pages = count_pages($pdfname);
-          
-        //   $path = $_SERVER['DOCUMENT_ROOT'].'items/item2.txt';
-        //   echo $pages;
-         $data = array(
+          $curdt = date('h:i:s a l\, F jS\, Y ');
+          $data = array(
             'user_id'=>$this->input->post('user_id'),
-            
+            'time'=>$curdt,
+            'delete_by'=>$deleteby,
             'page_used'=> -$pages
-            
-                            
         );
         unlink($pdfname);
         $this->db->insert('page',$data);
@@ -135,9 +133,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             //add pages
             public function assign_page() {
                 $id = $this->input->post('user_id');
+                $curdatep = date('h:i:s a l\, F jS\, Y ');
                 //user data array
                 $data = array(
                     'user_id'=>$id,
+                    'time'=>$curdatep,
                     'pages'      => $this->input->post('pages')
                 );
     
@@ -147,9 +147,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     
             public function assign_envs() {
                 $id = $this->input->post('user_id');
+                $curdate = date('h:i:s a l\, F jS\, Y ');
                 //user data array
                 $data = array(
                     'user_id'=>$id,
+                    'time'=>$curdate,
                     'envelopes'      => $this->input->post('envelopes')
                 );
     

@@ -190,10 +190,9 @@
                                       ?>
                                       <div class="row">
                                       <?php if($userLogin != NULL){ foreach($userLogin as $user) { ?> 
-                                            <div class="col-md-5 border"><?php echo $user['time']; ?></div>
-                                            <div class="col-md-2 border">Given Pages: <?php echo $user['pages']; ?></div>
-                                            <div class="col-md-2 border">Used Pages: <?php echo $user['page_used']; ?></div>
-                                            <div class="col-md-3 border">Deleted by <?php echo $user['delete_by']; ?></div>
+                                            <div class="col-md-6 border"><?php echo $user['time']; ?></div>
+                                            <div class="col-md-3 border">Given Pages: <?php echo $user['pages']; ?></div>
+                                            <div class="col-md-3 border">Used Pages: <?php echo $user['page_used']; ?></div>
                                           <?php }}?>
                                        </div>
                                       </div>
@@ -246,9 +245,9 @@
                 <h4 class="card-title">Assigned Files</h4>
                
               </div>
-              <div class="m-2 p-2">
-            <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for Filenames.." title="Type in a name">
-              <table id="myTable" class="table table-striped table-bordered table-sm">
+              <!-- <ul class="list-group list-group-flush"> -->
+
+              <table id="dtOrderExample" class="table table-striped table-bordered table-sm">
                     <thead>
                         <tr>
                             <th>File</th>
@@ -289,30 +288,15 @@
                         <?php }} }?>
                     </tbody>
                 </table>
-              </div>
+              
+               
+              
+
+                
+              <!-- </ul> -->
             </div>
   </div>
     </div>
                                             
 
 <?php } ?>
-<script>
-function myFunction() {
-  var input, filter, table, tr, td, i, txtValue;
-  input = document.getElementById("myInput");
-  filter = input.value.toUpperCase();
-  table = document.getElementById("myTable");
-  tr = table.getElementsByTagName("tr");
-  for (i = 0; i < tr.length; i++) {
-    td = tr[i].getElementsByTagName("td")[0];
-    if (td) {
-      txtValue = td.textContent || td.innerText;
-      if (txtValue.toUpperCase().indexOf(filter) > -1) {
-        tr[i].style.display = "";
-      } else {
-        tr[i].style.display = "none";
-      }
-    }       
-  }
-}
-</script>

@@ -102,9 +102,7 @@
               <div class="card-body">
                 <h4 class="card-title text-center">Assigned Files</h4>
               </div>
-              <div class="m-2 p-2">
-            <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for Filenames.." title="Type in a name">
-              <table id="myTable" class="table table-bordered table-hover display">
+              <table id="dtOrderExample" class="table table-bordered table-hover display">
                     <thead>
                         <tr>
                             <th style="max-width: 1000px">File</th>
@@ -129,7 +127,7 @@
                         <?php }} }?>
                     </tbody>
                 </table>
-             </div>
+             
             </div>
   </div>
     

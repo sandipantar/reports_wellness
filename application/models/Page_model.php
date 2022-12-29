@@ -11,7 +11,10 @@ class Page_model extends CI_Model {
         if($result->num_rows() == 1){
             return $result->row_array();
         } else {
-            return false;
+             echo "<script>
+                alert('Wrong Password Please Try Again');
+                window.location.href='/home';
+            </script>";
         }
     }
 

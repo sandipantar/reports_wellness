@@ -1,5 +1,6 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
+date_default_timezone_set("Asia/kolkata");
 
 class User extends CI_Controller {
 
@@ -35,10 +36,32 @@ class User extends CI_Controller {
                 $data .= '<input type="hidden" name="user_id" value="'.$this->input->post('user_id').'">';
                 $data .= '<div class="row" style="padding:10px 20px";>';
                 $data .= '<div class="row form-group">';
-                $data .= '<label>User Name</label>';
+                // $data .= '<label>User Name</label>';
         
-                $data .= '<input type="text" name="user_name" class="form-control" value="'.$users['user_name'].'">';
-                $data .= '<label>User Email</label>';
+                // $data .= '<input type="text" name="user_name" class="form-control" value="'.$users['user_name'].'">';
+                 $data .= '<select  name="user_name" class="form-control">';
+        
+                $data .= '<option value="admin.jpg"';
+                if($users['user_name'] == 'admin.jpg') { $data .= 'selected'; }
+                $data .= '> Admin </option>';
+                $data .= '<option value="manager.png"';
+                if($users['user_name'] == 'manager.png') { $data .= 'selected'; }
+                $data .= '>Manager</option>';
+                $data .= '<option value="nucleus.png"';
+                if($users['user_name'] == 'nucleus.png') { $data .= 'selected'; }
+                $data .= '>Nucleus</option>';
+                $data .= '<option value="serum.png"';
+                if($users['user_name'] == 'serum.png') { $data .= 'selected'; }
+                $data .= '>Serum</option>';
+                $data .= '<option value="veins.png"';
+                if($users['user_name'] == 'veins.png') { $data .= 'selected'; }
+                $data .= '>Veins</option>';
+                $data .= '<option value="ldpl.jpeg"';
+                if($users['user_name'] == 'ldpl.jpeg') { $data .= 'selected'; }
+                $data .= '>LDPL</option>';
+                $data .= '</select>';
+                
+                $data .= '<label>User Id</label>';
                 $data .= '<input type="text" name="user_email" class="form-control" value="'.$users['user_email'].'">';
 
                 $data .= '<label>User Password</label>';
@@ -114,13 +137,13 @@ class User extends CI_Controller {
 			$data = $this->upload->data();
 			$file_name =  $data['file_name'];
 		} 
+		$curdt = date('h:i:s a l\, F jS\, Y ');
                 $data = array(
                         'user_id'=>$this->input->post('user_id'),
                         'manager'=>$this->input->post('manager'),
                         'file_name'=>$file_name,
+                        'time'=>$curdt,
                         'envelope_used'=>"1"
-                        
-                                        
                     );
 
                 $this->User_model->add_envelope($data);	
@@ -140,8 +163,10 @@ class User extends CI_Controller {
                       
               
                 // return $num;
+                $curdate = date('h:i:s a l\, F jS\, Y ');
                 $dat = array(
                         'user_id'=>$this->input->post('user_id'),
+                        'time'=>$curdate,
                         'page_used'=>$pages
                                         
                     );
