@@ -102,8 +102,10 @@
               </div>
               <div class="m-2 p-2">
             <div>
-              <table id="show_users" class="table table-striped table-bordered display">
-                    <thead style="position: sticky;top: 0">
+               <input type="text" id="tabsearch" placeholder="Search for filename / Date">
+              <div class="table-wrapper-scroll-y my-custom-scrollbar">
+                    <table id="myTable" class="table table-bordered table-striped mb-0">
+                    <thead style="position: sticky;top: 0; background:#fff; border:1px solid #f3f3f3">
                         <tr>
                             <th >File</th>
                             <th>Date</th>
@@ -127,6 +129,7 @@
                         <?php }} }?>
                     </tbody>
                 </table>
+                </div>
             </div>
              </div>
             </div>

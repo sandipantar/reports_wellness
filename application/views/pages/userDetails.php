@@ -14,8 +14,15 @@
         .bill-header .row2 { width: 60%; }
         .bill-header .row3 { width: 25%; }
         .line-border-top { border-top-style: solid; border-top-width: thin;}
-       
     }
+    .my-custom-scrollbar {
+        position: relative;
+        height: 300px;
+        overflow: auto;
+        }
+        .table-wrapper-scroll-y {
+        display: block;
+        }
 </style>
 <div class="container-fluid">
 
@@ -230,8 +237,12 @@
               <div class="card-body" style="padding-bottom: 0 !important">
                 <h4 class="card-title">ASSIGNED FILES</h4>
               </div>
-                    <table id="old_bill" class="table table-striped table-bordered display table-sm">
-                    <thead>
+              <div class="col-lg-5 float-right">
+                  <input type="text" id="tabsearch" placeholder="Search for filename / Date">
+              </div>
+              <div class="table-wrapper-scroll-y my-custom-scrollbar">
+                    <table id="myTable" class="table table-bordered table-striped mb-0">
+                    <thead style="position: sticky;top: 0; background:#fff; border:1px solid #f3f3f3">
                         <tr>
                             <th>File</th>
                             <th>By</th>
@@ -271,6 +282,7 @@
                         <?php }} }?>
                     </tbody>
                 </table>
+              </div>
               </div>
             </div>
   </div>

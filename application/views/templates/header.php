@@ -16,6 +16,14 @@
 	<link href="<?php echo base_url(); ?>assets/plugins/select2/css/select2.min.css" rel="stylesheet" type="text/css"/>
 	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css"/>	
 	<style>
+	.my-custom-scrollbar {
+        position: relative;
+        height: 300px;
+        overflow: auto;
+        }
+        .table-wrapper-scroll-y {
+        display: block;
+        }
 	    .userNote{
             padding:0; 
             text-align: right;
@@ -32,6 +40,7 @@
           from {color: #ffc107; text-shadow:0 0 20px #28a745; background-color:#28a745; box-shadow:0 0 20px #28a745; border-radius:5px;}
           to {color:#28a745; text-shadow:0 0 20px #ffc107; background-color:#ffc107; box-shadow:0 0 20px #ffc107; border-radius:5px;}
         }
+        
 	</style>
 </head>
 <?php date_default_timezone_set("Asia/kolkata"); ?>
