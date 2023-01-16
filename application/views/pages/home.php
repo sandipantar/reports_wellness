@@ -3,13 +3,13 @@
 <div class="container" style="padding-top:120px">
     <div class="container-fluid" style="back">
         
-        <div class="row h-100">
-            <div class="col-xs-0 col-sm-6 col-md-6 col-lg-6 m-auto">
-                <img src="<?php echo base_url(); ?>assets/images/logosub.jpg" class="img-fluid" height="400px" width="400px">
+        <div class="row h-100 float-right d-flex flex-row-reverse" style="">
+            <div class="col-xs-0 col-sm-12 col-md-12 col-lg-12 d-flex flex-row-reverse">
+                <img src="<?php echo base_url(); ?>assets/images/wellness_logo.png" class="img-fluid" width="500px" >
             </div>
-            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 m-auto">
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6" ><br/>
                 <form class="form-horizontal form-label-left" method="post" action="login">
-                    <h2 class="text-center">Wellness Login</h2>
+                    <!--<h2 class="text-center">Wellness Login</h2>-->
                     <div class="row form-group col-md-12 col-sm-12 col-xs-12">
                         <label class="col-md-4 col-sm-4 col-xs-6 text-right">User ID:</label>
                         <input type="text" name="email" class="form-control col-md-8 col-sm-8 col-xs-6" required="required">
@@ -20,7 +20,7 @@
                         <input type="password" name="password" class="form-control col-md-8 col-sm-8 col-xs-6" required="required">
                     </div>
 
-                    <div class="row form-group col-md-12 col-sm-12 col-xs-12">
+                    <div class="row form-group col-md-6 col-sm-6 col-xs-6" style="margin-left:150px">
                         <button class="btn btn-sm btn-block btn-success">Login</button>
                     </div>
                 </form>  

@@ -9,7 +9,9 @@ html {
 body {
   font-size: 0.9rem;
   background-color: #efefef;
-  padding-bottom: 50px; }
+  padding-bottom: 50px; 
+}
+
 
 a {
     color: #0ca4ca;

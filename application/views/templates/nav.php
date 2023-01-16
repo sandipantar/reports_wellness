@@ -10,7 +10,7 @@
         <!-- LOGO -->
         <div class="headerbar-left">
             <a href="<?php echo base_url(); ?>dashboard" class="logo">
-                <img alt="Logo" src="<?php echo base_url(); ?>assets/images/logo.jpg" /> <span>Wellness</span>
+                <img alt="Logo" src="<?php echo base_url(); ?>assets/images/wellness_logo.png" class="bg-white px-1 rounded shadow" width="200px"/> 
             </a>
         </div>
 

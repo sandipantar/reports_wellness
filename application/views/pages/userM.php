@@ -26,14 +26,14 @@
                           
             <div class="card-body">
                 <div class="table-responsive">
-                <table id="show_users" class="table table-striped table-bordered display table-sm">
+                <table id="show_doctors" class="table table-striped table-bordered display table-sm">
                     <thead>
                         <tr>
                             
                             <th>User ID</th>
                             <th>Type</th>
-                            <th>Stcok Pages</th>
-                            <th>Stcok Envelopes</th>
+                            <th>Stock Pages</th>
+                            <th>Stock Envelopes</th>
                            
 
                         </tr>

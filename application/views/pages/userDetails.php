@@ -48,7 +48,7 @@
               <form  method="post" action="user/add_envelope"  enctype="multipart/form-data">
                 <b>
                         Upload Your file 
-                        <input type="file" style="width:663px" name="file_name"/>
+                        <input type="file" style="width:663px" name="file_name" required/>
                         <input type="hidden" name="user_id" value="<?php echo $user_id ; ?>">
                         <?php if($this->session->userdata('type') == 'Manager') { ?>
                         <input type="hidden" name="manager" value="<?php echo $manager ; ?>">  
@@ -67,11 +67,11 @@
     
     <div class="row">
         <div class="col-md-12 col-lg-12 col-xl-12">
-            <div class="card text-center">
+            <div class="card">
               <div class="card-body">
                   <div class="row">
                       <div class="col-10">
-                          <h4 class="card-title text-center" style="margin-left:240px !important">USER ASSETS</h4>
+                          <h4 class="card-title">USER ASSETS</h4>
                       </div>
                       <div class="col-2">
                       <!-- Button trigger modal -->
@@ -228,9 +228,9 @@
         <div class="col-md-12 col-lg-12 col-xl-12">
             <div class="card">
               <div class="card-body" style="padding-bottom: 0 !important">
-                <h4 class="card-title  text-center">ASSIGNED FILES</h4>
+                <h4 class="card-title">ASSIGNED FILES</h4>
               </div>
-                    <table id="show_users" class="table table-striped table-bordered display table-sm">
+                    <table id="old_bill" class="table table-striped table-bordered display table-sm">
                     <thead>
                         <tr>
                             <th>File</th>

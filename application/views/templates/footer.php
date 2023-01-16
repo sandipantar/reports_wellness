@@ -150,10 +150,15 @@
                 scrollCollapse: true,
                 });
 			$('#show_users').DataTable({
+			    order: [[1, 'desc']],
                 scrollY: '300px',
                 scrollCollapse: true,
                 });
-			$('#old_bill').DataTable();
+			$('#old_bill').DataTable({
+			    order: [[2, 'desc']],
+                scrollY: '300px',
+                scrollCollapse: true,
+                });
 			$('#tests').DataTable();
 			$('#old_patient').DataTable();
 			$('#bill').DataTable();

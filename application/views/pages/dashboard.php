@@ -10,19 +10,36 @@
   $img = base_url()."assets/images/lab/".$userDet['user_name'];
   ?>
 
-    <div class="row mb-2 p-2" style="background-color:#1a8a3b; font-size:20px; border-radius:10px; box-shadow:2px 2px 20px #1a8a3b">
-        <div class="col-xl-2">
+    <div class="row mb-2 p-2" style=" font-size:20px; border-radius:10px; box-shadow:2px 2px 20px #0B44B1">
+        <div class="col-xl-1">
             <img alt="Logo" src="<?php echo $img;?>"  class="img-fluid rounded bg-white" width="150px;">
         </div>
-        <div class="col-xl-10">
+        <div class="col-xl-11">
             <?php if($this->session->userdata('type') == 'User') { ?>  
-                <span style="font-weight:800">NOTE: </span> <b class="text-white"><?php echo $userDet['note']; ?></b>
+            <div class="row userNote">
+                <div class="col-xl-1 userNote">
+                    <span data-toggle="modal" data-target=".bd-example-modal-lg"><i>NOTE :</i></span>
+                </div>
+                <div class="col-xl-11 userNote" data-toggle="modal" data-target=".bd-example-modal-lg" style="cursor:pointer">
+                    <marquee> <b class="text-info"><?php echo $userDet['note']; ?></b></marquee>
+                </div>
+            </div>
+             <!--modal-->
+                <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                  <div class="modal-dialog modal-lg">
+                    <div class="modal-content p-3">
+                        <p class="text-center">NOTE :</p>
+                        <p><b class="text-info" ><?php echo $userDet['note']; ?></b></p>
+                    </div>
+                  </div>
+                </div>
+                <!--modal-->
             <? } ?>
         </div>
     </div>
  <div class="row">
         <div class="col-md-12 col-lg-12 col-xl-12">
-            <div class="card text-center">
+            <div class="card">
               <div class="card-body">
                 <h4 class="card-title">USER ASSETS </h4>
               </div>
@@ -81,7 +98,7 @@
         <div class="col-md-12 col-lg-12 col-xl-12">
             <div class="card">
               <div class="card-body" style="padding-bottom: 0 !important">
-                <h4 class="card-title text-center">ASSIGNED FILES</h4>
+                <h4 class="card-title">ASSIGNED FILES</h4>
               </div>
               <div class="m-2 p-2">
             <div>
@@ -98,7 +115,7 @@
               <?php if($user['file_name'] != NULL){ ?>
                             <tr>
                                 <td>
-                                <h6 class="cause-title float-start">
+                                <h6 class="">
                                 <a target="_blank" href="<?=base_url()?>wellness_file/<?php echo $user['file_name']; ?>" >
                                  <?php echo $user['file_name']; ?> <i class="fa fa-download"></i>
                                 </a></h6>
@@ -108,7 +125,6 @@
                                 </td>
                             </tr>
                         <?php }} }?>
-                        <!--</div>-->
                     </tbody>
                 </table>
             </div>
