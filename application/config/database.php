@@ -31,9 +31,9 @@ if($_SERVER['HTTP_HOST'] == 'localhost') {
 	$db['default'] = array(
 		'dsn'	=> '',
 		'hostname' => 'localhost',
-    	'username' => 'grandred_root',
-    	'password' => 'grandred@666523',
-    	'database' => 'grandred_reports_wellness',
+    	'username' => 'u135485345_wellnessReport',
+    	'password' => 'D:rTX8[1',
+    	'database' => 'u135485345_reportWellness',
 		'dbdriver' => 'mysqli',
 		'dbprefix' => '',
 		'pconnect' => FALSE,

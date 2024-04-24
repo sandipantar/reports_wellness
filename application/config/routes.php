@@ -17,7 +17,15 @@ $route['edit_bill/(:any)'] = 'Pages/view/edit_bill/$1';
 $route['userDetails/(:any)'] = 'Pages/view/userDetails/$1';
 
 $route['userDetails/user/add_envelope'] = 'User/add_envelope';
+
 $route['userDetails/user/del_envelope'] = 'User/del_envelope';
+$route['userDetails/user/sort_date'] = 'user/sort_date';
+$route['view/charCount'] = 'charCount';
+$route['view/dump'] = 'dump';
+$route['masterSearch/(:any)'] = 'Pages/view/masterSearch/$1';
+$route['user/file_assign'] = 'User/file_assign';
+$route['user/add_file'] = 'User/add_file';
+$route['user/dump'] = 'User/dump';
 
 $route['edit_bill/bill/del_bill_test'] = 'Bill/del_bill_test';
 $route['edit_bill/bill/show_json_sample'] = 'Bill/show_json_sample';

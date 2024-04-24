@@ -11,13 +11,12 @@ date_default_timezone_set("Asia/kolkata");
                 $q = $this->db->get('user');
                 return $q->row_array();
             } else {
-                $this->db->order_by('user_name','ASC');
+                $this->db->order_by('user_name','DESC');
                 $q = $this->db->get('user');
                 return $q->result_array();
             }
         }  
         
-
         //add users
         public function add_user() {
             
@@ -25,9 +24,11 @@ date_default_timezone_set("Asia/kolkata");
             $data = array(
                 'user_name'      => $this->input->post('user_name'),
                 'user_email'      => $this->input->post('user_email'),
+                'user_wa'         => $this->input->post('user_wa'),
                 'user_password'   => md5($this->input->post('user_password')),
                 'user_type'      => $this->input->post('user_type'),
-                'note'      => $this->input->post('note')
+                'note'      => $this->input->post('note'),
+                'u_status'         => 1
             );
 
             
@@ -48,6 +49,7 @@ date_default_timezone_set("Asia/kolkata");
             //user updated data
             $data = array( 'user_name' => $this->input->post('user_name') ,
                             'user_email' => $this->input->post('user_email'),
+                            'user_wa' => $this->input->post('user_wa'),
                             'user_password' =>  $a,
                             'note' => $this->input->post('note'),
                             'user_type' => $this->input->post('user_type')
@@ -60,19 +62,66 @@ date_default_timezone_set("Asia/kolkata");
         } 
 
     }
+    //user permission change
+    public function userPermissionOn() {
+            
+            $id = $this->input->post('user_id');
+            // $a = md5($this->input->post('user_password')) ;
+            // if (!empty($a)) {
+                
+            
+            //user updated data
+            $data = array( 'u_status' => 1  );
+            
+            $this->db->where('user_id',$id);
+            return $this->db->update('user',$data);
+
+
+        // } 
+
+    }
+    
+    public function userPermissionOff() {
+            
+            $id = $this->input->post('user_id');
+            // $a = md5($this->input->post('user_password')) ;
+            // if (!empty($a)) {
+                
+            
+            //user updated dat
+             $data = array( 'u_status' => 0  );
+            
+            $this->db->where('user_id',$id);
+            return $this->db->update('user',$data);
+
+
+        // } 
+
+    }
+    
+    
         
     public function show_page($id='') {
         if($id != NULL) {
             $this->db->where('user_id',$id);
-            $this->db->order_by('pages','ASC');
+            $this->db->order_by('page_id','DESC');
             $q = $this->db->get('page');
             return $q->result_array();
         } else {
-            $this->db->order_by('pages','ASC');
+            $this->db->order_by('pages','DESC');
             $q = $this->db->get('page');
             return $q->result_array();
         }
     } 
+            
+    public function assigned_Files($id='') {
+            $this->db->where('assign_status',"1");
+            $this->db->order_by('envelope_id','DESC');
+            $q = $this->db->get('envelope');
+            return $q->result_array();
+    } 
+    
+    
 
     public function show_envelope($id='') {
         if($id != NULL) {
@@ -86,6 +135,42 @@ date_default_timezone_set("Asia/kolkata");
             return $q->result_array();
         }
     } 
+    
+        public function show_uploads_to_user() {
+            $this->db->where('file_name !=','');
+            $this->db->order_by('envelope_id','DESC');
+            $q = $this->db->get('envelope');
+            return $q->result_array();
+    } 
+    
+    
+    public function show_file() {
+            $this->db->where('user_id',0);
+            $this->db->order_by('time','DESC');
+            $q = $this->db->get('envelope');
+            return $q->result_array();
+    }
+    
+    public function search_filename_envelope($id='') {
+        if($id != NULL) {
+            $this->db->like('file_name',$id);
+            $this->db->where('user_id',0);
+            $this->db->order_by('envelope_id','DESC');
+            $q = $this->db->get('envelope');
+            $row = $q->num_rows();
+            return $q->result_array();
+            
+        } 
+    } 
+    public function edit_envelope(){
+            $userEmail = $this->input->post('user_email');
+            //user updated data
+            $data = array( 'user_id' => $this->input->post('user_id'));
+            
+            $this->db->like('file_name',$userEmail);
+            $this->db->update('envelope',$data);
+
+    }
 
          //update user
          public function del_user() {
@@ -121,12 +206,29 @@ date_default_timezone_set("Asia/kolkata");
           $data = array(
             'user_id'=>$this->input->post('user_id'),
             'time'=>$curdt,
+            'file_name'=>$pdfname,
             'delete_by'=>$deleteby,
             'page_used'=> -$pages
         );
         unlink($pdfname);
         $this->db->insert('page',$data);
         return $this->db->insert_id();
+    
+        }
+        
+        public function del_file() {
+    
+        $id = $this->input->post('envelope_id');
+        $this->db->where('envelope_id',$id);
+        $a = $this->db->get('envelope');
+         $q=$a->row_array();
+      
+        $a = $q['file_name'];
+          $pdfname = './wellness_file/'.$a;
+          
+        unlink($pdfname);
+        $this->db->where('envelope_id',$id);
+        return $this->db->delete('envelope');
     
         }
        
@@ -154,17 +256,20 @@ date_default_timezone_set("Asia/kolkata");
                     'time'=>$curdate,
                     'envelopes'      => $this->input->post('envelopes')
                 );
-    
-                
-                //insert
                 $this->db->insert('envelope',$data);
             return $this->db->insert_id();
             }
             
-            public function add_envelope($data) {
             
+            public function add_envelope($data) {
+                
+                
                 $this->db->insert('envelope',$data);
-            return $this->db->insert_id();
+                return $this->db->insert_id();
+            }
+            
+            public function add_file_envelope($file_name) {
+                return $this->db->insert('envelope',$file_name);
             }
             
              public function add_page_used($data) {

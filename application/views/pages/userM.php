@@ -26,14 +26,14 @@
                           
             <div class="card-body">
                 <div class="table-responsive">
-                <table id="show_doctors" class="table table-bordered table-hover display">
+                <table id="show_doctors" class="table table-striped table-bordered display table-sm">
                     <thead>
                         <tr>
                             
-                            <th>User Email</th>
+                            <th>User ID</th>
                             <th>Type</th>
-                            <th>Total Pages</th>
-                            <th>Total Envelopes</th>
+                            <th>Stock Pages</th>
+                            <th>Stock Envelopes</th>
                            
 
                         </tr>
@@ -42,7 +42,8 @@
                     <tbody>
                         <?php if($users != NULL) { foreach($users as $usr) { ?>
                             <tr>
-                            <td>
+                                
+                                <td>
                                     <a href="<?php echo base_url(); ?>userDetails/<?php echo $usr['user_id']; ?>" class="btn btn-sm btn-primary">
                                     <?php echo $usr['user_email']; ?>
                                     <i class="fa fa-eye"></i>
@@ -66,19 +67,39 @@
                                $userEnvelope=$this->User_model->show_envelope($p);
                                 ?>
                                  <?php $totalP = 0;
-                          if($userPage != NULL){ foreach($userPage as $user) { ?> 
-                         <?php $totalP +=$user['pages']; ?>
-                          <?php }}?> 
-
-                                <td><?php echo $totalP; ?></td>
+                                    if($userPage != NULL){ foreach($userPage as $user) { ?> 
+                                    <?php $totalP +=$user['pages']; ?>
+                                    <?php }}?> 
+                                    
+                                    <?php $usedP = 0;
+                                      if($userPage != NULL){ foreach($userPage as $user) { ?> 
+                                     <?php $usedP +=$user['page_used']; ?>
+                                   
+                                      <?php }}?>  
+                                <!--<td><?php echo $totalP;?></td>-->
+                                <td><?php 
+                                echo $totalP - $usedP;
+                                $result = $totalP - $usedP;
+                                    echo ($result > 30) ? "" : " (Low Stock)";
+                                ?></td>
 
                                 <?php $totalE = 0;
                           if($userEnvelope != NULL){ foreach($userEnvelope as $user) { ?> 
                          <?php $totalE +=$user['envelopes']; ?>
                        
                           <?php }}?>  
-
-                                <td><?php echo $totalE; ?></td>
+                          
+                          <?php $usedE = 0;
+                          if($userEnvelope != NULL){ foreach($userEnvelope as $user) { ?> 
+                         <?php $usedE +=$user['envelope_used']; ?>
+                       
+                          <?php }}?> 
+                                <!--<td><?php echo $totalE;?></td>-->
+                                <td><?php
+                                echo $totalE - $usedE; 
+                                $resulte = $totalE - $usedE;
+                                    echo ($resulte > 15) ? "" : " (Low Stock)";
+                                ?></td>
                                
                             </tr>
                         <?php }} ?>

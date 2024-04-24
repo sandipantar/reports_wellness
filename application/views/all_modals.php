@@ -3,7 +3,7 @@
     <div class="modal-dialog modal-sm">
         <div class="modal-content">
             <div class="modal-header bg-primary">
-                <h5 class="Bsmall-modal-title font-weight-bold text-white float-left" id="largeModalLabel">Large Modal</h5>
+                <h5 class="Bsmall-modal-title font-weight-bold text-white float-left" id="largeModalLabel">SMALL Modal</h5>
                 <div class="float-right">
                     <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true" class="font-weight-bold text-red">×</span>
@@ -23,7 +23,7 @@
     <div class="modal-dialog modal-md" role="document">
         <div class="modal-content">
             <div class="modal-header bg-primary">
-                <h5 class="Bmedium-modal-title font-weight-bold text-white float-left" id="largeModalLabel">Large Modal</h5>
+                <h5 class="Bmedium-modal-title font-weight-bold text-white float-left" id="largeModalLabel">MEDIUM Modal</h5>
                 <div class="float-right">
                     <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true" class="font-weight-bold text-red">×</span>

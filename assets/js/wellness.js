@@ -547,8 +547,8 @@ function add_user() {
   // data += '<input type="text" name="user_name" class="form-control" required="required">';
 
   data += ' <label>Select User Image *</label>';
-  data += ' <select name="user_name" class="form-control">';
-  data += '  <option disabled selected value="NULL">Select an Image</option>';
+  data += ' <select name="user_name" class="form-control" required="required">';
+  data += '  <option disabled selected >Select an Image</option>';
   data += '<option value="admin.jpg">Admin</option>';
   data += '<option value="manager.png">Manager</option>';
   data += '<option value="ldpl.jpeg">LDPL</option>';
@@ -558,9 +558,14 @@ function add_user() {
   data += '  </select>';
  data += "</div>";
 
-data += '<div class="row form-group">';
+  data += '<div class="row form-group">';
   data += "<label>User Id</label>";
   data += '<input type="text" name="user_email" class="form-control" required="required">';
+  data += "</div>";
+  
+  data += '<div class="row form-group">';
+  data += "<label>Whatsapp Number</label>";
+  data += '<input type="text" name="user_wa" class="form-control">';
   data += "</div>";
 
   data += '<div class="row form-group">';
@@ -570,13 +575,13 @@ data += '<div class="row form-group">';
 
   data += '<div class="row form-group">';
   data += "<label>Note</label>";
-  data += '<input type="text" name="note" class="form-control" required="required">';
-data += "</div>";
+  data += '<textarea name="note" class="form-control" required="required"></textarea>';
+  data += "</div>";
+ 
 
   data += '<div class="row form-group">';
   data += "<label>Type Of User</label>";
  
-
 
   data += '<select  name="user_type" class="form-control" required="required">';
   data += '<option disabled selected value="NULL">User Type </option>';
@@ -618,6 +623,35 @@ function edit_user(id) {
       $("#smallModal_body").html(data);
       $("#smallModal").modal("show");
     },
+  });
+}
+
+// function assign_page(id) {
+//   $.ajax({
+//     url: "user/assign_page",
+//     type: "post",
+//     data: { user_id: id },
+//     success: function (data) {
+//       $(".Bsmall-modal-title").text("Add Pages");
+//       $("#smallModal_body").html(data);
+//       $("#smallModal").modal("show");
+//     },
+//   });
+// }
+// userPermissionOn
+function userPermissionOn(id) {
+  $.ajax({
+    url: "user/userPermissionOn",
+    type: "post",
+    data: { user_id: id },
+  });
+}
+// userPermissionOff
+function userPermissionOff(id) {
+  $.ajax({
+    url: "user/userPermissionOff",
+    type: "post",
+    data: { user_id: id },
   });
 }
 //assign_page
@@ -712,18 +746,42 @@ function del_user(id) {
   });
 }
 
-//delete doctor
+//delete envelope
 function del_envelope(id,user_id) {
   var data = "";
 
-  data +=
-    '<form class="form-horizontal form-label-left" method="post" action="user/del_envelope">';
+  data += '<form class="form-horizontal form-label-left" method="post" action="user/del_envelope">';
   data += '<div class="row" style="padding:10px 20px";>';
   data += '<div class="row form-group">';
   data += "<label>Are you sure, you want to delete the File?</label>";
   data += '<input type="hidden" name="envelope_id" value="' + id + '">';
   data += '<input type="hidden" name="user_id" value="' + user_id + '">';
   // data += '<input type="text" name="time" value="' + idd + '">';
+  data += "</div>";
+  data += '<div class="row form-group col-md-12 col-sm-12 col-xs-12">';
+  data +=
+    '<button type="button" data-dismiss="modal" class="btn btn-danger btn-sm col-md-6 col-sm-6 col-xs-12">Cancel</button>';
+  data +=
+    '<button type="submit" class="btn btn-success btn-sm col-md-6 col-sm-6 col-xs-12">Delete</button>';
+  data += "</div>";
+  data += "</div>";
+  data += "</form>";
+
+  jQuery(document).ready(function ($) {
+    $(".Bsmall-modal-title").text("Delete File");
+    $("#smallModal_body").html(data);
+    $("#smallModal").modal("show");
+  });
+}
+//delete dump files
+function del_dump(id) {
+  var data = "";
+
+  data += '<form class="form-horizontal form-label-left" method="post" action="user/del_file">';
+  data += '<div class="row" style="padding:10px 20px";>';
+  data += '<div class="row form-group">';
+  data += "<label>Are you sure, you want to delete the File?</label>";
+  data += '<input type="hidden" name="envelope_id" value="' + id + '">';
   data += "</div>";
   data += '<div class="row form-group col-md-12 col-sm-12 col-xs-12">';
   data +=

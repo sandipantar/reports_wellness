@@ -3,7 +3,7 @@
 		</div>
 		<!-- END content-page -->
 
-        <?php if($this->uri->segment(1) != 'home') { ?>
+        <?php if($this->uri->segment(1) != 'home' && $this->uri->segment(1) != 'dump') { ?>
 		<footer class="footer">
 			<span class="text-right">
 				Copyright <a href="#">Wellness</a>
@@ -53,6 +53,16 @@
 
 	</div>
 	<!-- END main -->
+	<script>
+	   // (function togCell(){
+    //       $('td').click(function(e){
+    //         $('td').removeClass('red');
+    //         $(this).addClass('red');
+            
+    //       });
+          
+    //     })();
+	</script>
 
 	<script src="<?php echo base_url(); ?>assets/js/modernizr.min.js"></script>
 	<script src="<?php echo base_url(); ?>assets/js/jquery.min.js"></script>
@@ -73,38 +83,83 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
 	<script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
 	<script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script>
+	<!--<script type="text/javascript" src="https://cdn.datatables.net/v/dt/jq-3.3.1/dt-1.10.23/fh-3.1.8/datatables.min.js"></script>-->
 	
 	<script src="<?php echo base_url(); ?>assets/plugins/waypoints/lib/jquery.waypoints.min.js"></script>
 	<script src="<?php echo base_url(); ?>assets/plugins/counterup/jquery.counterup.min.js"></script>	
 	<script src="<?php echo base_url(); ?>assets/plugins/select2/js/select2.min.js"></script>
 	
 	<script>
-        function myFunction() {
-          var input, filter, table, tr, td, i, txtValue;
-          input = document.getElementById("myInput");
-          filter = input.value.toUpperCase();
-          table = document.getElementById("myTable");
-          tr = table.getElementsByTagName("tr");
-          for (i = 0; i < tr.length; i++) {
-            td = tr[i].getElementsByTagName("td")[0];
-            if (td) {
-              txtValue = td.textContent || td.innerText;
-              if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                tr[i].style.display = "";
-              } else {
-                tr[i].style.display = "none";
-              }
-            }       
+        var $rows = $('#myTable tr');
+        $('#tabsearch').keyup(function() {
+            var val = $.trim($(this).val()).replace(/ +/g, ' ').toLowerCase();
+            
+            $rows.show().filter(function() {
+                var text = $(this).text().replace(/\s+/g, ' ').toLowerCase();
+                return !~text.indexOf(val);
+            }).hide();
+        });
+    </script>
+    <script>
+        $('textarea').keyup(function() {
+    
+          var characterCount = $(this).val().length,
+              current = $('#current'),
+              maximum = $('#maximum'),
+              theCount = $('#the-count');
+            
+          current.text(characterCount);
+         
+          
+          /*This isn't entirely necessary, just playin around*/
+          if (characterCount < 70) {
+            current.css('color', '#666');
           }
-        }
+          if (characterCount > 70 && characterCount < 90) {
+            current.css('color', '#6d5555');
+          }
+          if (characterCount > 90 && characterCount < 100) {
+            current.css('color', '#793535');
+          }
+          if (characterCount > 100 && characterCount < 120) {
+            current.css('color', '#841c1c');
+          }
+          if (characterCount > 120 && characterCount < 139) {
+            current.css('color', '#8f0001');
+          }
+          
+          if (characterCount >= 140) {
+            maximum.css('color', '#8f0001');
+            current.css('color', '#8f0001');
+            theCount.css('font-weight','bold');
+          } else {
+            maximum.css('color','#666');
+            theCount.css('font-weight','normal');
+          }
+          
+              
+        });
     </script>
 
 	<script>
+
 			
 		$(document).ready(function() {
-			$('#show_doctors').DataTable();
-			$('#show_users').DataTable();
-			$('#old_bill').DataTable();
+			$('#show_doctors').DataTable(
+			    {
+                scrollY: '500px',
+                scrollCollapse: true,
+                });
+			$('#show_users').DataTable({
+			    order: [[1, 'desc']],
+                scrollY: '300px',
+                scrollCollapse: true,
+                });
+			$('#old_bill').DataTable({
+			    order: [[2, 'desc']],
+                scrollY: '300px',
+                scrollCollapse: true,
+                });
 			$('#tests').DataTable();
 			$('#old_patient').DataTable();
 			$('#bill').DataTable();

@@ -4,48 +4,56 @@
   
 <body class="adminbody">
 <div id="main">
-
+<script src="index.js"></script>
     <!-- top bar navigation -->
     <div class="headerbar">
         <!-- LOGO -->
         <div class="headerbar-left">
             <a href="<?php echo base_url(); ?>dashboard" class="logo">
-                <img alt="Logo" src="<?php echo base_url(); ?>assets/images/logo.jpg" /> <span>Wellness</span>
+                <img alt="Logo" src="<?php echo base_url(); ?>assets/images/wellness_logo.png" class="bg-white px-1 rounded shadow" width="200px"/> 
             </a>
         </div>
 
         <nav class="navbar-custom">
-            <ul class="list-inline float-right mb-0">
-                <li class="list-inline-item dropdown notif">
-                    <a class="nav-link dropdown-toggle nav-user" data-toggle="dropdown" href="#" role="button"
-                        aria-haspopup="false" aria-expanded="false">
-                        <img src="<?php echo base_url(); ?>assets/images/avatars/admin.png" alt="Profile image"
-                            class="avatar-rounded">
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-right profile-dropdown ">
-                        <!-- item-->
-                        <div class="dropdown-item noti-title">
-                            <h5 class="text-overflow"><small>Hello, <?php echo $this->session->userdata('user_email'); ?></small> </h5>
-                        </div>
-
-                        <!-- item-->
-                        <a href="<?php echo base_url();?>logout" class="dropdown-item notify-item">
-                            <i class="fa fa-power-off"></i> <span>Logout</span>
-                        </a>
-                    </div>
-                </li>
-            </ul>
-
-            <ul class="list-inline menu-left mb-0">
-                <li class="float-left">
-                    <button class="button-menu-mobile open-left">
+                <div class="row">
+        <div class="col-xl-12">
+                <div class="col-xl-3 float-left">
+                    <button class="button-menu-mobile open-left float-left">
                         <i class="fa fa-fw fa-bars"></i>
                     </button>
-                </li>
-                <?php if($this->session->userdata('type') == 'User') { ?>  
-                <li><h5 class="mt-3 text-white">Note: <?php echo $userDet['note']; ?></h5></li>
-                <? } ?>
-            </ul>
+                    <!--<h6 class="main-title text-white">All Users</h6>-->
+                </div>
+                <div clas="col-xl-3">
+                    <!--<b><?php echo date("d M, Y"); ?></b>-->
+                    <ul class="list-inline float-right mb-0">
+                        <li class="list-inline-item dropdown notif text-white">
+                        <b style="font-size:30px"><?php echo $userDet['user_email']; ?></b>
+                        </li>
+                        <li class="list-inline-item dropdown notif">
+                            <a class="nav-link dropdown-toggle nav-user" data-toggle="dropdown" href="#" role="button"
+                                aria-haspopup="false" aria-expanded="false">
+                                <img src="<?php echo base_url(); ?>assets/images/avatars/admin.png" alt="Profile image"
+                                    class="avatar-rounded">
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right profile-dropdown ">
+                                <!-- item-->
+                                <div class="dropdown-item noti-title">
+                                    <h5 class="text-overflow"><small>Hello, <?php echo $this->session->userdata('user_email'); ?></small> </h5>
+                                </div>
+        
+                                <!-- item-->
+                                <a href="<?php echo base_url();?>logout" class="dropdown-item notify-item">
+                                    <i class="fa fa-power-off"></i> <span>Logout</span>
+                                </a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="clearfix"></div>
+        </div>
+    </div>
+    <!-- end row -->
+            
         </nav>
     </div>
     <!-- End Navigation -->
@@ -64,9 +72,6 @@
                     <!--   <a <?php if($this->uri->segment(1) == 'doctors') echo 'class="active"'; ?> href="<?php echo base_url(); ?>doctors"><i class="fa fa-fw fa-user-md"></i><span> Doctors </span> </a>-->
                     <!--</li>-->
 
-                    <!--<li class="submenu">-->
-                    <!--    <a <?php if($this->uri->segment(1) == 'tests') echo 'class="active"'; ?> href="<?php echo base_url(); ?>tests"><i class="fa fa-fw fa-stethoscope"></i><span> Tests </span> </a>-->
-                    <!--</li>-->
                                        
                     <!--<li class="submenu">-->
                     <!--    <a <?php if($this->uri->segment(1) == 'labs') echo 'class="active"'; ?> href="<?php echo base_url(); ?>labs"><i class="fa fa-fw fa-medkit"></i><span> Referral Center Name </span> </a>-->
@@ -89,15 +94,32 @@
                     <!--</li>-->
                     
                     <li class="submenu">
-                        <a <?php if($this->uri->segment(1) == 'user') echo 'class="active"'; ?> href="<?php echo base_url(); ?>user"><i class="fa fa-fw fa-user-o"></i><span> User </span> </a>
+                        <a <?php if($this->uri->segment(1) == 'user') echo 'class="active"'; ?> href="<?php echo base_url(); ?>user"><i class="fa fa-fw fa-user-o"></i><span> Users </span> </a>
                     </li>
+                    <li class="submenu">
+                        <a <?php if($this->uri->segment(1) == 'tests') echo 'class="active"'; ?> href="<?php echo base_url(); ?>charCount"><i class="fa fa-fw fa-file-word-o"></i><span> Character Count </span> </a>
+                    </li>
+                     <li class="submenu">
+                        <a <?php if($this->uri->segment(1) == 'dump') echo 'class="active"'; ?> href="<?php echo base_url(); ?>dump"><i class="fa fa-fw fa-dropbox"></i><span> Reports Dump Area </span> </a>
+                    </li>
+                    
+                    <li class="submenu">
+                        <a <?php if($this->uri->segment(1) == 'masterSearch') echo 'class="active"'; ?> href="<?php echo base_url(); ?>masterSearch"><i class="fa fa-fw fa-search-plus"></i><span> Master File Search </span> </a>
+                    </li>
+                    
                     <?php } ?>
 
                     <?php if($this->session->userdata('type') == 'Manager') { ?>
 
                         <li class="submenu">
-                            <a <?php if($this->uri->segment(1) == 'userM') echo 'class="active"'; ?> href="<?php echo base_url(); ?>userM"><i class="fa fa-fw fa-user-o"></i><span> User for Manager </span> </a>
+                            <a <?php if($this->uri->segment(1) == 'userM') echo 'class="active"'; ?> href="<?php echo base_url(); ?>userM"><i class="fa fa-fw fa-user-o"></i><span>All Users</span> </a>
                         </li>
+                         <li class="submenu">
+                        <a <?php if($this->uri->segment(1) == 'dump') echo 'class="active"'; ?> href="<?php echo base_url(); ?>dump"><i class="fa fa-fw fa-dropbox"></i><span> Reports Dump Area </span> </a>
+                    </li>
+                    <li class="submenu">
+                        <a <?php if($this->uri->segment(1) == 'masterSearch') echo 'class="active"'; ?> href="<?php echo base_url(); ?>masterSearch"><i class="fa fa-fw fa-search-plus"></i><span> Master File Search </span> </a>
+                    </li>
                         <?php } ?>
                     
                 </ul>
