@@ -14,15 +14,29 @@ $route['bill/add_bill'] = 'Bill/add_bill';
 $route['final_bill/(:any)'] = 'Pages/view/final_bill/$1';
 $route['edit_bill/(:any)'] = 'Pages/view/edit_bill/$1';
 
-$route['userDetails/(:any)'] = 'Pages/view/userDetails/$1';
+$route['uagh/(:any)'] = 'Pages/view/uagh/$1';
+$route['syncUploadHistory/(:any)'] = 'Pages/view/syncUploadHistory/$1';
+$route['syncDeleteHistory/(:any)'] = 'Pages/view/syncDeleteHistory/$1';
+$route['urgentUploadHistory/(:any)'] = 'Pages/view/urgentUploadHistory/$1';
+$route['urgentDeleteHistory/(:any)'] = 'Pages/view/urgentDeleteHistory/$1';
 
-$route['userDetails/user/add_envelope'] = 'User/add_envelope';
+$route['userDetails/(:any)'] = 'Pages/view/userDetails/$1';
+$route['urReports/(:any)'] = 'Pages/view/urReports/$1';
+
+// $route['userDetails/user/add_envelope'] = 'User/add_envelope';
+
+$route['urReports/user/add_urgent'] = 'User/add_urgent';
+$route['urReports/user/add_envelope'] = 'User/add_envelope';
+$route['urReports/user/del_ur'] = 'User/del_ur';
+$route['userDetails/user/del_ur'] = 'User/del_ur';
 
 $route['userDetails/user/del_envelope'] = 'User/del_envelope';
 $route['userDetails/user/sort_date'] = 'user/sort_date';
 $route['view/charCount'] = 'charCount';
 $route['view/dump'] = 'dump';
 $route['masterSearch/(:any)'] = 'Pages/view/masterSearch/$1';
+
+
 $route['user/file_assign'] = 'User/file_assign';
 $route['user/add_file'] = 'User/add_file';
 $route['user/dump'] = 'User/dump';

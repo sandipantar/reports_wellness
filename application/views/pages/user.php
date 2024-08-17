@@ -2,6 +2,8 @@
     redirect('home');
 } else { 
     $this->load->view('all_modals'); 
+     $manager =$this->session->userdata('user_email');
+     if($this->session->userdata('type') == 'Admin' || $this->session->userdata('type') == 'Manager') {
 ?>
 
 <div class="container-fluid">
@@ -9,9 +11,9 @@
     <div class="row">
         <div class="col-xl-12">
             <div class="breadcrumb-holder">
-                <h1 class="main-title float-left">All Users</h1>
+                <h4 class="text-center rounded p-2 bg-user text-white shadow text-shadow" style="border-radius:10px !important"><b>All Users</b></h4>
                 <ol class="breadcrumb float-right">
-                    <li class="breadcrumb-item"><b><?php echo date("d M, Y"); ?></b></li>
+                    <!--<li class="breadcrumb-item"><b><?php echo date('h:i:s a l\, F jS\, Y '); ?></b></li>-->
                 </ol>
                 <div class="clearfix"></div>
             </div>
@@ -22,21 +24,27 @@
 				
     <div class="row">				
     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">						
-        <div class="card mb-3">                
-            <div class="card-head m-2">
-                <button class="btn btn-sm btn-success" onclick="add_user();">Add User</button>
-            </div>     
-            
-             
-            
-            <div class="wrapper">
- 
-</div>
+        <div class="card mb-3">      
+        <div class="row  mt-4 ml-3">
+            <div class="col-xl-6">
+                <button class="btn btn-sm btn-success" style="box-shadow:2px 0 5px #666" onclick="add_user();">
+                    <span class="rounded p-1"><i class="fa fa-user-plus" style="font-size:25px" aria-hidden="true"></i></span>
+                    </button> &nbsp;&nbsp;&nbsp;<span class="font-weight-bold h5 ">Click here to add user</span>
+            </div>  
+            <div class="col-xl-6">
+                <div class=" float-right pr-5">
+                    <a  class="btn btn-sm btn-info" style="box-shadow:2px 0 5px #666" href="<?php echo base_url();?>uagh" target="_blank">
+                        <i class="fa fa-info-circle rounded p-1" style="font-size:25px" aria-hidden="true"></i>
+                         &nbsp;&nbsp;&nbsp;<span class="font-weight-bold h5">User Assets Given History</span>
+                    </a>
+                </div>
+            </div>
+        </div>
             
             <div class="card-body">
                 <div class="table-responsive">
                     <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>-->
-                <table id="show_doctors" class="table  table-bordered display">
+                <table id="show_users" class="table  table-bordered display">
                     <thead>
                         <tr>
                             
@@ -116,7 +124,7 @@
                                     echo ($resulte > 15) ? "" : " (Low Stock)";
                                 ?></td>
                                 <td class="text-center">
-                                    <button class="btn btn-sm btn-success" data-toggle="tooltip" data-placement="bottom" title="Assign Pages to <? echo $usr['user_email']; ?>" onclick="assign_page(<?php echo $usr['user_id']; ?>);"><i class="fa fa-file-text"></i></button>
+                                    <button class="btn btn-sm btn-success" data-toggle="tooltip" data-placement="bottom" title="Assign Pages to <? echo $usr['user_email']; ?>" onclick="assign_page(<?php echo $usr['user_id'];?>);"><i class="fa fa-file-text"></i></button>
                                     <button class="btn btn-sm btn-warning mx-2" data-toggle="tooltip" data-placement="bottom" title="Assign Envelopes to <? echo $usr['user_email']; ?>" onclick="assign_envs(<?php echo $usr['user_id']; ?>);"><i class="fa fa-envelope"></i></button>
                                     <button class="btn btn-sm btn-primary mr-2" data-toggle="tooltip" data-placement="bottom" title="Edit <? echo $usr['user_email']; ?>" onclick="edit_user(<?php echo $usr['user_id']; ?>);"><i class="fa fa-edit"></i></button>
                                     <button class="btn btn-sm btn-danger" data-toggle="tooltip" data-placement="bottom" title="Delete <? echo $usr['user_email']; ?>" onclick="del_user(<?php echo $usr['user_id']; ?>);"><i class="fa fa-trash"></i></button>
@@ -124,7 +132,7 @@
                                 <td>
                                     <span class="mx-2">
                                         <?php if($usr['u_status']==0) {?>
-                                        <label class="switch" data-toggle="tooltip" data-placement="bottom" title="Limited Access">
+                                        <label class="switch" data-toggle="tooltip" data-placement="bottom" title="Access Denied">
                                           <input type="checkbox" onclick="userPermissionOn(<?php echo $usr['user_id']; ?>);">
                                           <span class="slider round"></span>
                                         </label>
@@ -149,4 +157,4 @@
     </div>
 </div>
 
-<?php } ?>
+<?php }} ?>

@@ -536,19 +536,18 @@ function del_bill_test(id) {
 }
 //add user
 function add_user() {
+    
   var data = "";
 
-  data +=
-    '<form class="form-horizontal form-label-left" method="post" action="user/add_user">';
+  data += '<form class="form-horizontal form-label-left" method="post" action="user/add_user">';
   data += '<div class="row" style="padding:10px 20px";>';
-  data += '<div class="row form-group">';
+  data += '<div class="row form-group w-100">';
 
   // data += "<label>Name</label>";
   // data += '<input type="text" name="user_name" class="form-control" required="required">';
-
-  data += ' <label>Select User Image *</label>';
-  data += ' <select name="user_name" class="form-control" required="required">';
-  data += '  <option disabled selected >Select an Image</option>';
+  data += ' <span class="px-2 pt-2 mb-2 rounded shadow bg-warning w-100 text-white"><label><b>Select User Image *</b></label></span>';
+  data += ' <select name="user_name" class="form-control border border-warning shadow" required>';
+  data += '  <option disabled selected value="">Select an Image</option>';
   data += '<option value="admin.jpg">Admin</option>';
   data += '<option value="manager.png">Manager</option>';
   data += '<option value="ldpl.jpeg">LDPL</option>';
@@ -556,59 +555,88 @@ function add_user() {
   data += '<option value="veins.png">Veins</option>';
   data += '<option value="nucleus.png">Nucleus Diagnostic</option>';
   data += '  </select>';
- data += "</div>";
+ data += '</div>';
 
-  data += '<div class="row form-group">';
-  data += "<label>User Id</label>";
-  data += '<input type="text" name="user_email" class="form-control" required="required">';
-  data += "</div>";
+  data += '<div class="w-100 row form-group border-info p-1 rounded" style="border:4px solid">';
+  data += '<span class="px-2 pt-2 mb-2 rounded shadow bg-info w-100 text-white"><label><b>User Id</b></label></span>';
+  data += '<input type="text" id="userid" name="user_email" class="form-control shadow" required="required">';
+  data += '<span id="uname_response"></span>';
+  data += '</div>';
   
-  data += '<div class="row form-group">';
-  data += "<label>Whatsapp Number</label>";
-  data += '<input type="text" name="user_wa" class="form-control">';
-  data += "</div>";
+//   data += '<div class="row form-group">';
+//   data += "<label>Whatsapp Number</label>";
+//   data += '<input type="text" name="user_wa" class="form-control">';
+//   data += "</div>";
 
-  data += '<div class="row form-group">';
-  data += "<label>User Password</label>";
-  data += '<input type="text" name="user_password" class="form-control" required="required">';
-  data += "</div>";
+  data += '<div class="w-100 row form-group border-primary p-1 rounded" style="border:4px solid">';
+  data += '<span class="px-2 pt-2 mb-2 rounded shadow bg-primary w-100 text-white"><label><b>User Password</b></label></span>';
+  data += '<input type="text" name="user_password" class="form-control  shadow" required="required">';
+  data += '</div>';
 
-  data += '<div class="row form-group">';
-  data += "<label>Note</label>";
-  data += '<textarea name="note" class="form-control" required="required"></textarea>';
-  data += "</div>";
+  data += '<div class="row form-group w-100">';
+  data += '<span class="px-2 pt-2 mb-2 rounded shadow w-100 text-white" style="background:#90644c"><label><b>Note</b></label></span>';
+  data += '<textarea name="note" class="form-control border border-secondary shadow w-100" required="required"></textarea>';
+  data += '</div>';
  
 
-  data += '<div class="row form-group">';
-  data += "<label>Type Of User</label>";
+  data += '<div class="row form-group w-100">';
+  data += '<span class="px-2 pt-2 mb-2 rounded shadow bg-dark w-100 text-white"><label><b>Type Of User</b></label></span>';
  
 
-  data += '<select  name="user_type" class="form-control" required="required">';
-  data += '<option disabled selected value="NULL">User Type </option>';
+  data += '<select  name="user_type" class="form-control border border-dark shadow w-100" required>';
+  data += '<option disabled selected value="">User Type </option>';
  
   data += '<option value="Admin"> Admin</option>';
   data += '<option value="User">User</option>';
   data += '<option value="Manager">Manager</option>';
 
   data += '</select>';
-  data += "</div>";
+    data += "</div>";
   
   data += "</div>";
 
-  data += '<div class="row form-group col-md-12 col-sm-12 col-xs-12">';
+  data += '<div class="row form-group col-md-12 col-sm-12 col-xs-12 mx-auto">';
   data +=
-    '<button type="button" data-dismiss="modal" class="btn btn-danger btn-sm col-md-6 col-sm-6 col-xs-12">Cancel</button>';
+    '<button type="button" data-dismiss="modal" class="btn btn-danger btn-sm col-md-5 col-sm-5 col-xs-12 ml-3 mr-1" style="box-shadow:4px 4px 10px #000">Cancel</button>';
   data +=
-    '<button type="submit" class="btn btn-success btn-sm col-md-6 col-sm-6 col-xs-12">Add</button>';
+    '<button type="submit" class="btn btn-success btn-sm col-md-5 col-sm-5 col-xs-12 ml-2" style="box-shadow:4px 4px 10px #000">Add</button>';
   data += "</div>";
   data += "</div>";
   data += "</form>";
-
-  jQuery(document).ready(function ($) {
-    $(".Bsmall-modal-title").text("Add User");
-    $("#smallModal_body").html(data);
-    $("#smallModal").modal("show");
-  });
+    
+$(document).ready(function(){ 
+    
+    $(".Bmedium-modal-title").text("Add User");
+    $("#mediumModal_body").html(data);
+    $("#mediumModal").modal("show");
+    
+  $("#userid").change(function(){ 
+    var uname = $("#userid").val(); 
+    if(uname != ''){ 
+      $("#uname_response").show(); 
+      $.ajax({ 
+        url: 'user/user_val', 
+        type: 'post', 
+        data: {uname:uname}, 
+        success: function(response){ 
+           if(response > 0){ 
+              $("#uname_response").html("<span style='color:red'>Username Already Exists</span>"); 
+           }else{ 
+              $("#uname_response").html("<span style='color:green'>You can use this User ID</span>"); 
+           } 
+        } 
+      }); 
+    }else{ 
+      $("#uname_response").hide(); 
+    } 
+   }); 
+});
+    
+//   jQuery(document).ready(function ($) {
+//     $(".Bmedium-modal-title").text("Add User");
+//     $("#mediumModal_body").html(data);
+//     $("#mediumModal").modal("show");
+//   });
 }
 
 
@@ -619,9 +647,9 @@ function edit_user(id) {
     type: "post",
     data: { user_id: id },
     success: function (data) {
-      $(".Bsmall-modal-title").text("Edit User");
-      $("#smallModal_body").html(data);
-      $("#smallModal").modal("show");
+      $(".Bmedium-modal-title").text("Edit User");
+      $("#mediumModal_body").html(data);
+      $("#mediumModal").modal("show");
     },
   });
 }
@@ -663,15 +691,16 @@ function assign_page(id) {
   data += '<div class="row" style="padding:10px 20px";>';
   data += '<div class="row form-group">';
   data += '<input type="hidden" name="user_id" value="' + id + '">';
-  data += "<label>Assign pages </label>";
-  data += '<input type="text" name="pages" class="form-control" required="required">';
+//   data += '<input type="text" name="assignedBy" value="' + manager + '">';
+  data += '<span class="px-2 pt-2 my-2 rounded shadow bg-success w-100 text-white"><label><b>Assign pages</b></label></span>';
+  data += '<input type="text" name="pages" class="form-control shadow border border-success" required="required">';
   data += "</div>";
 
   data += "</div>";
 
-  data += '<div class="row form-group col-md-12 col-sm-12 col-xs-12">';
+  data += '<div class="row form-group col-md-12 col-sm-12 col-xs-12 mx-auto">';
   data +=
-    '<button type="button" data-dismiss="modal" class="btn btn-danger btn-sm col-md-6 col-sm-6 col-xs-12">Cancel</button>';
+    '<button type="button" data-dismiss="modal" class="btn btn-danger btn-sm col-md-5 col-sm-5 col-xs-12 mr-1">Cancel</button>';
   data +=
     '<button type="submit" class="btn btn-success btn-sm col-md-6 col-sm-6 col-xs-12">Add</button>';
   data += "</div>";
@@ -697,15 +726,15 @@ function assign_envs(id) {
   data += '<div class="row form-group">';
 
   data += '<input type="hidden" name="user_id" value="' + id + '">';
-  data += "<label>Assign Envelopes </label>";
-  data += '<input type="text" name="envelopes" class="form-control" required="required">';
+  data += '<span class="px-2 pt-2 my-2 rounded shadow bg-warning w-100 text-white"><label><b>Assign Envelopes</b></label></span>';
+  data += '<input type="text" name="envelopes" class="form-control shadow border border-warning" required="required">';
   data += "</div>";
 
   data += "</div>";
 
-  data += '<div class="row form-group col-md-12 col-sm-12 col-xs-12">';
+  data += '<div class="row form-group col-md-12 col-sm-12 col-xs-12 mx-auto">';
   data +=
-    '<button type="button" data-dismiss="modal" class="btn btn-danger btn-sm col-md-6 col-sm-6 col-xs-12">Cancel</button>';
+    '<button type="button" data-dismiss="modal" class="btn btn-danger btn-sm col-md-5 col-sm-5 col-xs-12 mr-1">Cancel</button>';
   data +=
     '<button type="submit" class="btn btn-success btn-sm col-md-6 col-sm-6 col-xs-12">Add</button>';
   data += "</div>";
@@ -730,9 +759,9 @@ function del_user(id) {
   data += "<label>Are you sure, you want to delete the User?</label>";
   data += '<input type="hidden" name="user_id" value="' + id + '">';
   data += "</div>";
-  data += '<div class="row form-group col-md-12 col-sm-12 col-xs-12">';
+  data += '<div class="row form-group col-md-12 col-sm-12 col-xs-12 mx-auto">';
   data +=
-    '<button type="button" data-dismiss="modal" class="btn btn-danger btn-sm col-md-6 col-sm-6 col-xs-12">Cancel</button>';
+    '<button type="button" data-dismiss="modal" class="btn btn-danger btn-sm col-md-5 col-sm-5 mr-3 col-xs-12">Cancel</button>';
   data +=
     '<button type="submit" class="btn btn-success btn-sm col-md-6 col-sm-6 col-xs-12">Delete</button>';
   data += "</div>";
@@ -760,7 +789,33 @@ function del_envelope(id,user_id) {
   data += "</div>";
   data += '<div class="row form-group col-md-12 col-sm-12 col-xs-12">';
   data +=
-    '<button type="button" data-dismiss="modal" class="btn btn-danger btn-sm col-md-6 col-sm-6 col-xs-12">Cancel</button>';
+    '<button type="button" data-dismiss="modal" class="btn btn-danger btn-sm col-md-5 col-sm-5 col-xs-12 mr-3">Cancel</button>';
+  data +=
+    '<button type="submit" class="btn btn-success btn-sm col-md-6 col-sm-6 col-xs-12">Delete</button>';
+  data += "</div>";
+  data += "</div>";
+  data += "</form>";
+
+  jQuery(document).ready(function ($) {
+    $(".Bsmall-modal-title").text("Delete File");
+    $("#smallModal_body").html(data);
+    $("#smallModal").modal("show");
+  });
+}
+function del_ur(id,user_id) {
+  var data = "";
+
+  data += '<form class="form-horizontal form-label-left" method="post" action="user/del_ur">';
+  data += '<div class="row" style="padding:10px 20px";>';
+  data += '<div class="row form-group">';
+  data += "<label>Are you sure, you want to delete the File?</label>";
+  data += '<input type="hidden" name="envelope_id" value="' + id + '">';
+  data += '<input type="hidden" name="user_id" value="' + user_id + '">';
+  // data += '<input type="text" name="time" value="' + idd + '">';
+  data += "</div>";
+  data += '<div class="row form-group col-md-12 col-sm-12 col-xs-12">';
+  data +=
+    '<button type="button" data-dismiss="modal" class="btn btn-danger btn-sm col-md-5 col-sm-5 col-xs-12 mr-3">Cancel</button>';
   data +=
     '<button type="submit" class="btn btn-success btn-sm col-md-6 col-sm-6 col-xs-12">Delete</button>';
   data += "</div>";
@@ -785,7 +840,7 @@ function del_dump(id) {
   data += "</div>";
   data += '<div class="row form-group col-md-12 col-sm-12 col-xs-12">';
   data +=
-    '<button type="button" data-dismiss="modal" class="btn btn-danger btn-sm col-md-6 col-sm-6 col-xs-12">Cancel</button>';
+    '<button type="button" data-dismiss="modal" class="btn btn-danger btn-sm col-md-5 col-sm-5 col-xs-12 mr-3">Cancel</button>';
   data +=
     '<button type="submit" class="btn btn-success btn-sm col-md-6 col-sm-6 col-xs-12">Delete</button>';
   data += "</div>";

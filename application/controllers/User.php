@@ -1,8 +1,8 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 date_default_timezone_set("Asia/kolkata");
-
 class User extends CI_Controller {
+
 
 	public function add_user( ){
         
@@ -61,11 +61,11 @@ class User extends CI_Controller {
                 $data .= '<form class="form-horizontal form-label-left" method="post" action="user/edit_user123">';
                 $data .= '<input type="hidden" name="user_id" value="'.$this->input->post('user_id').'">';
                 $data .= '<div class="row" style="padding:10px 20px";>';
-                $data .= '<div class="row form-group">';
+                $data .= ' <span class="px-2 pt-2 mb-2 rounded shadow bg-warning w-100 text-white"><label><b>Change User Image *</b></label></span>';
                 // $data .= '<label>User Name</label>';
         
                 // $data .= '<input type="text" name="user_name" class="form-control" value="'.$users['user_name'].'">';
-                 $data .= '<select  name="user_name" class="form-control">';
+                 $data .= '<select  name="user_name" class="form-control border border-warning shadow mb-3">';
         
                 $data .= '<option value="admin.jpg"';
                 if($users['user_name'] == 'admin.jpg') { $data .= 'selected'; }
@@ -87,20 +87,20 @@ class User extends CI_Controller {
                 $data .= '>LDPL</option>';
                 $data .= '</select>';
                 
-                $data .= '<label>User Id</label>';
+                $data .= '<span class="px-2 pt-2 mb-2 rounded shadow bg-info w-100 text-white"><label><b>User Id</b></label></span>';
                 $data .= '<input type="text" name="user_email" class="form-control" value="'.$users['user_email'].'">';
                 
-                $data .= '<label>Whatsapp Number</label>';
-                $data .= '<input type="text" name="user_wa" class="form-control" value="'.$users['user_wa'].'">';
+                // $data .= '<label>Whatsapp Number</label>';
+                // $data .= '<input type="text" name="user_wa" class="form-control" value="'.$users['user_wa'].'">';
 
-                $data .= '<label>User Password</label>';
+                $data .= '<span class="px-2 pt-2 my-2 rounded shadow bg-primary w-100 text-white"><label><b>User Password</b></label></span>';
                 $data .= '<input type="text" name="user_password" class="form-control">';
 
-                $data .= '<label>Note</label>';
+                $data .= '<span class="px-2 pt-2 my-2 rounded shadow bg-secondary w-100 text-white"><label><b>Note</b></label></span>';
                 $data .= '<textarea name="note" class="form-control">'.$users['note'].'</textarea>';
                 
 
-                $data .= '<label> Type Of User</label>';
+                $data .= '<span class="px-2 pt-2 my-2 rounded shadow bg-dark w-100 text-white"><label><b>Type Of User</b></label></span>';
 
 
                 $data .= '<select  name="user_type" class="form-control">';
@@ -160,6 +160,12 @@ class User extends CI_Controller {
                 $referer = $_SERVER['HTTP_REFERER'];
                 header("Location: $referer");
         }
+        public function del_ur(){
+                $this->User_model->del_ur();	
+                $referer = $_SERVER['HTTP_REFERER'];
+                header("Location: $referer");
+        }
+        
                 public function del_file(){
                 $this->User_model->del_file();	
                 $referer = $_SERVER['HTTP_REFERER'];
@@ -179,7 +185,7 @@ class User extends CI_Controller {
                 header("Location: $referer");
         }    
     
-	public function add_envelope(){
+	public function add_envelope_old(){
         $file_name = $this->input->post('file_name');
 		if (!is_dir('./wellness_file/'.$file_name)) {
 			mkdir('./wellness_file/'.$file_name, 0777, TRUE);                    
@@ -195,64 +201,48 @@ class User extends CI_Controller {
 		if( $this->upload->do_upload('file_name')) {                    
 			$data = $this->upload->data();
 			$file_name =  $data['file_name'];
-		} 
+		}
+		
+		$nurn = date("HisdmY");
+		$URN=substr($file_name, 0, -4)."_W.U.R.ID_".$nurn;
 		$curdt = date('h:i:s a l\, F jS\, Y ');
                 $data = array(
                         'user_id'=>$this->input->post('user_id'),
                         'manager'=>$this->input->post('manager'),
                         'file_name'=>$file_name,
                         'time'=>$curdt,
-                        'envelope_used'=>"1"
+                        'UrgentReports'=>"1",
+                        'UrgentReportsName'=>$URN
                     );
                 $this->User_model->add_envelope($data);	
-                function count_pages($pdfname) {
-
-                        $pdftext = file_get_contents($pdfname);
-                        $num = preg_match_all("/\/Page\W/", $pdftext, $dummy);
-                      
-                        return $num;
-                      }
-                      
-                      $pdfname = './wellness_file/'.$file_name;
-                      $pages = count_pages($pdfname);
-                $curdate = date('h:i:s a l\, F jS\, Y ');
-                $dat = array(
-                        'user_id'=>$this->input->post('user_id'),
-                        'time'=>$curdate,
-                        'file_name'=>$file_name,
-                        'page_used'=>$pages
-                                        
-                    );
-                    $this->User_model->add_page_used($dat);	
-
-                $referer = $_SERVER['HTTP_REFERER'];
+               $referer = $_SERVER['HTTP_REFERER'];
                 header("Location: $referer");
                 
-                $NonSyncFile=$this->User_model->show_file();
-                if($NonSyncFile != NULL) { foreach($NonSyncFile as $nsf) {
-                    
-                    $users=$this->User_model->show_user();
-                    if($users != NULL) { foreach($users as $usr) {
-                        $fileName = $nsf['file_name'];
-                        $userEmail   = $usr['user_email'];
-                        if (strpos($fileName, $userEmail) !== false)
-                        {
-                            
-                            $data = array( 'user_id' => $usr['user_id'],
-                               'assign_status' => 1
-                            );
-                            $this->db->where('user_id',0);
-                            $this->db->like('file_name',$userEmail);
-                            $this->db->update('envelope',$data);	
-                            
-                           $data = array( 'user_id' => $usr['user_id'],
-                                           'assign_status' => 1
-                            );
-                            $this->db->where('user_id',0);
-                            $this->db->like('file_name',$userEmail);
-                            $this->db->update('page',$data);
-                        }
-                    }}}}
+        }
+	
+	public function add_urgent(){
+                
+                $ff = $_FILES['file_name']['name'];
+                $ft = $_FILES['file_name']['type'];
+                $tmp_name = $_FILES['file_name']['tmp_name'];
+                $uploads_dir = 'wellness_file/';
+                
+                if(is_array($ff)){
+                    for($i=0;$i<count($ff);$i++){
+                        if($ft[$i] == 'application/pdf'){
+                            move_uploaded_file($tmp_name[$i], $uploads_dir.$ff[$i]);
+                            $data = array(
+                                            'user_id'=>$this->input->post('user_id'),
+                                            'manager'=>$this->input->post('manager'),
+                                            'file_name'=>$ff[$i],
+                                            'time'=> date('h:i:s a l\, F jS\, Y '),
+                                            'UrgentReports'=>"1"
+                                        );
+                                $this->User_model->add_urgent_file($data);
+                            }}}
+               $referer = $_SERVER['HTTP_REFERER'];
+                header("Location: $referer");
+                
         }
         
     public function add_file(){
@@ -266,6 +256,12 @@ class User extends CI_Controller {
                 if(is_array($ff)){ $k=1;
                     for($i=0;$i<count($ff);$i++){
                         if($ft[$i] == 'application/pdf'){
+                            
+                            // $this->db->like('file_name',$ff[$i]);
+                            // $q = $this->db->get('envelope');
+                            // $q->row_array();
+                            // // $a = $q['file_name'];
+                            // if($q['file_name'] == NULL){
                             move_uploaded_file($tmp_name[$i], $uploads_dir.$ff[$i]);
                             $data = array(
                                         'file_name' => $ff[$i],
@@ -288,9 +284,10 @@ class User extends CI_Controller {
                                         $pdf = NULL;
                                         $num = 0;
                                 // echo '<script>alert("'.$ff[$i].'-> File uploaded")</script>';
-                                
-                                
-                        } else{echo '<script>alert("'.$ff[$i].' -> Rules violated -> Only .pdf files are allowed")</script>'; }
+                                // $this->session->set_flashdata('upsuccess','uploaded');
+                            // print_r($ff[i]);
+                            // }
+                        } else{echo '<script type="text/javascript">alert("'.$ff[$i].' -> Rules violated -> Only .pdf files are allowed")</script>'; }
                         
                     }$k++;
                     // echo '<script type="text/javascript">alert("'.$k.'-> No of File Synced")</script>';
@@ -355,9 +352,19 @@ class User extends CI_Controller {
                     redirect('/dump');
             
         }
+    public function user_val(){
         
-
-
-
-
-}
+        /* Get username */ 
+        $uname = $_POST['uname']; 
+        /* Query */ 
+        $this->db->where('user_email',$uname);
+        return $this->db->get('user')->num_rows();
+        
+        
+        // $query = "select count(*) as cntUser from user where user_email ='.$uname.'"; 
+        // $result = mysql_query($query); 
+        // $row = mysql_fetch_array($result); 
+        // $count = $row['cntUser']; return $count; 
+    }
+        
+}?>

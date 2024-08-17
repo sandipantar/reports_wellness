@@ -17,7 +17,8 @@
 
                     <div class="row form-group col-md-12 col-sm-12 col-xs-12">
                         <label class="col-md-4 col-sm-4 col-xs-6 text-right">Password:</label>
-                        <input type="password" name="password" class="form-control col-md-8 col-sm-8 col-xs-6" required="required">
+                        <input type="password" name="password" id="password" class="form-control col-md-8 col-sm-8 col-xs-6" required="required">
+                        <span class="password-toggle-icon"><i class="fa fa-eye"></i></span>
                     </div>
 
                     <div class="row form-group col-md-6 col-sm-6 col-xs-6" style="margin-left:150px">

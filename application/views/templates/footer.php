@@ -54,16 +54,12 @@
 	</div>
 	<!-- END main -->
 	<script>
-	   // (function togCell(){
-    //       $('td').click(function(e){
-    //         $('td').removeClass('red');
-    //         $(this).addClass('red');
-            
-    //       });
-          
-    //     })();
-	</script>
 
+
+	</script>
+    
+    
+    
 	<script src="<?php echo base_url(); ?>assets/js/modernizr.min.js"></script>
 	<script src="<?php echo base_url(); ?>assets/js/jquery.min.js"></script>
 	<script src="<?php echo base_url(); ?>assets/js/moment.min.js"></script>
@@ -147,12 +143,13 @@
 		$(document).ready(function() {
 			$('#show_doctors').DataTable(
 			    {
-                scrollY: '500px',
+                scrollY: '800px',
                 scrollCollapse: true,
+                ordering: false
                 });
 			$('#show_users').DataTable({
 			    order: [[1, 'desc']],
-                scrollY: '300px',
+                scrollY: '500px',
                 scrollCollapse: true,
                 });
 			$('#old_bill').DataTable({

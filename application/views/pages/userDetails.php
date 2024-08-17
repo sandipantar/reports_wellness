@@ -41,7 +41,7 @@
     
         <div class="w-100">
             <div class="breadcrumb-holder">
-                <img alt="Logo" src="<?php echo $img;?>"  class="img-fluid" width="150px;">
+                <img alt="Logo" src="<?php echo $img;?>"  class="img-fluid shadow rounded mb-3 p-1" style="border:3px solid #999" width="150px;">
                 <ol class="breadcrumb float-right">
                     <li class="breadcrumb-item mt-3"><b style="font-size:22px; border:5px solid #c3bebe;" class="bg-secondary rounded shadow text-white py-2 px-3"><?php echo $userDet['user_email']; ?></b></li>
                 </ol>
@@ -78,14 +78,24 @@
             <div class="card">
               <div class="card-body">
                   <div class="row">
-                      <div class="col-10">
-                          <h4 class="card-title">USER ASSETS</h4>
+                      <div class="col-md-6">
+                          <h4 class="card-title"><span class=" px-2 py-1 rounded shadow bg-light font-weight-bold">USER ASSETS</span></h4>
                       </div>
-                      <div class="col-2">
-                      <!-- Button trigger modal -->
-                          <button type="button" class=" float-end btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-                               History
-                          </button>
+                      <!--<div class="col-md-4">-->
+                      <!--    <a href="<?php echo base_url(); ?>urReports/<?php echo $user_id;?>" class="btn btn-danger shadow border-secondary" style="border: 2px solid #999">Urgent Reports</a>-->
+                      <!--</div>-->
+                      <div class="col-md-6">
+                          <div class="row text-center">
+                          <div class="col-md-6">
+                               <a href="<?php echo base_url(); ?>urReports/<?php echo $user_id;?>" class="btn btn-danger shadow border-secondary" style="border: 2px solid #999">Urgent Reports</a>
+                          </div>
+                          <div class="col-md-6">
+                          <!-- Button trigger modal -->
+                              <button type="button" class=" btn btn-primary shadow border-dark" style="border: 2px solid #999" data-toggle="modal" data-target="#exampleModal">
+                                   Login History
+                              </button>
+                          </div>
+                          </div>
                       </div>
                   </div>
                 <!-- Modal -->
@@ -95,7 +105,7 @@
                       <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalLabel">Login History </h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                          <span aria-hidden="true"></span>
+                          <span aria-hidden="true">&times;</span>
                         </button>
                       </div>
                       <div class="modal-body">
@@ -116,7 +126,7 @@
                 <!--modal-->
               </div>
               <div class="row col-xl-12">
-                      <div class="col-xl-6 d-flex rounded" style="border:5px solid #666">
+                      <div class="col-xl-5 d-flex rounded mx-auto shadow" style="border:5px solid #666">
                         <div class="col-sm">
                           <h6>Total Pages</h6>
                             <?php $totalP = 0;
@@ -141,7 +151,7 @@
                         <h5><span class="badge badge-success"><?php echo $totalP - $usedP ?></span></h5>
                         </div>
                       </div>
-                    <div class="col-xl-6 d-flex rounded" style="border:5px solid #666">
+                    <div class="col-xl-5 d-flex rounded mx-auto shadow" style="border:5px solid #666">
                         <div class="col-sm">
                           <h6>Total Envelopes</h6> 
                           <?php $totalE = 0;
@@ -167,7 +177,7 @@
                         </div>
                       </div>
                 </div>
-              <!--modal-->
+              <!--modal page-->
                               <div class="modal bd-example-modal-xl fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel1" aria-hidden="true">
                                   <div class="modal-dialog modal-xl" style="max-width:1840px !important" role="document">
                                     <div class="modal-content">
@@ -184,11 +194,11 @@
                                       <h4 class="text-center bg-secondary rounded"><spanc class=" p-2 rounded font-weight-bold text-white" style=""></span><?php echo $userDet['user_email']; ?> </h4>
                                       <div class="row">
                                       <?php if($ShowPage != NULL){ foreach($ShowPage as $ph) { ?> 
-                                            <div class="col-md-2 border"><?php echo $ph['time']; ?></div>
-                                            <div class="col-md-1 border"><span class="text-success">Given Pages: </span><?php echo $ph['pages']; ?></div>
-                                            <div class="col-md-1 border"><span class="text-info">Used Pages: </span> <?php echo $ph['page_used']; ?></div>
-                                            <div class="col-md-6 border"><span class="text-warning">File Name: </span> <?php echo $ph['file_name']; ?></div>
-                                            <div class="col-md-2 border"><span class="text-danger">Deleted By: </span> <?php echo $ph['delete_by']; ?></div>
+                                            <div class="col-md-2 border" <?if($ph['assign_status']==2) {?>style="background:#ffff556b"<?}?>><?php echo $ph['time']; ?></div>
+                                            <div class="col-md-1 border" <?if($ph['assign_status']==2) {?>style="background:#ffff556b"<?}?>><span class="text-success">Given Pages: </span><?php echo $ph['pages']; ?></div>
+                                            <div class="col-md-1 border" <?if($ph['assign_status']==2) {?>style="background:#ffff556b"<?}?>><span class="text-info">Used Pages: </span> <?php echo $ph['page_used']; ?></div>
+                                            <div class="col-md-6 border" <?if($ph['assign_status']==2) {?>style="background:#ffff556b"<?}?>><span class="text-warning">File Name: </span> <?php echo $ph['file_name']; ?></div>
+                                            <div class="col-md-2 border" <?if($ph['assign_status']==2) {?>style="background:#ffff556b"<?}?>><span class="text-danger">By: </span> <?php echo $ph['delete_by']; ?></div>
                                           <?php }}?>
                                        </div>
                                       </div>
@@ -197,7 +207,7 @@
                                   </div>
                                 </div>
                               <!--modal-->
-                 <!--modal-->
+                 <!--modal envelope-->
                               <div class="modal fade bd-example-modal-xl" id="exampleModal11" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel11" aria-hidden="true">
                                   <div class="modal-dialog modal-xl"  style="max-width:1840px !important" role="document">
                                     <div class="modal-content">
@@ -279,7 +289,7 @@
         <div class="col-md-12 col-lg-12 col-xl-12">
             <div class="card">
               <div class="card-body" style="padding-bottom: 0 !important">
-                <h4 class="card-title">ASSIGNED FILES</h4>
+                <h4 class="card-title p-2 border border-primary shadow rounded bg-light text-center font-weight-bold">ASSIGNED FILES</h4>
               </div>
               <div class="col-lg-12">
                   <input type="text" id="tabsearch" placeholder="Search for filename / Date">
@@ -291,7 +301,7 @@
                             <th>File</th>
                             <th>By</th>
                             <th>Date</th>
-                            <th class=" text-center" style="width:10% !important">Action</th>
+                            <th class=" text-center" style="width:12% !important">Action</th>
 
                         </tr>
                     </thead>
@@ -303,7 +313,11 @@
                                 <td>
                                 <h6 class=" float-start">
                                     <a target="_blank" href="<?=base_url()?>wellness_file/<?php echo $user['file_name']; ?>">
-                                    <?php echo $user['file_name']; ?> <i class="fa fa-download"></i>
+                                    <?php echo $user['file_name']; ?> 
+                                    <i class="fa fa-download"></i>
+                                    <? if($user['UrgentReports']==1){ ?>
+                                    <span class="badge badge-danger ml-1">Urgent</span>
+                                    <?}else{}?>
                                     </a></h6>
                                 </td>
 
@@ -320,10 +334,18 @@
                               
 
                                 <td class=" text-center">
-                                    <a href="https://wa.me/send?phone=<?php echo $userDet['user_wa']; ?>&text=https://reports.wellnessslg.com/wellness_file/<?php echo $user['file_name']; ?>" target="_blank">
+                                    <a href="https://web.whatsapp.com" target="_blank">
                                         <img wid src="/assets/images/waIcon.png" width="25px" alt="wa Icon"/>
-                                    </a><span class="mx-1">|</span>
-                                    <button class="bg-danger rounded text-white" onclick="del_envelope(<?php echo $user['envelope_id']; ?>,<?php echo $user['user_id']; ?>);"><i class="fa fa-trash"></i></button>
+                                    </a><span>|</span>
+                                    <a href="https://www.gmail.com" target="_blank">
+                                         <img wid src="/assets/images/gmail-512.webp" width="25px" alt="gmail Icon"/>
+                                    </a><span>|</span>
+                                    <?php if ($user['UrgentReports']==1){?>
+                                    <button class="bg-danger rounded text-white" onclick="del_ur(<?php echo $user['envelope_id']; ?>,<?php echo $user['user_id']; ?>);"><i class="fa fa-trash"></i></button>
+                                    <? } else{?>
+                                        <button class="bg-danger rounded text-white" onclick="del_envelope(<?php echo $user['envelope_id']; ?>,<?php echo $user['user_id']; ?>);"><i class="fa fa-trash"></i></button>
+                                    <?}?> 
+                                    
                                </td>
                             </tr>
                         <?php }$i++;}}?>

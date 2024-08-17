@@ -2,28 +2,31 @@
   $userDet=$this->User_model->show_user($user_id);
  ?>
   
-<body class="adminbody">
-<div id="main">
+<body class="widescreen adminbody-void">
+<div id="main" class="forced enlarged">
 <script src="index.js"></script>
     <!-- top bar navigation -->
     <div class="headerbar">
         <!-- LOGO -->
         <div class="headerbar-left">
-            <a href="<?php echo base_url(); ?>dashboard" class="logo">
-                <img alt="Logo" src="<?php echo base_url(); ?>assets/images/wellness_logo.png" class="bg-white px-1 rounded shadow" width="200px"/> 
+            <a href="<?php echo base_url(); ?>dashboard" class="logo ml-3">
+                <img alt="Logo" src="<?php echo base_url(); ?>assets/images/wellness_logo.png" class="bg-white rounded shadow"/> 
             </a>
         </div>
 
         <nav class="navbar-custom">
-                <div class="row">
-        <div class="col-xl-12">
-                <div class="col-xl-3 float-left">
-                    <button class="button-menu-mobile open-left float-left">
-                        <i class="fa fa-fw fa-bars"></i>
-                    </button>
+                <div class="row ml-3">
+                <div class="col-xl-8">
+                    <!--<button class="button-menu-mobile open-left float-left ml-3">-->
+                        <!--<i class="fa fa-fw fa-bars"></i>-->
+                    <!--</button>-->
                     <!--<h6 class="main-title text-white">All Users</h6>-->
+                    <h4 class="mt-2 p-1 text-white ml-5 "><i><?php echo date(' l\, F jS\, Y - h:i:s a'); ?></i></h4>
                 </div>
-                <div clas="col-xl-3">
+                <!--<div class="col-xl-4 text-white">-->
+                    
+                <!--</div>-->
+                <div class="col-xl-4 float-left">
                     <!--<b><?php echo date("d M, Y"); ?></b>-->
                     <ul class="list-inline float-right mb-0">
                         <li class="list-inline-item dropdown notif text-white">
@@ -32,8 +35,9 @@
                         <li class="list-inline-item dropdown notif">
                             <a class="nav-link dropdown-toggle nav-user" data-toggle="dropdown" href="#" role="button"
                                 aria-haspopup="false" aria-expanded="false">
-                                <img src="<?php echo base_url(); ?>assets/images/avatars/admin.png" alt="Profile image"
-                                    class="avatar-rounded">
+                                <!--<img src="<?php echo base_url(); ?>assets/images/favicon.ico" alt="Profile image"-->
+                                <!--    class="avatar-rounded">-->
+                                <i class="fa fa-sign-out rounded-circle p-1 shadow" style="border:5px solid #acb0df" aria-hidden="true"></i>
                             </a>
                             <div class="dropdown-menu dropdown-menu-right profile-dropdown ">
                                 <!-- item-->
@@ -50,7 +54,6 @@
                     </ul>
                 </div>
                 <div class="clearfix"></div>
-        </div>
     </div>
     <!-- end row -->
             

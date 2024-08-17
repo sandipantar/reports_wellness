@@ -3,17 +3,15 @@
 } else { 
     $this->load->view('all_modals'); 
     $manager =$this->session->userdata('user_email');
+    if($this->session->userdata('type') == 'Admin' || $this->session->userdata('type') == 'Manager') {
 ?>
 
 <div class="container-fluid">
 
     <div class="row">
         <div class="col-xl-12">
-            <div class="breadcrumb-holder">
-                <h1 class="main-title float-left">All Files with Users</h1>
-                <ol class="breadcrumb float-right">
-                    <li class="breadcrumb-item"><b><?php echo date("d M, Y"); ?></b></li>
-                </ol>
+            <div class="breadcrumb-holder pb-3">
+                <h1 class="main-title bg-secondary py-2 rounded shadow text-center text-white"><b>All Files with Users</b></h1>
                 <div class="clearfix"></div>
             </div>
         </div>
@@ -25,14 +23,15 @@
                 <div class="card mb-3"> 
             <div class="card-body">
                 <div class="table-responsive">
-                  <!--  <div class="col-md-12">-->
-                  <!--    <input type="text" value="" id="tabsearch" placeholder="Search for filename / Date">-->
-                  <!--</div>-->
+                 <!--<div class="col-lg-12">-->
+                 <!--     <input type="text" id="tabsearch" placeholder="Search Box" class="shadow w-25 rounded p-1 my-2">-->
+                 <!-- </div>-->
                 <table id="show_doctors" class="table  table-bordered display">
                     <thead>
                         <tr>
                             <th>Files</th>
                             <th>Date</th>
+                            <th>By</th>
                             <th>Matched User</th>
 
                         </tr>
@@ -48,6 +47,7 @@
                                     </a></h6>
                            </td>
                            <td><? echo $nsf['time']; ?></td>
+                           <td><? echo $nsf['manager']; ?></td>
                            <td> 
                                 
                                         <?php
@@ -71,5 +71,6 @@
     </div>
     </div>
 </div>
+</div>
 
-<?php } ?>
+<?php }} ?>

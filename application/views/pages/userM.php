@@ -9,10 +9,7 @@
     <div class="row">
         <div class="col-xl-12">
             <div class="breadcrumb-holder">
-                <h1 class="main-title float-left">Users</h1>
-                <ol class="breadcrumb float-right">
-                    <li class="breadcrumb-item"><b><?php echo date("d M, Y"); ?></b></li>
-                </ol>
+                <h1 class="main-title float-left font-weight-bold mb-2">Users</h1>
                 <div class="clearfix"></div>
             </div>
         </div>
