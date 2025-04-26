@@ -15,34 +15,25 @@
         </div>
 
         <nav class="navbar-custom">
-                <div class="row ml-3">
-                <div class="col-xl-8">
-                    <!--<button class="button-menu-mobile open-left float-left ml-3">-->
-                        <!--<i class="fa fa-fw fa-bars"></i>-->
-                    <!--</button>-->
-                    <!--<h6 class="main-title text-white">All Users</h6>-->
-                    <h4 class="mt-2 p-1 text-white ml-5 "><i><?php echo date(' l\, F jS\, Y - h:i:s a'); ?></i></h4>
+                <div class="row ml-3 ">
+                <div class="col-xl-8 ">
+                    <h4 class="mt-2 p-1 text-white ml-5 m-none"><i><?php echo date(' l\, F jS\, Y - h:i:s a'); ?></i></h4>
                 </div>
-                <!--<div class="col-xl-4 text-white">-->
                     
-                <!--</div>-->
                 <div class="col-xl-4 float-left">
-                    <!--<b><?php echo date("d M, Y"); ?></b>-->
-                    <ul class="list-inline float-right mb-0">
-                        <li class="list-inline-item dropdown notif text-white">
+                    <ul class="list-inline float-right mb-0 d-flex justify-content-center">
+                        <li class="list-inline-item dropdown notif text-white m-none">
                         <b style="font-size:30px"><?php echo $userDet['user_email']; ?></b>
                         </li>
                         <li class="list-inline-item dropdown notif">
                             <a class="nav-link dropdown-toggle nav-user" data-toggle="dropdown" href="#" role="button"
                                 aria-haspopup="false" aria-expanded="false">
-                                <!--<img src="<?php echo base_url(); ?>assets/images/favicon.ico" alt="Profile image"-->
-                                <!--    class="avatar-rounded">-->
                                 <i class="fa fa-sign-out rounded-circle p-1 shadow" style="border:5px solid #acb0df" aria-hidden="true"></i>
                             </a>
                             <div class="dropdown-menu dropdown-menu-right profile-dropdown ">
                                 <!-- item-->
                                 <div class="dropdown-item noti-title">
-                                    <h5 class="text-overflow"><small>Hello, <?php echo $this->session->userdata('user_email'); ?></small> </h5>
+                                    <h5><small>Hi, <?php echo $this->session->userdata('user_email'); ?></small> </h5>
                                 </div>
         
                                 <!-- item-->
@@ -109,9 +100,12 @@
                     <li class="submenu">
                         <a <?php if($this->uri->segment(1) == 'masterSearch') echo 'class="active"'; ?> href="<?php echo base_url(); ?>masterSearch"><i class="fa fa-fw fa-search-plus"></i><span> Master File Search </span> </a>
                     </li>
-                    
                     <?php } ?>
-
+                    <?php $user_id =$this->session->userdata('user_id'); if($this->session->userdata('type') == 'User') { ?> 
+                        <li class="submenu">
+                        <a <?php if($this->uri->segment(1) == 'passke') echo 'class="active"'; ?> href="<?php echo base_url(); ?>passke"><i class="fa fa-fw fa-money"></i><span>Payouts </span> </a>
+                    </li>
+                    <?php } ?>
                     <?php if($this->session->userdata('type') == 'Manager') { ?>
 
                         <li class="submenu">

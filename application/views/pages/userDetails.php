@@ -86,14 +86,17 @@
                       <!--</div>-->
                       <div class="col-md-6">
                           <div class="row text-center">
-                          <div class="col-md-6">
+                          <div class="col-md-4">
                                <a href="<?php echo base_url(); ?>urReports/<?php echo $user_id;?>" class="btn btn-danger shadow border-secondary" style="border: 2px solid #999">Urgent Reports</a>
                           </div>
-                          <div class="col-md-6">
+                          <div class="col-md-4">
                           <!-- Button trigger modal -->
                               <button type="button" class=" btn btn-primary shadow border-dark" style="border: 2px solid #999" data-toggle="modal" data-target="#exampleModal">
                                    Login History
                               </button>
+                          </div>
+                          <div class="col-md-4">
+                          <a href="<?php echo base_url(); ?>payouts/<?php echo $user_id;?>" class="btn btn-success shadow border-secondary" style="border: 2px solid #999">Billing & Payments</a>
                           </div>
                           </div>
                       </div>
@@ -126,9 +129,9 @@
                 <!--modal-->
               </div>
               <div class="row col-xl-12">
-                      <div class="col-xl-5 d-flex rounded mx-auto shadow" style="border:5px solid #666">
+                      <div class="col-xl-5 d-flex rounded mx-auto shadow border-dark" style="border:5px solid #666">
                         <div class="col-sm">
-                          <h6>Total Pages</h6>
+                          <h6 class="mt-2"><span class="bg-dark px-2 py-1 text-white font-weight-bold rounded shadow">Total Pages</span></h6>
                             <?php $totalP = 0;
                           if($userPage != NULL){ foreach($userPage as $user) { ?> 
                          <?php $totalP +=$user['pages']; ?>
@@ -137,7 +140,7 @@
                         <h5>  <span class="badge badge-primary"><?php echo $totalP; ?></span> </h5>
                         </div>
                         <div class="col-sm">
-                          <h6>Used Pages</h6>
+                          <h6 class="mt-2"><span class="bg-dark px-2 py-1 text-white font-weight-bold rounded shadow">Used Pages</span></h6>
                             <?php $usedP = 0;
                           if($userPage != NULL){ foreach($userPage as $user) { ?> 
                          <?php $usedP +=$user['page_used']; ?>
@@ -146,14 +149,14 @@
                         <h5>  <span class="badge badge-warning"><?php echo $usedP; ?></span> </h5>
                         </div>
                         <div class="col-sm">
-                          <h6>Pages in Stock</h6> 
+                          <h6 class="mt-2"><span class="bg-dark px-2 py-1 text-white font-weight-bold rounded shadow">Pages in Stock</span></h6> 
                           <i class="fa fa-history float-right" data-toggle="modal" data-target="#exampleModal1" aria-hidden="true"></i>
                         <h5><span class="badge badge-success"><?php echo $totalP - $usedP ?></span></h5>
                         </div>
                       </div>
                     <div class="col-xl-5 d-flex rounded mx-auto shadow" style="border:5px solid #666">
                         <div class="col-sm">
-                          <h6>Total Envelopes</h6> 
+                          <h6 class="mt-2"><span class="bg-dark px-2 py-1 text-white font-weight-bold rounded shadow">Total Envelopes</span></h6> 
                           <?php $totalE = 0;
                           if($userEnvelope != NULL){ foreach($userEnvelope as $user) { ?> 
                          <?php $totalE +=$user['envelopes']; ?>
@@ -162,7 +165,7 @@
                         <h5>  <span class="badge badge-primary"><?php echo $totalE; ?></span> </h5>
                         </div>
                         <div class="col-sm">
-                          <h6>Used Envelopes</h6> 
+                          <h6 class="mt-2"><span class="bg-dark px-2 py-1 text-white font-weight-bold rounded shadow">Used Envelopes</span></h6> 
                           <?php $usedE = 0;
                           if($userEnvelope != NULL){ foreach($userEnvelope as $user) { ?> 
                          <?php $usedE +=$user['envelope_used']; ?>
@@ -171,7 +174,7 @@
                         <h5>  <span class="badge badge-warning"><?php echo $usedE; ?></span> </h5>
                         </div>
                         <div class="col-sm">
-                          <h6>Envelopes in Stock</h6> 
+                          <h6 class="mt-2"><span class="bg-dark px-2 py-1 text-white font-weight-bold rounded shadow">Envelopes in Stock</span></h6> 
                           <i class="fa fa-history float-right" data-toggle="modal" data-target="#exampleModal11" aria-hidden="true"></i>
                         <h5><span class="badge badge-success"><?php echo $totalE - $usedE ?></span></h5>
                         </div>
@@ -291,11 +294,11 @@
               <div class="card-body" style="padding-bottom: 0 !important">
                 <h4 class="card-title p-2 border border-primary shadow rounded bg-light text-center font-weight-bold">ASSIGNED FILES</h4>
               </div>
-              <div class="col-lg-12">
-                  <input type="text" id="tabsearch" placeholder="Search for filename / Date">
-              </div>
-              <div class="table-wrapper-scroll-y my-custom-scrollbar">
-                    <table id="myTable" class="table table-bordered table-striped mb-0">
+              <!--<div class="col-lg-12">-->
+              <!--    <input type="text" id="tabsearch" placeholder="Search for filename / Date">-->
+              <!--</div>-->
+              <!--<div class="table-wrapper-scroll-y my-custom-scrollbar">-->
+                    <table id="old_bill" class="table table-bordered table-striped mb-0">
                     <thead style="position: sticky;top: 0; background:#fff; border:1px solid #f3f3f3">
                         <tr>
                             <th>File</th>
@@ -351,7 +354,7 @@
                         <?php }$i++;}}?>
                     </tbody>
                 </table>
-              </div>
+              <!--</div>-->
               </div>
             </div>
   </div>

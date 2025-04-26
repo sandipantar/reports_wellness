@@ -18,6 +18,13 @@ class Page_model extends CI_Model {
             </script>";
         }
     }
+    
+    public function passkey($userId,$passkey){
+        $this->db->where('passkey', $passkey);
+        $this->db->where('user_id', $userId);
+        $q = $this->db->get('user');
+        return $q->row_array();
+    }
 
     public function lastlogin($user_id) {
         $curdt = date('h:i:s a l\, F jS\, Y ');

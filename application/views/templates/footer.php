@@ -153,8 +153,9 @@
                 scrollCollapse: true,
                 });
 			$('#old_bill').DataTable({
-			    order: [[2, 'desc']],
-                scrollY: '300px',
+			 //   order: [[0, 'desc']],
+			 ordering: false,
+                scrollY: '600px',
                 scrollCollapse: true,
                 });
 			$('#tests').DataTable();

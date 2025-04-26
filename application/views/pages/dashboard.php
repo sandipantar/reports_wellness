@@ -160,38 +160,84 @@
             </div>
   </div>
     <? } else { ?>
-                <h2 class="text-danger ml-5 pl-5" style="text-shadow: 2px 2px #666;"><br/><br/><br/><br/><br/>Your code has been locked... <br/><br/>Please contact admin</h2>
+                <!--<h2 class="text-danger ml-5 pl-5" style="text-shadow: 2px 2px #666;"><br/><br/><br/><br/><br/>Your code has been locked... <br/><br/>Please contact admin</h2>-->
+                <div class="d-flex justify-content-center">
+                    <img src="<?php echo base_url(); ?>assets/images/geo.png" class="img-fluid ldimg" alt="login denied"/><br/>
+                </div>
+                <div class="d-flex justify-content-center mb-4">
+                    <h1 class=" text-white shadow py-2 px-3 border bg-danger rounded-pill">ACCESS DENIED!</h1>    
+                </div>
+                <div class="d-flex justify-content-center">
+                    <h2>Your Account Has Been Locked, Please Contact Admin</h2>
+                </div>
+                    
             <? } ?>
 
  <?php }?> 
+<?php if($this->session->userdata('type') == 'HCUser') { 
+    $user_id =$this->session->userdata('user_id') ;
+    $userDet=$this->User_model->show_user($user_id);
+    $userStatus = $userDet['u_status'];
+?>  
 
+<?php if($userStatus == 1) { ?>
+<div class="container-fluid">
+
+
+    <?php 
+        // $user_id =$this->session->userdata('user_id') ;
+        // $userDet=$this->User_model->show_user($user_id);
+        $billLink = $userDet['billLog'];
+    ?>	
+    
+        <div class="w-100">
+            <div class="breadcrumb-holder">
+                <iframe src="<?php echo $userDet['billLog']; ?>?widget=true&amp;headers=false" style="border:0;height:600px;width:100%;"></iframe>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+    <? } else { ?>
+                <!--<h2 class="text-danger ml-5 pl-5" style="text-shadow: 2px 2px #666;"><br/><br/><br/><br/><br/>Your code has been locked... <br/><br/>Please contact admin</h2>-->
+                <div class="d-flex justify-content-center">
+                    <img src="<?php echo base_url(); ?>assets/images/geo.png" class="img-fluid ldimg" alt="login denied"/><br/>
+                </div>
+                <div class="d-flex justify-content-center mb-4">
+                    <h1 class=" text-white shadow py-2 px-3 border bg-danger rounded-pill">ACCESS DENIED!</h1>    
+                </div>
+                <div class="d-flex justify-content-center">
+                    <h2>Your Account Has Been Locked, Please Contact Admin</h2>
+                </div>
+                    
+            <? } ?>
+<?php }?>
 <?php if($this->session->userdata('type') == 'Admin') { ?>   
   <?php $userTotal=$this->User_model->show_user();
   $pageTotal=$this->User_model->show_page();
   $envelopeTotal=$this->User_model->show_envelope(); ?>
 <div class="container">    
-<div class="col-lg-12">
-            <div class="card text-center shadow" style="margin-top:5.5rem;">
-                <a href="<?php echo base_url();?>user">
-                  <div class="card-body bg-dark">
-                      <div class="row justify-content-md-center">
-                        <div class="col-md-6 col-lg-6 col-sm-6 mt-2"><h5><b class="border shadow border-warning p-2 rounded text-white">Total Users</b></h5></div>
+<div class="col-lg-12" style="margin-top:100px;">
+     <a href="<?php echo base_url();?>user">
+                  <div class="card-body bg-dark shadow text-white mx-auto" style="max-width:60% !important; border-radius:10px;">
+                      <div class="row mx-auto">
+                        <div class="col-md-6 col-lg-6 col-sm-6 mt-2"><h3><b class="p-2 rounded">Total Users</b></h3></div>
                         <?php $uTotal = 0;
                           if($userTotal != NULL){ foreach($userTotal as $user) { ?> 
                          <?php $uTotal +=1; ?>
                        
                           <?php }}?>  
-                        <div class="col-md-6 col-lg-6 col-sm-6"><h4><span class="badge badge-warning py-2 px-4 shadow"><?php echo $uTotal ?></span></h4></div>
+                        <div class="col-md-6 col-lg-6 col-sm-6"><h3><span class="badge badge-warning py-2 text-white px-4 shadow mt-2 float-right"><?php echo $uTotal ?></span></h3></div>
                       </div>
                   </div>
                 </a>
-              
+            <div class="card text-center shadow" style="margin-top:3.5rem;">
+               
                 <ul class="list-group list-group-flush">
                 <li class="list-group-item">
                     
                       <div class="row">
                         <div class="col-sm">
-                          <h6>Total Pages</h6>
+                          <h6><span class="bg-secondary px-2 py-1 text-white font-weight-bold rounded shadow">Total Pages</span></h6>
                             <?php $totalP = 0;
                           if($pageTotal != NULL){ foreach($pageTotal as $user) { ?> 
                          <?php $totalP +=$user['pages']; ?>
@@ -201,7 +247,7 @@
                         </div>
 
                         <div class="col-sm">
-                          <h6>Used Pages</h6>
+                          <h6><span class="bg-secondary px-2 py-1 text-white font-weight-bold rounded shadow">Used Pages</span></h6>
                             <?php $usedP = 0;
                           if($pageTotal != NULL){ foreach($pageTotal as $user) { ?> 
                          <?php $usedP +=$user['page_used']; ?>
@@ -213,7 +259,7 @@
 
 
                         <div class="col-sm">
-                          <h6>Pages in Stock</h6> 
+                          <h6><span class="bg-secondary px-2 py-1 text-white font-weight-bold rounded shadow">Pages in Stock</span></h6> 
                           <i class="fa fa-history float-right" data-toggle="modal" data-target="#exampleModal1" aria-hidden="true"></i>
                         <h5><span class="badge badge-success"><?php echo $totalP - $usedP ?></span></h5>
                         </div>
@@ -226,7 +272,7 @@
                    
                     <div class="row">
                         <div class="col-sm">
-                          <h6>Total Envelopes</h6> 
+                          <h6><span class="bg-secondary px-2 py-1 text-white font-weight-bold rounded shadow">Total Envelopes</span></h6> 
                           <?php $totalE = 0;
                           if($envelopeTotal != NULL){ foreach($envelopeTotal as $user) { ?> 
                          <?php $totalE +=$user['envelopes']; ?>
@@ -236,7 +282,7 @@
                         </div>
 
                         <div class="col-sm">
-                          <h6>Used Envelopes</h6> 
+                          <h6><span class="bg-secondary px-2 py-1 text-white font-weight-bold rounded shadow">Used Envelopes</span></h6> 
                           <?php $usedE = 0;
                           if($envelopeTotal != NULL){ foreach($envelopeTotal as $user) { ?> 
                          <?php $usedE +=$user['envelope_used']; ?>
@@ -248,7 +294,7 @@
 
                         
                         <div class="col-sm">
-                          <h6>Envelopes in Stock</h6> 
+                          <h6><span class="bg-secondary px-2 py-1 text-white font-weight-bold rounded shadow">Envelopes in Stock</span></h6> 
                           <i class="fa fa-history float-right" data-toggle="modal" data-target="#exampleModal11" aria-hidden="true"></i>
                         <h5><span class="badge badge-success"><?php echo $totalE - $usedE ?></span></h5>
                         </div>

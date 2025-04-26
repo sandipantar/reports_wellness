@@ -1,3 +1,4 @@
+/wellness_file
 */config/development
 */logs/log-*.php
 !*/logs/index.html

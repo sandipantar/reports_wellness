@@ -27,6 +27,8 @@ date_default_timezone_set("Asia/kolkata");
                 'user_password'   => md5($this->input->post('user_password')),
                 'user_type'      => $this->input->post('user_type'),
                 'note'          => $this->input->post('note'),
+                'billLog'          => $this->input->post('user_bill'),
+                'passkey'          => $this->input->post('passkey'),
                 'u_status'         => 1
             );
             //insert
@@ -47,9 +49,10 @@ date_default_timezone_set("Asia/kolkata");
             //user updated data
             $data = array( 'user_name' => $this->input->post('user_name') ,
                             'user_email' => $this->input->post('user_email'),
-                            'user_wa' => $this->input->post('user_wa'),
                             'user_password' =>  $a,
                             'note' => $this->input->post('note'),
+                            'billLog' => $this->input->post('billLog'),
+                            'passkey' => $this->input->post('passkey'),
                             'user_type' => $this->input->post('user_type')
         );
             

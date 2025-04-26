@@ -1,6 +1,6 @@
 {
-  "name": "PWA-App", // installation name
-  "short_name": "PWA", // app title name
+  "name": "Wellness Reports", // installation name
+  "short_name": "wR", // app title name
   "start_url": ".",
   "theme_color": "#4287f5",
   "background_color": "#ffffff",

@@ -55,6 +55,30 @@ class Pages extends CI_Controller {
 		}
 		
 	}
+	    //passkey
+	public function passke(){		
+			$userId = $this->input->post('userId');
+			$passkey = $this->input->post('passkey');
+			$userpass = $this->Page_model->passkey($userId,$passkey);
+            if($userpass[passkey] == $passkey) {
+                // $this->session->set_data('keypassed' => 1);
+                $passData = array('keypassed' => true, 'key' => $userpass['passkey']);
+                // $this->session->set_passkey('keypassed', 1);
+                session_start();
+                $_SESSION["passkey"]="keypassed";
+                
+                echo "<script>
+                alert('Passkey Matches');
+                window.location.href='/payouts/$userId';
+            </script>";
+            }else{
+                echo "<script>
+                alert('Passkey Not Matches');
+                window.location.href='/passke';
+            </script>";
+            }
+		}
+
 
 	//logout
 	public function logout() {

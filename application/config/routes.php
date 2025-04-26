@@ -3,6 +3,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 $route['logout'] = 'Pages/logout';
 $route['login'] = 'Pages/login';
+$route['passkey'] = 'Pages/passkey';
 // collectors/show_json_collector
 $route['collectors/show_json_collector'] = 'Collectors/show_json_collector';
 
@@ -15,6 +16,7 @@ $route['final_bill/(:any)'] = 'Pages/view/final_bill/$1';
 $route['edit_bill/(:any)'] = 'Pages/view/edit_bill/$1';
 
 $route['uagh/(:any)'] = 'Pages/view/uagh/$1';
+$route['aulh/(:any)'] = 'Pages/view/aulh/$1';
 $route['syncUploadHistory/(:any)'] = 'Pages/view/syncUploadHistory/$1';
 $route['syncDeleteHistory/(:any)'] = 'Pages/view/syncDeleteHistory/$1';
 $route['urgentUploadHistory/(:any)'] = 'Pages/view/urgentUploadHistory/$1';
@@ -40,6 +42,9 @@ $route['masterSearch/(:any)'] = 'Pages/view/masterSearch/$1';
 $route['user/file_assign'] = 'User/file_assign';
 $route['user/add_file'] = 'User/add_file';
 $route['user/dump'] = 'User/dump';
+$route['view/passke'] = 'passke';
+$route['passkey/(:any)'] = 'Pages/view/passkey/$1';
+$route['payouts/(:any)'] = 'Pages/view/payouts/$1';
 
 $route['edit_bill/bill/del_bill_test'] = 'Bill/del_bill_test';
 $route['edit_bill/bill/show_json_sample'] = 'Bill/show_json_sample';

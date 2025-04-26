@@ -73,9 +73,9 @@ class User extends CI_Controller {
                 $data .= '<option value="manager.png"';
                 if($users['user_name'] == 'manager.png') { $data .= 'selected'; }
                 $data .= '>Manager</option>';
-                $data .= '<option value="nucleus.png"';
-                if($users['user_name'] == 'nucleus.png') { $data .= 'selected'; }
-                $data .= '>Nucleus</option>';
+                $data .= '<option value="wellness.png"';
+                if($users['user_name'] == 'wellness.png') { $data .= 'selected'; }
+                $data .= '>Wellness</option>';
                 $data .= '<option value="serum.png"';
                 if($users['user_name'] == 'serum.png') { $data .= 'selected'; }
                 $data .= '>Serum</option>';
@@ -90,8 +90,6 @@ class User extends CI_Controller {
                 $data .= '<span class="px-2 pt-2 mb-2 rounded shadow bg-info w-100 text-white"><label><b>User Id</b></label></span>';
                 $data .= '<input type="text" name="user_email" class="form-control" value="'.$users['user_email'].'">';
                 
-                // $data .= '<label>Whatsapp Number</label>';
-                // $data .= '<input type="text" name="user_wa" class="form-control" value="'.$users['user_wa'].'">';
 
                 $data .= '<span class="px-2 pt-2 my-2 rounded shadow bg-primary w-100 text-white"><label><b>User Password</b></label></span>';
                 $data .= '<input type="text" name="user_password" class="form-control">';
@@ -99,6 +97,10 @@ class User extends CI_Controller {
                 $data .= '<span class="px-2 pt-2 my-2 rounded shadow bg-secondary w-100 text-white"><label><b>Note</b></label></span>';
                 $data .= '<textarea name="note" class="form-control">'.$users['note'].'</textarea>';
                 
+                $data .= '<span class="px-2 pt-2 my-2 rounded shadow w-100 text-white" style="background:#820e23;"><label><b>Automated Billing & Outstanding Amount Link</b></label></span>';
+                $data .= '<input type="text" name="billLog" class="form-control" value="'.$users['billLog'].'">';
+                $data .= '<span class="px-2 pt-2 my-2 rounded shadow w-100 text-white" style="background:#820e23;"><label><b>Passkey</b></label></span>';
+                $data .= '<input type="text" name="passkey" class="form-control" value="'.$users['passkey'].'">';
 
                 $data .= '<span class="px-2 pt-2 my-2 rounded shadow bg-dark w-100 text-white"><label><b>Type Of User</b></label></span>';
 
@@ -111,6 +113,9 @@ class User extends CI_Controller {
                 $data .= '<option value="User"';
                 if($users['user_type'] == 'User') { $data .= 'selected'; }
                 $data .= '>User</option>';
+                $data .= '<option value="HCUser"';
+                if($users['user_type'] == 'HCUser') { $data .= 'selected'; }
+                $data .= '>User (Limited Access)</option>';
                 $data .= '<option value="Manager"';
                 if($users['user_type'] == 'Manager') { $data .= 'selected'; }
                 $data .= '>Manager</option>';
@@ -287,10 +292,10 @@ class User extends CI_Controller {
                                 // $this->session->set_flashdata('upsuccess','uploaded');
                             // print_r($ff[i]);
                             // }
-                        } else{echo '<script type="text/javascript">alert("'.$ff[$i].' -> Rules violated -> Only .pdf files are allowed")</script>'; }
+                        } else{echo '<script>alert("'.$ff[$i].' -> Rules violated -> Only .pdf files are allowed")</script>'; }
                         
                     }$k++;
-                    // echo '<script type="text/javascript">alert("'.$k.'-> No of File Synced")</script>';
+                    // echo '<script>alert("'.$k.'-> No of File Synced");window.location.href='/dump'; </script>';
                     
                 }
                 

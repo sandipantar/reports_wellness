@@ -7,23 +7,23 @@
             <div class="col-xs-0 col-sm-12 col-md-12 col-lg-12 d-flex flex-row-reverse">
                 <img src="<?php echo base_url(); ?>assets/images/wellness_logo.png" class="img-fluid" width="500px" >
             </div>
-            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6" ><br/>
-                <form class="form-horizontal form-label-left" method="post" action="login">
-                    <!--<h2 class="text-center">Wellness Login</h2>-->
-                    <div class="row form-group col-md-12 col-sm-12 col-xs-12">
-                        <label class="col-md-4 col-sm-4 col-xs-6 text-right">User ID:</label>
-                        <input type="text" name="email" class="form-control col-md-8 col-sm-8 col-xs-6" required="required">
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 p-4" style="box-shadow: 1px 1px 10px #000; border-radius:18px">
+            <div class="d-flex justify-content-center h1 mb-3"><i class="fa fa-user rounded-circle border px-3 py-2 text-white shadow" aria-hidden="true"></i></div>
+                <form class="form-horizontal" method="post" action="login">
+                    <div class="input-group mb-3">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1"><i class="fa fa-user" aria-hidden="true"></i></span>
+                      </div>
+                      <input type="text" name="email" placeholder="User ID" class="form-control col-md-12 shadow" autofocus required="required" aria-label="Username" aria-describedby="basic-addon1">
                     </div>
-
-                    <div class="row form-group col-md-12 col-sm-12 col-xs-12">
-                        <label class="col-md-4 col-sm-4 col-xs-6 text-right">Password:</label>
-                        <input type="password" name="password" id="password" class="form-control col-md-8 col-sm-8 col-xs-6" required="required">
+                    <div class="input-group mb-3">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon12"><i class="fa fa-lock" aria-hidden="true"></i></span>
+                      </div>
+                      <input type="password" name="password" placeholder="Password" id="password" class="form-control col-md-12 shadow" required="required" aria-label="Password" aria-describedby="basic-addon12">
+                    </div>
                         <span class="password-toggle-icon"><i class="fa fa-eye"></i></span>
-                    </div>
-
-                    <div class="row form-group col-md-6 col-sm-6 col-xs-6" style="margin-left:150px">
-                        <button class="btn btn-sm btn-block btn-success">Login</button>
-                    </div>
+                        <button class="btn btn-sm btn-block btn-primary shadow font-weight-bold">Login</button>
                 </form>  
             </div>
         </div>

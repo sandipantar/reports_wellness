@@ -553,14 +553,14 @@ function add_user() {
   data += '<option value="ldpl.jpeg">LDPL</option>';
   data += '<option value="serum.png">Serum</option>';
   data += '<option value="veins.png">Veins</option>';
-  data += '<option value="nucleus.png">Nucleus Diagnostic</option>';
+//   data += '<option value="nucleus.png">Nucleus Diagnostic</option>';
+  data += '<option value="wellness.png">Wellness</option>';
   data += '  </select>';
  data += '</div>';
 
   data += '<div class="w-100 row form-group border-info p-1 rounded" style="border:4px solid">';
   data += '<span class="px-2 pt-2 mb-2 rounded shadow bg-info w-100 text-white"><label><b>User Id</b></label></span>';
   data += '<input type="text" id="userid" name="user_email" class="form-control shadow" required="required">';
-  data += '<span id="uname_response"></span>';
   data += '</div>';
   
 //   data += '<div class="row form-group">';
@@ -578,7 +578,16 @@ function add_user() {
   data += '<textarea name="note" class="form-control border border-secondary shadow w-100" required="required"></textarea>';
   data += '</div>';
  
-
+ data += '<div class="w-100 row form-group p-1 rounded">';
+  data += '<span class="px-2 pt-2 mb-2 rounded shadow w-100 text-white" style="background:#820e23;"><label><b>Automated Billing & Outstanding Amount Link</b></label></span>';
+  data += '<input type="text" name="user_bill" class="form-control  shadow" required="required">';
+  data += '</div>';
+  
+  data += '<div class="w-100 row form-group p-1 rounded">';
+  data += '<span class="px-2 pt-2 mb-2 rounded shadow w-100 text-white" style="background:#820e23;"><label><b>Passkey</b></label></span>';
+  data += '<input type="number" name="passkey" min="0" class="form-control  shadow" required="required">';
+  data += '</div>';
+  
   data += '<div class="row form-group w-100">';
   data += '<span class="px-2 pt-2 mb-2 rounded shadow bg-dark w-100 text-white"><label><b>Type Of User</b></label></span>';
  
@@ -588,6 +597,7 @@ function add_user() {
  
   data += '<option value="Admin"> Admin</option>';
   data += '<option value="User">User</option>';
+  data += '<option value="HCUser">User(Limited Access)</option>';
   data += '<option value="Manager">Manager</option>';
 
   data += '</select>';
