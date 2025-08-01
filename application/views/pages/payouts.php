@@ -2,7 +2,10 @@
     redirect('home');
 } else { 
     $this->load->view('all_modals'); 
+    $referer = $_SERVER['HTTP_REFERER'];
+    $pk = base_url().'pages/passke';
     if($this->session->userdata('type') == 'User') { 
+    if($referer==$pk) {
     if ($_SESSION["passkey"] == "keypassed") {
 ?>
 <div class="container-fluid">
@@ -17,8 +20,8 @@
         
     ?>	
     
-        <div class="w-100">
-            <div class="breadcrumb-holder">
+        <div class="w-100 pt-5 mt-5">
+            <div class="breadcrumb-holder rounded shadow mx-2 border border-info">
                 <iframe src="<?php echo $userDet['billLog']; ?>?widget=true&amp;headers=false" style="border:0;height:600px;width:100%;"></iframe>
                 <div class="clearfix"></div>
             </div>
@@ -26,8 +29,9 @@
     </div>
 <?php 
 session_start();
-unset($_SESSION["passkey"]);
-} else {redirect('passke');} } 
+// unset($_SESSION["passkey"]);
+
+}} else {redirect('passke');} } 
 if($this->session->userdata('type') == 'Admin' || $this->session->userdata('type') == 'Manager') {
 ?>
 <div class="container-fluid">
@@ -41,7 +45,6 @@ if($this->session->userdata('type') == 'Admin' || $this->session->userdata('type
     
         
     ?>	
-    
         <div class="w-100">
             <div class="breadcrumb-holder">
                 <iframe src="<?php echo $userDet['billLog']; ?>?widget=true&amp;headers=false" style="border:0;height:600px;width:100%;"></iframe>

@@ -148,8 +148,10 @@ date_default_timezone_set("Asia/kolkata");
             $q = $this->db->get('page');
             return $q->result_array();
      }
-    public function assigned_Files($id='') {
+    public function assigned_Files($fdt='',$tdt='') {
             $this->db->where('assign_status',"1");
+            $this->db->where('date >=', $fdt);
+            $this->db->where('date <=', $tdt);
             $this->db->order_by('envelope_id','DESC');
             $q = $this->db->get('envelope');
             return $q->result_array();
@@ -161,8 +163,10 @@ date_default_timezone_set("Asia/kolkata");
             $q = $this->db->get('page');
             return $q->result_array();
     } 
-            public function urgent_upload($id='') {
+            public function urgent_upload($fdt='',$tdt='') {
             $this->db->where('UrgentReports',"1");
+            $this->db->where('date >=', $fdt);
+            $this->db->where('date <=', $tdt);
             $this->db->order_by('envelope_id','DESC');
             $q = $this->db->get('envelope');
             return $q->result_array();
@@ -214,8 +218,10 @@ date_default_timezone_set("Asia/kolkata");
         }
     }
     
-        public function show_uploads_to_user() {
+        public function show_uploads_to_user($fdt='',$tdt='') {
             $this->db->where('file_name !=','');
+            $this->db->where('date >=', $fdt);
+            $this->db->where('date <=', $tdt);
             $this->db->order_by('envelope_id','DESC');
             $q = $this->db->get('envelope');
             return $q->result_array();

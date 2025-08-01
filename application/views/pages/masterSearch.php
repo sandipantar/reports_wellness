@@ -3,15 +3,33 @@
 } else { 
     $this->load->view('all_modals'); 
     $manager =$this->session->userdata('user_email');
+    
     if($this->session->userdata('type') == 'Admin' || $this->session->userdata('type') == 'Manager') {
+        $uDate=date('Y-m-d');
+        $fDate=date('Y-m-d');
+            if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['udate'])){
+                $uDate= $_POST['udate'];
+                $fDate= $_POST['fdate'];
+            }
 ?>
 
 <div class="container-fluid">
 
+    <div class="row mt-5 py-2 d-flex justify-content-center">
+            <form method="POST" action="">
+                            &emsp; <b>FROM</b> &emsp;
+                            <input type="date" name="fdate" value="<?php echo $fDate; ?>"/>
+                            &emsp; <b>TO</b> &emsp;
+                            <input type="date" name="udate" value="<?php echo $uDate; ?>"/>
+                            <button class="btn btn-success" type="submit">Submit</button>
+                        </form>
+        </div>
     <div class="row">
         <div class="col-xl-12">
             <div class="breadcrumb-holder pb-3">
-                <h1 class="main-title bg-secondary py-2 rounded shadow text-center text-white"><b>All Files with Users</b></h1>
+                <h1 class="main-title bg-secondary py-2 rounded shadow text-center text-white"><b>All Files with Users</b>
+                    <span class="badge badge-dark shadow">FROM : <span class="badge badge-pill badge-success"><?php $date=date_create($fDate); echo date_format($date,"d-M-Y"); ?></span> TO : <span class="badge badge-pill badge-success"><?php $date=date_create($uDate); echo date_format($date,"d-M-Y"); ?></span></span>
+                </h1>
                 <div class="clearfix"></div>
             </div>
         </div>
@@ -36,7 +54,7 @@
 
                         </tr>
                     </thead>	
-                    <?php $id=0; $NonSyncFile=$this->User_model->show_uploads_to_user();  ?>					
+                    <?php $id=0; $NonSyncFile=$this->User_model->show_uploads_to_user($fDate,$uDate);  ?>					
                     <tbody>
                         <?php if($NonSyncFile != NULL) { foreach($NonSyncFile as $nsf) { ?>
                         <tr> 

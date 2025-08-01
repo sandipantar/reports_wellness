@@ -72,7 +72,7 @@
                           <?php }}?>  
                         <h5>  <span class="badge badge-warning"><?php echo $usedP; ?></span> </h5>
                         </div>
-                        <div class="col-sm">
+                        <div class="col-xl">
                           <h6>Pages in Stock</h6> 
                         <h5><span class="badge badge-success"><?php echo $totalP - $usedP ?></span></h5>
                         </div>
@@ -117,9 +117,16 @@
                     <table id="myTable" class="table table-bordered table-striped mb-0">
                     <thead style="position: sticky;top: 0; background:#fff; border:1px solid #f3f3f3">
                         <tr>
-                            <th >Filename</th>
-                            <th style="width:30% !important">Uploaded Date</th>
-                            <th class="text-center" style="width:7% !important">Action</th>
+                            <!--<th class="text-center"><h5><span class="badge badge-warning text-white">File Name</span></h5></th>-->
+                            <!--<th class="text-center"><h5><span class="badge badge-warning text-white">View</span></h5></th>-->
+                            <!--<th class="text-center"><h5><span class="badge badge-warning text-white">Uploaded Date</span></h5></th>-->
+                            <!--<th class="text-center"><h5><span class="badge badge-warning text-white">Download</span></h5></th>-->
+                            <!--<th class="text-center"><h5><span class="badge badge-warning text-white">Action</span></h5></th>-->
+                            <th class="bg-warning text-center">File Name</th>
+                            <th class="bg-warning text-center">View</th>
+                            <th class="bg-warning text-center">Uploaded Date</th>
+                            <th class="bg-warning text-center">Download</th>
+                            <th class="bg-warning text-center">Action</th>
                         </tr>
                     </thead>
             
@@ -129,23 +136,38 @@
                             <tr>
                                 <td>
                                 <h6 class="">
-                                <a target="_blank" href="<?=base_url()?>wellness_file/<?php echo $user['file_name']; ?>" >
-                                    <?php echo $user['file_name'];?> 
-                                    <i class="fa fa-download"></i>
+                                    <?php 
+                                        $fullFilename = $user['file_name'];
+                                        // Split by underscores
+                                        $parts = explode('_', $fullFilename);
+                                        
+                                        // Keep only first 3 parts
+                                        $displayName = implode('_', array_slice($parts, 0, 3));
+                                        
+                                        echo $displayName;
+                                        ?> 
                                     <? if($user['UrgentReports']==1){ ?>
                                     <span class="badge badge-danger ml-1">Urgent</span>
                                     <?}else{}?>
                                  <!--<?php echo $user['file_name']; ?> <i class="fa fa-download"></i>-->
-                                </a></h6>
+                                </h6>
+                                <td><a class="btn btn-warning" target="_blank" href="<?=base_url()?>wellness_file/<?php echo $user['file_name']; ?>">
+                                    <i class="fa fa-eye"></i>
+                                </a></td>
                                 </td>
                                 <td>
                                 <?php echo $user['time']; ?>
+                                </td>
+                                <td>
+                                    <a class="btn btn-primary" target="_blank" href="<?=base_url()?>wellness_file/<?php echo $user['file_name']; ?>" download>
+                                        <i class="fa fa-download"></i>
+                                    </a>
                                 </td>
                                 <td class=" text-center">
                                     <a href="https://web.whatsapp.com" target="_blank">
                                         <img wid src="/assets/images/waIcon.png" width="25px" alt="wa Icon"/>
                                     </a><span>|</span>
-                                    <a href="https://www.gmail.com" target="_blank">
+                                    <a href="mailto:https://www.gmail.com" target="_blank">
                                          <img wid src="/assets/images/gmail-512.webp" width="25px" alt="gmail Icon"/>
                                     </a>
                                     

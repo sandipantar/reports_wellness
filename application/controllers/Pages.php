@@ -68,7 +68,6 @@ class Pages extends CI_Controller {
                 $_SESSION["passkey"]="keypassed";
                 
                 echo "<script>
-                alert('Passkey Matches');
                 window.location.href='/payouts/$userId';
             </script>";
             }else{

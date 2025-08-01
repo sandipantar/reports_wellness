@@ -30,6 +30,7 @@ class Page_model extends CI_Model {
         $curdt = date('h:i:s a l\, F jS\, Y ');
         $data = array(
             'user_id'      => $user_id,
+            'date'      => date('Y-m-d'),
             'last_login' => $curdt
         );
 
@@ -49,6 +50,13 @@ class Page_model extends CI_Model {
             $q = $this->db->get('lastlogin');
             return $q->result_array();
         }
-    } 
+    }
+    public function show_lastlogin_from_to($fdt='',$tdt='') {
+            $this->db->where('date >=', $fdt);
+            $this->db->where('date <=', $tdt);
+            $this->db->order_by('login_id','DESC');
+            $q = $this->db->get('lastlogin');
+            return $q->result_array();
+    }
 
 }

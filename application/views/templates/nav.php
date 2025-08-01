@@ -15,15 +15,15 @@
         </div>
 
         <nav class="navbar-custom">
-                <div class="row ml-3 ">
-                <div class="col-xl-8 ">
-                    <h4 class="mt-2 p-1 text-white ml-5 m-none"><i><?php echo date(' l\, F jS\, Y - h:i:s a'); ?></i></h4>
+                <div class="d-flex justify-content-between">
+                <div class="col-lg-3 ">
+                    <h4 class="mt-2 text-white ml-5 m-none"><i><div id="clock"></div></i></h4>
                 </div>
                     
-                <div class="col-xl-4 float-left">
+                <div class="col-lg-9 text-right">
                     <ul class="list-inline float-right mb-0 d-flex justify-content-center">
                         <li class="list-inline-item dropdown notif text-white m-none">
-                        <b style="font-size:30px"><?php echo $userDet['user_email']; ?></b>
+                        <h5 class="mt-3"><?php echo $userDet['user_email']; ?></h5>
                         </li>
                         <li class="list-inline-item dropdown notif">
                             <a class="nav-link dropdown-toggle nav-user" data-toggle="dropdown" href="#" role="button"
@@ -46,6 +46,29 @@
                 </div>
                 <div class="clearfix"></div>
     </div>
+   <script>
+        function updateClock() {
+            const now = new Date();
+            const days = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'];
+            const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+            const dayName = days[now.getDay()];
+            const monthName = months[now.getMonth()];
+            const day = now.getDate();
+            let hours = now.getHours() % 12 || 12; // Convert to 12-hour format
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            const seconds = String(now.getSeconds()).padStart(2, '0');
+            const ampm = now.getHours() >= 12 ? 'PM' : 'AM';
+
+            // Format hours to be 01, 02, ..., 10, 11, 12
+            hours = hours < 10 ? `0${hours}` : hours;
+
+            const formattedTime = ` ${day}-${monthName} _ ${hours}:${minutes}:${seconds} ${ampm}`;
+            document.getElementById('clock').textContent = formattedTime;
+        }
+
+        setInterval(updateClock, 1000); // Update every second
+        updateClock(); // Initial call
+    </script>
     <!-- end row -->
             
         </nav>

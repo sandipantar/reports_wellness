@@ -240,6 +240,7 @@ class User extends CI_Controller {
                                             'user_id'=>$this->input->post('user_id'),
                                             'manager'=>$this->input->post('manager'),
                                             'file_name'=>$ff[$i],
+                                            'date' => date('Y-m-d'),
                                             'time'=> date('h:i:s a l\, F jS\, Y '),
                                             'UrgentReports'=>"1"
                                         );
@@ -270,6 +271,7 @@ class User extends CI_Controller {
                             move_uploaded_file($tmp_name[$i], $uploads_dir.$ff[$i]);
                             $data = array(
                                         'file_name' => $ff[$i],
+                                        'date' => date('Y-m-d'),
                                         'time' => date('h:i:s a l\, F jS\, Y '),
                                         'manager'=>$this->input->post('manager'),
                                         'envelope_used'=>"1"
