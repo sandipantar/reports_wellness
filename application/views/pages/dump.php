@@ -36,16 +36,22 @@
         <div class="col-xl-12">
             <div class="breadcrumb-holder py-3 bg-dark shadow">
                 <!--user/add_file-->
-              <form  method="post" action="user/add_file"  enctype="multipart/form-data">
+              <form id="uploadForm" method="post" action="user/add_file"  enctype="multipart/form-data">
                 <b>
                     <div class="row">
+                        <!-- Loader -->
+                              <div id="loader">
+                                <div class="spinner"></div>
+                              </div>
                         <div class="btcd-f-input">
-                            <div class="btcd-f-wrp">
+                            <div class="btcd-f-wrp" id="content">
                                 <button class="btcd-inpBtn" type="button"> <img src="" alt=""></button>
                                 <span class="btcd-f-title text-white" style="text-shadow:2px 2px 10px #000">No File Chosen</span>
                                         <label class="form-label" id="uploadFile"></label>
                                         <input type="file" name="file_name[]" id="sync" class="synced" accept=".pdf" required multiple style="width:235px !important; border:4px solid #000; padding:4px; border-radius:10px; cursor:pointer !important"/>
+                                <p id="status"></p>
                             </div>
+                            
                             <div class="btcd-files">
                             </div>
                         </div>
@@ -60,12 +66,12 @@
                                 <button name="submit" type="submit" class="btn btn-md rounded p-2 font-weight-bold button w-100 shadow mt-2" style=" background:#d4e8e4;" onchange="submitForm();">Sync <i class="fa fa-refresh" aria-hidden="true"></i></button>
                             </div>
                             <div class="col-md-2">
-                                <div class="loader mx-auto">
-                                    <div class="check">
-                                      <span class="check-one"></span>
-                                      <span class="check-two"></span>
-                                    </div>
-                                </div>
+                                <!--<div class="loader mx-auto">-->
+                                <!--    <div class="check">-->
+                                <!--      <span class="check-one"></span>-->
+                                <!--      <span class="check-two"></span>-->
+                                <!--    </div>-->
+                                <!--</div>-->
                             </div>
                         </div>
                     </b>
@@ -171,6 +177,52 @@
     </div>
 </div>
 </div>
+  <!-- Loader -->
+  <div id="loader">
+    <div class="spinner"></div>
+  </div>
+
+  <!-- Page Content -->
+  <div id="content">
+    <!--<h1>Welcome to My Website</h1>-->
+    <!--<p>This is the page content that will show after loading.</p>-->
+  </div>
+<script>
+                                const form = document.getElementById("uploadForm");
+                                const status = document.getElementById("status");
+                            
+                                form.addEventListener("submit", function(e) {
+                                //   e.preventDefault();
+                            
+                                  // Activate loader
+                                  document.body.classList.add("loading");
+                            
+                                  const files = document.getElementById("sync").files;
+                                  if (!files.length) {
+                                    alert("Please select files first!");
+                                    document.body.classList.remove("loading");
+                                    return;
+                                  }
+                            
+                                  // Fake upload (simulate with timeout)
+                                  setTimeout(() => {
+                                    status.textContent = files.length + " files uploaded successfully!";
+                                    document.body.classList.remove("loading"); // Hide loader
+                                  }, 3000); // Simulate 3s upload
+                                });
+                              </script>
+  <script>
+    window.addEventListener("load", function() {
+      const loader = document.getElementById("loader");
+      const content = document.getElementById("content");
+
+      // Show content
+      content.style.display = "block";
+
+      // Fade out loader
+      loader.classList.add("hidden");
+    });
+  </script>
 <script>
     // var delay_popup=5000; setTimeout("document.getElementById('exampleModal1').style.display='block'", delay_popup)
 //     setTimeout(function(){

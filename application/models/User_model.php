@@ -190,6 +190,22 @@ date_default_timezone_set("Asia/kolkata");
             return $q->result_array();
     } 
     
+    public function show_old_envelope($id='',$fdt='',$tdt='') {
+        if($id != NULL) {
+            $this->db->where('user_id',$id);
+            $this->db->where('date >=', $fdt);
+            $this->db->where('date <=', $tdt);
+            $this->db->order_by('envelope_id','DESC');
+            $q = $this->db->get('envelope_old');
+            return $q->result_array();
+        } else {
+            $this->db->order_by('envelope_id','DESC');
+            $this->db->where('date >=', $fdt);
+            $this->db->where('date <=', $tdt);
+            $q = $this->db->get('envelope_old');
+            return $q->result_array();
+        }
+    }
 
     public function show_envelope($id='') {
         if($id != NULL) {

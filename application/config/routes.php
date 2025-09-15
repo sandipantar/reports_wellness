@@ -23,6 +23,7 @@ $route['urgentUploadHistory/(:any)'] = 'Pages/view/urgentUploadHistory/$1';
 $route['urgentDeleteHistory/(:any)'] = 'Pages/view/urgentDeleteHistory/$1';
 
 $route['userDetails/(:any)'] = 'Pages/view/userDetails/$1';
+$route['oldUserBills/(:any)'] = 'Pages/view/oldUserBills/$1';
 $route['urReports/(:any)'] = 'Pages/view/urReports/$1';
 
 // $route['userDetails/user/add_envelope'] = 'User/add_envelope';

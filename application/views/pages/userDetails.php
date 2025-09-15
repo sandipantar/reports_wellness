@@ -293,6 +293,7 @@
             <div class="card">
               <div class="card-body" style="padding-bottom: 0 !important">
                 <h4 class="card-title p-2 border border-primary shadow rounded bg-light text-center font-weight-bold">ASSIGNED FILES</h4>
+                <h4 class="float-right"><a href="<?php echo base_url(); ?>oldUserBills/<?echo $user_id;?>" target="_blank" style="text-shadow:1px 1px 1px #000">Access Old Reports <i class="fa fa-external-link" aria-hidden="true"></i></a></h4>
               </div>
               <!--<div class="col-lg-12">-->
               <!--    <input type="text" id="tabsearch" placeholder="Search for filename / Date">-->

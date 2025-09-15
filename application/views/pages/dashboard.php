@@ -108,13 +108,13 @@
             <div class="card">
               <div class="card-body" style="padding-bottom: 0 !important">
                 <h4 class="card-title float-left"><span class=" p-2 shadow rounded bg-secondary text-white text-center font-weight-bold" style="text-shadow:2px 2px 10px #000">ASSIGNED FILES</span></h4>
-                <h4 class="float-right"><a href="https://oldreports.wellnessslg.com/" target="_blank" style="text-shadow:1px 1px 1px #000">Access Old Reports <i class="fa fa-external-link" aria-hidden="true"></i></a></h4>
+                <h4 class="float-right"><a href="<?php echo base_url(); ?>oldUserBills/<?echo $user_id;?>" target="_blank" style="text-shadow:1px 1px 1px #000">Access Old Reports <i class="fa fa-external-link" aria-hidden="true"></i></a></h4>
               </div>
-              <div class="m-2 p-2">
+        <div class="m-2 p-2">
             <div>
                <input type="text" id="tabsearch" placeholder="Search for filename / Date">
               <div class="table-wrapper-scroll-y my-custom-scrollbar">
-                    <table id="myTable" class="table table-bordered table-striped mb-0">
+                <table id="myTable" class="table table-bordered table-striped mb-0">
                     <thead style="position: sticky;top: 0; background:#fff; border:1px solid #f3f3f3">
                         <tr>
                             <!--<th class="text-center"><h5><span class="badge badge-warning text-white">File Name</span></h5></th>-->
@@ -236,7 +236,8 @@
 <?php if($this->session->userdata('type') == 'Admin') { ?>   
   <?php $userTotal=$this->User_model->show_user();
   $pageTotal=$this->User_model->show_page();
-  $envelopeTotal=$this->User_model->show_envelope(); ?>
+  $envelopeTotal=$this->User_model->show_envelope(); 
+  ?>
 <div class="container">    
 <div class="col-lg-12" style="margin-top:100px;">
      <a href="<?php echo base_url();?>user">
