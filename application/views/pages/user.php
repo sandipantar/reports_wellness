@@ -57,6 +57,7 @@
                         <tr>
                             
                             <th class="fixed-header">User ID</th>
+                            <!--<th>Lab</th>-->
                             <th>Type</th>
                             <!--<th>Total Pages</th>-->
                             <th>Stock Pages</th>
@@ -74,12 +75,17 @@
                             <!--onclick="$(this).css('background', '#20c997')">-->
                                 
                                 <td>
-                                    <a href="<?php echo base_url(); ?>userDetails/<?php echo $usr['user_id'];?>" class="btn btn-sm btn-primary">
-                                    <?php echo $usr['user_email']; ?>
-                                    <i class="fa fa-eye"></i>
-                                    </a>
+                                            <a href="<?php echo base_url(); ?>userDetails/<?php echo $usr['user_id'];?>" class="btn btn-sm btn-primary">
+                                            <?php echo $usr['user_email']; ?>
+                                            <i class="fa fa-eye"></i>
+                                            </a>
+                                        </div>
+                                            <img class="img-fluid float-right" style="max-width:85px" src="assets/images/lab/<?php echo $usr['user_name']; ?>" alt="<?php echo $usr['user_email']; ?>"/>
                                     
                                 </td>
+                                <!--<td>-->
+                                    
+                                <!--</td>-->
                                 <td>
                                     <?php if($usr['user_type'] == "Admin"){ ?>
                                         <span class="badge badge-success"><?php echo $usr['user_type']; ?></span>
@@ -114,8 +120,9 @@
                                 <td>
                                 <?php if($usr['user_type'] == "HCUser"){ ?>                               
                                         <span class="badge badge-danger">User (Limited Access) - N/A</span>
-                                    <?php } else { ?>
-                                    <?php 
+                                    <?php } else if($usr['u_status']==0  || $usr['user_type'] == "Admin" ||  $usr['user_type'] == "Manager") {?>
+                                    <span class="badge badge-warning">Access Denied</span>
+                                    <?} else{
                                     echo $totalP - $usedP;
                                     $result = $totalP - $usedP;
                                         echo ($result > 30) ? "" : " (Low Stock)";
@@ -138,19 +145,25 @@
                                 <td>
                                 <?php if($usr['user_type'] == "HCUser"){ ?>                               
                                         <span class="badge badge-danger">User (Limited Access) - N/A</span>
-                                    <?php } else { ?>
-                                <?php
-                                echo $totalE - $usedE; 
-                                $resulte = $totalE - $usedE;
+                                <?php } else if($usr['u_status']==0 || $usr['user_type'] == "Admin" ||  $usr['user_type'] == "Manager") {?>
+                                    <span class="badge badge-warning text-denger">Access Denied</span>
+                                <?} else{
+                                    echo $totalE - $usedE; 
+                                    $resulte = $totalE - $usedE;
                                     echo ($resulte > 15) ? "" : " (Low Stock)";
-                                }?></td>
+                                }?>
+                                
+                                </td>
                                 <td class="text-center">
-                                    <?php if($usr['user_type'] == "HCUser"){ ?>                               
+                                    <?php if($usr['user_type'] == "HCUser" || $usr['user_type'] == "Admin" || $usr['user_type'] == "Manager"){ ?>                               
                                         
                                     <?php } else { ?>
+                                    <?php if($usr['u_status']==1) {?>
                                     <button class="btn btn-sm btn-success" data-toggle="tooltip" data-placement="bottom" title="Assign Pages to <? echo $usr['user_email']; ?>" onclick="assign_page(<?php echo $usr['user_id'];?>);"><i class="fa fa-file-text"></i></button>
+                                    <?} else {}?>
+                                    <?php if($usr['u_status']==1) {?>
                                     <button class="btn btn-sm btn-warning mx-2" data-toggle="tooltip" data-placement="bottom" title="Assign Envelopes to <? echo $usr['user_email']; ?>" onclick="assign_envs(<?php echo $usr['user_id']; ?>);"><i class="fa fa-envelope"></i></button>
-                                    <?}?>
+                                    <?}else{}}?>
                                     <button class="btn btn-sm btn-primary mr-2" data-toggle="tooltip" data-placement="bottom" title="Edit <? echo $usr['user_email']; ?>" onclick="edit_user(<?php echo $usr['user_id']; ?>);"><i class="fa fa-edit"></i></button>
                                     <button class="btn btn-sm btn-danger" data-toggle="tooltip" data-placement="bottom" title="Delete <? echo $usr['user_email']; ?>" onclick="del_user(<?php echo $usr['user_id']; ?>);"><i class="fa fa-trash"></i></button>
                                 </td>

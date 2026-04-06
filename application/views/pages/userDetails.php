@@ -87,7 +87,9 @@
                       <div class="col-md-6">
                           <div class="row text-center">
                           <div class="col-md-4">
+                              <?if($userDet['user_type'] != "HCUser"){?>
                                <a href="<?php echo base_url(); ?>urReports/<?php echo $user_id;?>" class="btn btn-danger shadow border-secondary" style="border: 2px solid #999">Urgent Reports</a>
+                            <?}?>
                           </div>
                           <div class="col-md-4">
                           <!-- Button trigger modal -->

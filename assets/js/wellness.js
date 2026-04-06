@@ -548,13 +548,14 @@ function add_user() {
   data += ' <span class="px-2 pt-2 mb-2 rounded shadow bg-warning w-100 text-white"><label><b>Select User Image *</b></label></span>';
   data += ' <select name="user_name" class="form-control border border-warning shadow" required>';
   data += '  <option disabled selected value="">Select an Image</option>';
-  data += '<option value="admin.jpg">Admin</option>';
-  data += '<option value="manager.png">Manager</option>';
+  data += '<option value="admin.jpg">ADMIN</option>';
+  data += '<option value="manager.png">MANAGER</option>';
   data += '<option value="ldpl.jpeg">LDPL</option>';
-  data += '<option value="serum.png">Serum</option>';
-  data += '<option value="veins.png">Veins</option>';
-//   data += '<option value="nucleus.png">Nucleus Diagnostic</option>';
-  data += '<option value="wellness.png">Wellness</option>';
+  data += '<option value="serum.png">SERUM</option>';
+  data += '<option value="veins.png">VEINS</option>';
+  data += '<option value="phoenix.png">PHOENIX</option>';
+  data += '<option value="MEDIWIN.png">MEDIWIN</option>';
+  data += '<option value="wellness.png">WELLNESS</option>';
   data += '  </select>';
  data += '</div>';
 

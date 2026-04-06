@@ -69,22 +69,28 @@ class User extends CI_Controller {
         
                 $data .= '<option value="admin.jpg"';
                 if($users['user_name'] == 'admin.jpg') { $data .= 'selected'; }
-                $data .= '> Admin </option>';
+                $data .= '> ADMIN </option>';
                 $data .= '<option value="manager.png"';
                 if($users['user_name'] == 'manager.png') { $data .= 'selected'; }
-                $data .= '>Manager</option>';
+                $data .= '>MANAGER</option>';
                 $data .= '<option value="wellness.png"';
                 if($users['user_name'] == 'wellness.png') { $data .= 'selected'; }
-                $data .= '>Wellness</option>';
+                $data .= '>WELLNESS</option>';
                 $data .= '<option value="serum.png"';
                 if($users['user_name'] == 'serum.png') { $data .= 'selected'; }
-                $data .= '>Serum</option>';
+                $data .= '>SERUM</option>';
                 $data .= '<option value="veins.png"';
                 if($users['user_name'] == 'veins.png') { $data .= 'selected'; }
-                $data .= '>Veins</option>';
+                $data .= '>VEINS</option>';
                 $data .= '<option value="ldpl.jpeg"';
                 if($users['user_name'] == 'ldpl.jpeg') { $data .= 'selected'; }
                 $data .= '>LDPL</option>';
+                $data .= '<option value="phoenix.png"';
+                if($users['user_name'] == 'phoenix.png') { $data .= 'selected'; }
+                $data .= '>PHOENIX</option>';
+                $data .= '<option value="MEDIWIN.png"';
+                if($users['user_name'] == 'MEDIWIN.png') { $data .= 'selected'; }
+                $data .= '>MEDIWIN</option>';
                 $data .= '</select>';
                 
                 $data .= '<span class="px-2 pt-2 mb-2 rounded shadow bg-info w-100 text-white"><label><b>User Id</b></label></span>';
