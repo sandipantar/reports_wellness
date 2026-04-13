@@ -31,9 +31,9 @@ if($_SERVER['HTTP_HOST'] == 'localhost') {
 	$db['default'] = array(
 		'dsn'	=> '',
 		'hostname' => 'localhost',
-    	'username' => 'u135485345_wellnessReport',
-    	'password' => 'D:rTX8[1',
-    	'database' => 'u135485345_reportWellness',
+    	'username' => 'root',
+    	'password' => '14RyeQmeW?fHMgzc?@Bv',
+    	'database' => 'reports',
 		'dbdriver' => 'mysqli',
 		'dbprefix' => '',
 		'pconnect' => FALSE,

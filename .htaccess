@@ -1,19 +1,22 @@
 <IfModule mod_rewrite.c>
     RewriteEngine On
+
+    # Force HTTPS on SAME domain (not another domain)
     RewriteCond %{HTTPS} !=on
-    RewriteRule ^(.*)$ https://reports.wellnessslg.com/$1 [L,R=301,NE]
-    Header always set Content-Security-Policy "upgrade-insecure-requests;"
+    RewriteRule ^(.*)$ https://%{HTTP_HOST}/$1 [L,R=301]
+
     RewriteBase /
+
+    # Remove index.php from URL
     RewriteRule ^index\.php$ - [L]
+
+    # CodeIgniter routing
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteCond %{REQUEST_FILENAME} !-d
-    RewriteRule . /index.php [L]
-    php_value max_file_uploads=200;
+    RewriteRule ^(.*)$ index.php/$1 [L]
 </IfModule>
 
-# php -- BEGIN cPanel-generated handler, do not edit
-# Set the “ea-php74” package as the default “PHP” programming language.
-<IfModule mime_module>
-  AddHandler application/x-httpd-ea-php74 .php .php7 .phtml
+# Optional security header
+<IfModule mod_headers.c>
+    Header always set Content-Security-Policy "upgrade-insecure-requests;"
 </IfModule>
-# php -- END cPanel-generated handler, do not edit

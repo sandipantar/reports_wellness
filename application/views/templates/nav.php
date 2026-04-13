@@ -1,4 +1,4 @@
- <?php $user_id =$this->session->userdata('user_id') ;
+ <?php $user_id =$this->session->userdata('user_id');
   $userDet=$this->User_model->show_user($user_id);
  ?>
   

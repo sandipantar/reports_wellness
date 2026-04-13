@@ -1,11 +1,14 @@
 <?php if(!$this->session->userdata('logged_in')) {
     redirect('home');
 } else {
-
+$this->load->view('all_modals');
+$this->load->view('templates/nav');
+$this->load->view('templates/footer');
+$this->load->view('templates/header');
 ?>
 
 <?php if($this->session->userdata('type') == 'User') { ?>  
- <?php $user_id =$this->session->userdata('user_id') ;
+ <?php $user_id =$this->session->userdata('user_id');
   $userDet=$this->User_model->show_user($user_id);
   $userPage=$this->User_model->show_page($user_id);
   $userEnvelope=$this->User_model->show_envelope($user_id);

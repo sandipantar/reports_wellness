@@ -3,7 +3,7 @@
 $delay = 600;
 
 // URL to redirect to after the delay  echo base_url();
-$redirect_url = 'https://reports.wellnessslg.com/logout';
+$redirect_url = 'https://reports.wellnesscentre.co.in/logout';
 
 // Set the refresh header with the delay
 header("refresh:$delay;url=$redirect_url");
@@ -15,8 +15,8 @@ header("refresh:$delay;url=$redirect_url");
 	<meta charset="utf-8">
 	<!--<meta name="viewport" content="width=device-width, initial-scale=1.0">-->
 	
-	<title>Wellness - The heart of your healthcare</title>
-	<meta name="description" content="Wellness - The heart of your healthcare">
+	<title>Wellness Reports - The heart of your healthcare</title>
+	<meta name="description" content="Wellness Reports - The heart of your healthcare">
 	<meta name="author" content="www.grandredtechnology.com">
 	
 	<link rel="shortcut icon" href="<?php echo base_url(); ?>assets/images/favicon.ico">
